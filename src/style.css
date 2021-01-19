@@ -1,0 +1,48 @@
+@font-face {
+  font-family: APL386;
+  src: url('../assets/APL386.ttf'); /* Taken from https://abrudz.github.io/APL386/APL386.ttf */
+}
+body, .input, .button, .log {
+  font-family: APL386;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+}
+.app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 450px;
+}
+.hint {
+  padding-top: 16px;
+  color: #666;
+}
+.input-row {
+  display: flex;
+}
+.input {
+  flex: 1;
+}
+.log {
+  height: 300px;
+  background-color: #eee;
+  overflow-y: scroll;
+  resize: vertical;
+  padding-top: 16px;
+  --line-height: 16px;
+  line-height: var(--line-height);
+}
+.expr {
+  padding-bottom: var(--line-height);
+}
+.expr:hover .input {
+   text-shadow: 0.5px 0px rgba(0,0,0,0.5),-0.5px 0px rgba(0,0,0,0.5);
+}
+.expr:hover .output {
+  color: #666;
+}
