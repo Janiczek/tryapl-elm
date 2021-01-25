@@ -6303,7 +6303,7 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{j: false}),
-						$elm$core$Platform$Cmd$none);
+						$author$project$Main$focusInput);
 				} else {
 					var _v1 = msg.a.a;
 					var state = _v1.a;
@@ -6322,7 +6322,12 @@ var $author$project$Main$update = F2(
 										])),
 								G: state
 							}),
-						$author$project$Main$scrollToBottom($author$project$Main$logId));
+						$elm$core$Platform$Cmd$batch(
+							_List_fromArray(
+								[
+									$author$project$Main$scrollToBottom($author$project$Main$logId),
+									$author$project$Main$focusInput
+								])));
 				}
 			case 3:
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
