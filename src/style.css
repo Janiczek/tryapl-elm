@@ -17,7 +17,7 @@ body {
   flex: 1;
   flex-direction: column;
   min-width: 450px;
-  max-width: 90vw;
+  max-width: calc(100vw - 16px);
 }
 .hint {
   padding-top: 16px;
@@ -31,7 +31,7 @@ body {
 }
 .log {
   height: 300px;
-  max-width: 90vw;
+  max-width: calc(100vw - 16px);
   background-color: #eee;
   overflow-y: scroll;
   resize: both;
