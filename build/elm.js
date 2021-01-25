@@ -5363,16 +5363,42 @@ var $author$project$Main$init = function (flags) {
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$UnfocusedCharClicked = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Main$unfocusedCharClicked = _Platform_incomingPort('unfocusedCharClicked', $elm$json$Json$Decode$string);
 var $author$project$Main$subscriptions = function (model) {
 	return $author$project$Main$unfocusedCharClicked($author$project$Main$UnfocusedCharClicked);
 };
+var $author$project$Main$FocusAttempted = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$Main$ReceivedResponse = function (a) {
 	return {$: 2, a: a};
 };
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$Task$onError = _Scheduler_onError;
+var $elm$core$Task$attempt = F2(
+	function (resultToMessage, task) {
+		return $elm$core$Task$command(
+			A2(
+				$elm$core$Task$onError,
+				A2(
+					$elm$core$Basics$composeL,
+					A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+					$elm$core$Result$Err),
+				A2(
+					$elm$core$Task$andThen,
+					A2(
+						$elm$core$Basics$composeL,
+						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+						$elm$core$Result$Ok),
+					task)));
+	});
 var $elm$json$Json$Encode$int = _Json_wrap;
 var $elm$json$Json$Encode$list = F2(
 	function (func, entries) {
@@ -6011,6 +6037,8 @@ var $elm$http$Http$expectJson = F2(
 						A2($elm$json$Json$Decode$decodeString, decoder, string));
 				}));
 	});
+var $elm$browser$Browser$Dom$focus = _Browser_call('focus');
+var $author$project$Main$inputId = 'input';
 var $author$project$Main$logId = 'log';
 var $elm$http$Http$Request = function (a) {
 	return {$: 1, a: a};
@@ -6180,38 +6208,15 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{au: false, R: r.R, az: r.az, aB: r.aB, aG: r.aG, aS: r.aS, aU: r.aU, aW: r.aW}));
 };
-var $author$project$Main$ScrollFailed = {$: 3};
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$Task$onError = _Scheduler_onError;
-var $elm$core$Task$attempt = F2(
-	function (resultToMessage, task) {
-		return $elm$core$Task$command(
-			A2(
-				$elm$core$Task$onError,
-				A2(
-					$elm$core$Basics$composeL,
-					A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-					$elm$core$Result$Err),
-				A2(
-					$elm$core$Task$andThen,
-					A2(
-						$elm$core$Basics$composeL,
-						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-						$elm$core$Result$Ok),
-					task)));
-	});
+var $author$project$Main$ScrollAttempted = function (a) {
+	return {$: 3, a: a};
+};
 var $elm$browser$Browser$Dom$getViewportOf = _Browser_getViewportOf;
 var $elm$browser$Browser$Dom$setViewportOf = _Browser_setViewportOf;
 var $author$project$Main$scrollToBottom = function (id) {
 	return A2(
 		$elm$core$Task$attempt,
-		function (_v0) {
-			return $author$project$Main$ScrollFailed;
-		},
+		$author$project$Main$ScrollAttempted,
 		A2(
 			$elm$core$Task$andThen,
 			function (viewport) {
@@ -6257,7 +6262,7 @@ var $author$project$Main$update = F2(
 						model,
 						{i: input}),
 					$elm$core$Platform$Cmd$none);
-			case 4:
+			case 5:
 				var stringToAdd = msg.a;
 				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
@@ -6265,7 +6270,10 @@ var $author$project$Main$update = F2(
 						{
 							i: _Utils_ap(model.i, stringToAdd)
 						}),
-					$elm$core$Platform$Cmd$none);
+					A2(
+						$elm$core$Task$attempt,
+						$author$project$Main$FocusAttempted,
+						$elm$browser$Browser$Dom$focus($author$project$Main$inputId)));
 			case 1:
 				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
@@ -6315,6 +6323,8 @@ var $author$project$Main$update = F2(
 							}),
 						$author$project$Main$scrollToBottom($author$project$Main$logId));
 				}
+			case 3:
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 			default:
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 		}
@@ -6453,6 +6463,7 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$input,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$id($author$project$Main$inputId),
 										$elm$html$Html$Events$onInput($author$project$Main$SetInput),
 										$elm_community$html_extra$Html$Events$Extra$onEnter($author$project$Main$SendRequest),
 										$elm$html$Html$Attributes$class('input'),

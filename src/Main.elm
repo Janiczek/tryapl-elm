@@ -63,7 +63,8 @@ type Msg
     = SetInput String
     | SendRequest
     | ReceivedResponse (Result Http.Error ( TryAPLState, List String ))
-    | ScrollFailed
+    | ScrollAttempted (Result Browser.Dom.Error ())
+    | FocusAttempted (Result Browser.Dom.Error ())
     | UnfocusedCharClicked String
 
 
@@ -85,7 +86,8 @@ update msg model =
 
             else
                 ( { model | input = model.input ++ stringToAdd }
-                , Cmd.none
+                , Browser.Dom.focus inputId
+                    |> Task.attempt FocusAttempted
                 )
 
         SendRequest ->
@@ -131,7 +133,11 @@ update msg model =
             , scrollToBottom logId
             )
 
-        ScrollFailed ->
+        ScrollAttempted _ ->
+            -- We're ignoring it
+            ( model, Cmd.none )
+
+        FocusAttempted _ ->
             -- We're ignoring it
             ( model, Cmd.none )
 
@@ -147,7 +153,7 @@ scrollToBottom id =
                 in
                 Browser.Dom.setViewportOf id 0 bottom
             )
-        |> Task.attempt (\_ -> ScrollFailed)
+        |> Task.attempt ScrollAttempted
 
 
 encodeStateAndInput : TryAPLState -> String -> Json.Encode.Value
@@ -184,7 +190,8 @@ view model =
             [ Html.div
                 [ Html.Attributes.class "input-row" ]
                 [ Html.input
-                    [ Html.Events.onInput SetInput
+                    [ Html.Attributes.id inputId
+                    , Html.Events.onInput SetInput
                     , Html.Events.Extra.onEnter SendRequest
                     , Html.Attributes.class "input"
                     , Html.Attributes.value model.input
@@ -242,6 +249,11 @@ view model =
             ]
         ]
     }
+
+
+inputId : String
+inputId =
+    "input"
 
 
 logId : String
