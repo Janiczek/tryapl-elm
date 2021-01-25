@@ -6277,7 +6277,7 @@ var $author$project$Main$update = F2(
 							az: A2($elm$http$Http$expectJson, $author$project$Main$ReceivedResponse, $author$project$Main$stateAndOutputDecoder),
 							aB: _List_fromArray(
 								[
-									A2($elm$http$Http$header, 'Content-Type', 'application/json;charset=utf-8')
+									A2($elm$http$Http$header, 'Content-Type', 'application/json;charset=UTF-8')
 								]),
 							aG: 'POST',
 							aS: $elm$core$Maybe$Nothing,
