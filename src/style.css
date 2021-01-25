@@ -16,7 +16,8 @@ body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  width: 450px;
+  min-width: 450px;
+  max-width: 90vw;
 }
 .hint {
   padding-top: 16px;
@@ -30,9 +31,10 @@ body {
 }
 .log {
   height: 300px;
+  max-width: 90vw;
   background-color: #eee;
   overflow-y: scroll;
-  resize: vertical;
+  resize: both;
   padding-top: 16px;
   --line-height: 16px;
   line-height: var(--line-height);
