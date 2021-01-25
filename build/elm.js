@@ -6008,17 +6008,6 @@ var $elm$http$Http$expectJson = F2(
 						A2($elm$json$Json$Decode$decodeString, decoder, string));
 				}));
 	});
-var $elm$http$Http$Header = F2(
-	function (a, b) {
-		return {$: 0, a: a, b: b};
-	});
-var $elm$http$Http$header = $elm$http$Http$Header;
-var $elm$http$Http$jsonBody = function (value) {
-	return A2(
-		_Http_pair,
-		'application/json',
-		A2($elm$json$Json$Encode$encode, 0, value));
-};
 var $author$project$Main$logId = 'log';
 var $elm$http$Http$Request = function (a) {
 	return {$: 1, a: a};
@@ -6255,6 +6244,7 @@ var $author$project$Main$stateAndOutputDecoder = A3(
 		$elm$json$Json$Decode$index,
 		3,
 		$elm$json$Json$Decode$list($elm$json$Json$Decode$string)));
+var $elm$http$Http$stringBody = _Http_pair;
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
@@ -6272,13 +6262,15 @@ var $author$project$Main$update = F2(
 						{l: true}),
 					$elm$http$Http$request(
 						{
-							R: $elm$http$Http$jsonBody(
-								A2($author$project$Main$encodeStateAndInput, model.G, model.k)),
+							R: A2(
+								$elm$http$Http$stringBody,
+								'application/json;charset=UTF-8',
+								A2(
+									$elm$json$Json$Encode$encode,
+									0,
+									A2($author$project$Main$encodeStateAndInput, model.G, model.k))),
 							az: A2($elm$http$Http$expectJson, $author$project$Main$ReceivedResponse, $author$project$Main$stateAndOutputDecoder),
-							aB: _List_fromArray(
-								[
-									A2($elm$http$Http$header, 'Content-Type', 'application/json;charset=UTF-8')
-								]),
+							aB: _List_Nil,
 							aG: 'POST',
 							aS: $elm$core$Maybe$Nothing,
 							aU: $elm$core$Maybe$Nothing,

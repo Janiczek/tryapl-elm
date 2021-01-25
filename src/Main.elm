@@ -83,9 +83,14 @@ update msg model =
                 ( { model | isLoading = True }
                 , Http.request
                     { method = "POST"
-                    , headers = [ Http.header "Content-Type" "application/json;charset=UTF-8" ]
+                    , headers = []
                     , url = "https://tryapl.org/Exec"
-                    , body = Http.jsonBody (encodeStateAndInput model.state model.input)
+                    , body =
+                        Http.stringBody
+                            "application/json;charset=UTF-8"
+                            (encodeStateAndInput model.state model.input
+                                |> Json.Encode.encode 0
+                            )
                     , expect = Http.expectJson ReceivedResponse stateAndOutputDecoder
                     , timeout = Nothing
                     , tracker = Nothing
