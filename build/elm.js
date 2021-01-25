@@ -6044,6 +6044,13 @@ var $author$project$Main$focusInput = A2(
 	$author$project$Main$FocusAttempted,
 	$elm$browser$Browser$Dom$focus($author$project$Main$inputId));
 var $author$project$Main$logId = 'log';
+var $elm$core$String$replace = F3(
+	function (before, after, string) {
+		return A2(
+			$elm$core$String$join,
+			after,
+			A2($elm$core$String$split, before, string));
+	});
 var $elm$http$Http$Request = function (a) {
 	return {$: 1, a: a};
 };
@@ -6308,6 +6315,10 @@ var $author$project$Main$update = F2(
 					var _v1 = msg.a.a;
 					var state = _v1.a;
 					var output = _v1.b;
+					var sanitizedOutput = A2(
+						$elm$core$List$map,
+						A2($elm$core$String$replace, '\u0008', '\n'),
+						output);
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
@@ -6318,7 +6329,7 @@ var $author$project$Main$update = F2(
 									model.B,
 									_List_fromArray(
 										[
-											{i: model.i, aa: output}
+											{i: model.i, aa: sanitizedOutput}
 										])),
 								G: state
 							}),

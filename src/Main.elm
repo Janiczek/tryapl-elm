@@ -118,6 +118,11 @@ update msg model =
             )
 
         ReceivedResponse (Ok ( state, output )) ->
+            let
+                sanitizedOutput =
+                    output
+                        |> List.map (String.replace "\u{0008}" "\n")
+            in
             ( { model
                 | input = ""
                 , state = state
@@ -125,7 +130,7 @@ update msg model =
                 , log =
                     model.log
                         ++ [ { input = model.input
-                             , output = output
+                             , output = sanitizedOutput
                              }
                            ]
               }
