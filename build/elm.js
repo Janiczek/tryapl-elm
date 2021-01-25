@@ -5370,35 +5370,9 @@ var $author$project$Main$unfocusedCharClicked = _Platform_incomingPort('unfocuse
 var $author$project$Main$subscriptions = function (model) {
 	return $author$project$Main$unfocusedCharClicked($author$project$Main$UnfocusedCharClicked);
 };
-var $author$project$Main$FocusAttempted = function (a) {
-	return {$: 4, a: a};
-};
 var $author$project$Main$ReceivedResponse = function (a) {
 	return {$: 2, a: a};
 };
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$Task$onError = _Scheduler_onError;
-var $elm$core$Task$attempt = F2(
-	function (resultToMessage, task) {
-		return $elm$core$Task$command(
-			A2(
-				$elm$core$Task$onError,
-				A2(
-					$elm$core$Basics$composeL,
-					A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-					$elm$core$Result$Err),
-				A2(
-					$elm$core$Task$andThen,
-					A2(
-						$elm$core$Basics$composeL,
-						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
-						$elm$core$Result$Ok),
-					task)));
-	});
 var $elm$json$Json$Encode$int = _Json_wrap;
 var $elm$json$Json$Encode$list = F2(
 	function (func, entries) {
@@ -6037,8 +6011,38 @@ var $elm$http$Http$expectJson = F2(
 						A2($elm$json$Json$Decode$decodeString, decoder, string));
 				}));
 	});
+var $author$project$Main$FocusAttempted = function (a) {
+	return {$: 4, a: a};
+};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$Task$onError = _Scheduler_onError;
+var $elm$core$Task$attempt = F2(
+	function (resultToMessage, task) {
+		return $elm$core$Task$command(
+			A2(
+				$elm$core$Task$onError,
+				A2(
+					$elm$core$Basics$composeL,
+					A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+					$elm$core$Result$Err),
+				A2(
+					$elm$core$Task$andThen,
+					A2(
+						$elm$core$Basics$composeL,
+						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+						$elm$core$Result$Ok),
+					task)));
+	});
 var $elm$browser$Browser$Dom$focus = _Browser_call('focus');
 var $author$project$Main$inputId = 'input';
+var $author$project$Main$focusInput = A2(
+	$elm$core$Task$attempt,
+	$author$project$Main$FocusAttempted,
+	$elm$browser$Browser$Dom$focus($author$project$Main$inputId));
 var $author$project$Main$logId = 'log';
 var $elm$http$Http$Request = function (a) {
 	return {$: 1, a: a};
@@ -6261,7 +6265,7 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{i: input}),
-					$elm$core$Platform$Cmd$none);
+					$author$project$Main$focusInput);
 			case 5:
 				var stringToAdd = msg.a;
 				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
@@ -6270,10 +6274,7 @@ var $author$project$Main$update = F2(
 						{
 							i: _Utils_ap(model.i, stringToAdd)
 						}),
-					A2(
-						$elm$core$Task$attempt,
-						$author$project$Main$FocusAttempted,
-						$elm$browser$Browser$Dom$focus($author$project$Main$inputId)));
+					$author$project$Main$focusInput);
 			case 1:
 				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(

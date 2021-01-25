@@ -77,7 +77,7 @@ update msg model =
 
             else
                 ( { model | input = input }
-                , Cmd.none
+                , focusInput
                 )
 
         UnfocusedCharClicked stringToAdd ->
@@ -86,8 +86,7 @@ update msg model =
 
             else
                 ( { model | input = model.input ++ stringToAdd }
-                , Browser.Dom.focus inputId
-                    |> Task.attempt FocusAttempted
+                , focusInput
                 )
 
         SendRequest ->
@@ -140,6 +139,12 @@ update msg model =
         FocusAttempted _ ->
             -- We're ignoring it
             ( model, Cmd.none )
+
+
+focusInput : Cmd Msg
+focusInput =
+    Browser.Dom.focus inputId
+        |> Task.attempt FocusAttempted
 
 
 scrollToBottom : String -> Cmd Msg
