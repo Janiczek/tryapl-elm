@@ -1,9 +1,9 @@
 @font-face {
-  font-family: APL386;
-  src: url('../assets/APL386.ttf'); /* Taken from https://abrudz.github.io/APL386/APL386.ttf */
+  font-family: BQN386;
+  src: url('../assets/BQN386.ttf'); /* Taken from https://dzaima.github.io/BQN386/BQN386.ttf */
 }
 body, .input, .button, .log {
-  font-family: APL386;
+  font-family: BQN386;
 }
 body {
   display: flex;
