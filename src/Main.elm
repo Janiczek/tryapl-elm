@@ -114,7 +114,7 @@ update msg model =
         ReceivedResponse (Err err) ->
             -- We're ignoring it
             ( { model | isLoading = False }
-            , Cmd.none
+            , focusInput
             )
 
         ReceivedResponse (Ok ( state, output )) ->
@@ -129,7 +129,10 @@ update msg model =
                              }
                            ]
               }
-            , scrollToBottom logId
+            , Cmd.batch
+                [ scrollToBottom logId
+                , focusInput
+                ]
             )
 
         ScrollAttempted _ ->
