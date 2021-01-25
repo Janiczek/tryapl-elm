@@ -117,7 +117,7 @@
     for (let j = 0; j < bqk.length; j++)if (lbs[i][0] === bqv[j]) ks.push('\n` ' + bqk[j])
     data = lbs[i].slice(1);
     lines = data.split(/\r?\n/);
-    lbh += '<b data-title="' + he(lines[0] + (ks.length ? '\n\nCompletions:' + ks.join('') + '\n' : '') + lines.slice(1).join('\n')) + '">' + lbs[i][0] + '</b>'
+    lbh += '<b data-title="' + he(lines[0] + (ks.length ? '\n\nCompletions:' + ks.join('') + '\n' : '\n') + lines.slice(1).join('\n')) + '">' + lbs[i][0] + '</b>'
   }
   let d = document, el = d.createElement('div'); el.innerHTML =
     `<div class=ngn_lb><span class=ngn_x title=Close>❎</span>${lbh}</div>

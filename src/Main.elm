@@ -231,7 +231,9 @@ view model =
                     |> List.map
                         (\expr ->
                             Html.li
-                                [ Html.Events.onClick (SetInput expr) ]
+                                [ Html.Events.onClick (SetInput expr)
+                                , Html.Attributes.class "example-expression"
+                                ]
                                 [ Html.text expr ]
                         )
                     |> Html.ul []

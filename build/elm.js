@@ -6526,7 +6526,8 @@ var $author$project$Main$view = function (model) {
 											_List_fromArray(
 												[
 													$elm$html$Html$Events$onClick(
-													$author$project$Main$SetInput(expr))
+													$author$project$Main$SetInput(expr)),
+													$elm$html$Html$Attributes$class('example-expression')
 												]),
 											_List_fromArray(
 												[

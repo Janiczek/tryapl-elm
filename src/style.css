@@ -23,6 +23,9 @@ body {
   padding-top: 16px;
   color: #666;
 }
+.example-expression:hover {
+  color: #000;
+}
 .input-row {
   display: flex;
 }
