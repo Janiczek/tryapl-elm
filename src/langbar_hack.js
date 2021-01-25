@@ -152,10 +152,16 @@
   let em = x => x.dispatchEvent(new Event('lang-bar-insert-char'));
   ev(lb, 'mousedown', x => {
     if (x.target.classList.contains('ngn_x')) { lb.hidden = 1; upd(); pd(x); return }
-    if (x.target.nodeName === 'B' && t) {
-      let i = t.selectionStart, j = t.selectionEnd, v = t.value, s = x.target.textContent
-      if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + 1; em(t) }
-      pd(x); return
+    if (x.target.nodeName === 'B') {
+      s = x.target.textContent;
+      if (t) {
+        let i = t.selectionStart, j = t.selectionEnd, v = t.value;
+        if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + 1; em(t) }
+        pd(x); return
+      } else {
+        // emit the event even if no input has been focused yet
+        window.ElmApp.ports.unfocusedCharClicked.send(s);
+      }
     }
   })
   let fk = x => {

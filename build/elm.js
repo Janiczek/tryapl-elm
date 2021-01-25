@@ -5355,17 +5355,20 @@ var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (flags) {
 	return _Utils_Tuple2(
 		{
-			k: '',
-			l: false,
+			i: '',
+			j: false,
 			B: _List_Nil,
 			G: {H: '', I: '', J: 0}
 		},
 		$elm$core$Platform$Cmd$none);
 };
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main$UnfocusedCharClicked = function (a) {
+	return {$: 4, a: a};
+};
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $author$project$Main$unfocusedCharClicked = _Platform_incomingPort('unfocusedCharClicked', $elm$json$Json$Decode$string);
 var $author$project$Main$subscriptions = function (model) {
-	return $elm$core$Platform$Sub$none;
+	return $author$project$Main$unfocusedCharClicked($author$project$Main$UnfocusedCharClicked);
 };
 var $author$project$Main$ReceivedResponse = function (a) {
 	return {$: 2, a: a};
@@ -6229,7 +6232,6 @@ var $author$project$Main$TryAPLState = F3(
 	});
 var $elm$json$Json$Decode$int = _Json_decodeInt;
 var $elm$json$Json$Decode$map3 = _Json_map3;
-var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Main$stateDecoder = A4(
 	$elm$json$Json$Decode$map3,
 	$author$project$Main$TryAPLState,
@@ -6250,16 +6252,25 @@ var $author$project$Main$update = F2(
 		switch (msg.$) {
 			case 0:
 				var input = msg.a;
-				return model.l ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{k: input}),
+						{i: input}),
+					$elm$core$Platform$Cmd$none);
+			case 4:
+				var stringToAdd = msg.a;
+				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							i: _Utils_ap(model.i, stringToAdd)
+						}),
 					$elm$core$Platform$Cmd$none);
 			case 1:
-				return model.l ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+				return model.j ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{l: true}),
+						{j: true}),
 					$elm$http$Http$request(
 						{
 							R: A2(
@@ -6268,7 +6279,7 @@ var $author$project$Main$update = F2(
 								A2(
 									$elm$json$Json$Encode$encode,
 									0,
-									A2($author$project$Main$encodeStateAndInput, model.G, model.k))),
+									A2($author$project$Main$encodeStateAndInput, model.G, model.i))),
 							az: A2($elm$http$Http$expectJson, $author$project$Main$ReceivedResponse, $author$project$Main$stateAndOutputDecoder),
 							aB: _List_Nil,
 							aG: 'POST',
@@ -6282,7 +6293,7 @@ var $author$project$Main$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{l: false}),
+							{j: false}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					var _v1 = msg.a.a;
@@ -6292,13 +6303,13 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{
-								k: '',
-								l: false,
+								i: '',
+								j: false,
 								B: _Utils_ap(
 									model.B,
 									_List_fromArray(
 										[
-											{k: model.k, aa: output}
+											{i: model.i, aa: output}
 										])),
 								G: state
 							}),
@@ -6445,9 +6456,9 @@ var $author$project$Main$view = function (model) {
 										$elm$html$Html$Events$onInput($author$project$Main$SetInput),
 										$elm_community$html_extra$Html$Events$Extra$onEnter($author$project$Main$SendRequest),
 										$elm$html$Html$Attributes$class('input'),
-										$elm$html$Html$Attributes$value(model.k),
+										$elm$html$Html$Attributes$value(model.i),
 										$elm$html$Html$Attributes$placeholder('Put your APL expression here!'),
-										$elm$html$Html$Attributes$disabled(model.l),
+										$elm$html$Html$Attributes$disabled(model.j),
 										A2(
 										$elm$html$Html$Events$on,
 										'lang-bar-insert-char',
@@ -6459,7 +6470,7 @@ var $author$project$Main$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('button'),
-										$elm$html$Html$Attributes$disabled(model.l),
+										$elm$html$Html$Attributes$disabled(model.j),
 										$elm$html$Html$Events$onClick($author$project$Main$SendRequest)
 									]),
 								_List_fromArray(
@@ -6517,7 +6528,7 @@ var $author$project$Main$view = function (model) {
 						A2(
 							$elm$core$List$map,
 							function (_v0) {
-								var input = _v0.k;
+								var input = _v0.i;
 								var output = _v0.aa;
 								return A2(
 									$elm$html$Html$div,

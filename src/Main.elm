@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Browser.Dom
@@ -41,6 +41,9 @@ type alias TryAPLState =
     }
 
 
+port unfocusedCharClicked : (String -> msg) -> Sub msg
+
+
 init : () -> ( Model, Cmd Msg )
 init flags =
     ( { state =
@@ -61,6 +64,7 @@ type Msg
     | SendRequest
     | ReceivedResponse (Result Http.Error ( TryAPLState, List String ))
     | ScrollFailed
+    | UnfocusedCharClicked String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -72,6 +76,15 @@ update msg model =
 
             else
                 ( { model | input = input }
+                , Cmd.none
+                )
+
+        UnfocusedCharClicked stringToAdd ->
+            if model.isLoading then
+                ( model, Cmd.none )
+
+            else
+                ( { model | input = model.input ++ stringToAdd }
                 , Cmd.none
                 )
 
@@ -236,11 +249,6 @@ logId =
     "log"
 
 
-type LanguageBarItem
-    = Char Char String
-    | Separator
-
-
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    unfocusedCharClicked UnfocusedCharClicked
