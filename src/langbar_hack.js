@@ -1,5 +1,5 @@
 // @janiczek's changes to https://github.com/abrudz/lb/blob/master/lb.js
-// * APL386 font used instead of DejaVu Sans Mono
+// * BQN386 font used instead of DejaVu Sans Mono
 // * custom event `lang-bar-insert-char` emitted whenever the language bar inserts a character
 //     (this is due to the language bar stopping the input event from bubbling up in that case, which breaks usecases from Elm)
 (_ => {
@@ -35,7 +35,7 @@
     `<div class=ngn_lb><span class=ngn_x title=Close>❎</span>${lbh}</div>
  <style>
   .ngn_lb{position:fixed;top:0;left:0;right:0;background-color:#eee;color:#000;cursor:default;z-index:2147483647;
-    font-family:"APL386",monospace;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
+    font-family:"BQN386",monospace;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
   .ngn_lb b{cursor:pointer;padding:0 1px;font-weight:normal}
   .ngn_lb b:hover,.ngn_bq .ngn_lb{background-color:#777;color:#fff}
   .ngn_x{float:right;color:#999;cursor:pointer;margin-top:-3px}
