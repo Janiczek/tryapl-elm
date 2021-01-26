@@ -11191,7 +11191,11 @@ var $author$project$Main$view = function (model) {
 												$elm$html$Html$Attributes$class('input'),
 												$elm$html$Html$Attributes$value(model.m),
 												$elm$html$Html$Attributes$placeholder('Put your APL expression here!'),
-												$elm$html$Html$Attributes$disabled(model.n)
+												$elm$html$Html$Attributes$disabled(model.n),
+												A2(
+												$elm$html$Html$Events$on,
+												'lang-bar-updated-input-value',
+												A2($elm$json$Json$Decode$map, $author$project$Main$SetInput, $elm$html$Html$Events$targetValue))
 											]),
 										_List_Nil),
 										A2(

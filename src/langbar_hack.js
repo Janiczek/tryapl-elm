@@ -2,6 +2,8 @@
 // * BQN386 font used instead of DejaVu Sans Mono
 // * Copied over tooltip labels from RIDE
 // * Styled the tooltips a little with CSS.
+// * Custom event `lang-bar-updated-input-value` emitted whenever the language
+//     bar does something different than just adding a character
 (_ => {
   let hc = { '<': '&lt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }, he = x => x.replace(/[<&'"]/g, c => hc[c]) //html chars and escape fn
     , tcs = '<-←xx×/\\×:-÷*O⍟[-⌹-]⌹OO○77⌈FF⌈ll⌊LL⌊T_⌶II⌶|_⊥TT⊤-|⊣|-⊢=/≠L-≠<=≤<_≤>=≥>_≥==≡=_≡7=≢L=≢vv∨^^∧^~⍲v~⍱^|↑v|↓((⊂cc⊂(_⊆c_⊆))⊃[|⌷|]⌷A|⍋V|⍒ii⍳i_⍸ee∊e_⍷' +
@@ -29,6 +31,7 @@
   let t, ts = [], lb = el.firstChild, bqm = 0 //t:textarea or input, lb:language bar, bqm:backquote mode
   let pd = x => x.preventDefault()
   let ev = (x, t, f, c) => x.addEventListener(t, f, c)
+  let emV = x => x.dispatchEvent(new Event('lang-bar-updated-input-value'));
   let emC = s => s != ' ' ? window.ElmApp.ports.langBarCharClicked.send(s) : null;
   let emH = s => s != ' ' ? window.ElmApp.ports.langBarCharHovered.send(s) : null;
   [...document.querySelectorAll('.ngn_lb b')].map(y =>
@@ -38,26 +41,28 @@
     if (x.target.classList.contains('ngn_x')) { lb.hidden = 1; upd(); pd(x); return }
     if (x.target.nodeName === 'B') {
       s = x.target.textContent;
-      emC(s);
       if (t) {
         let i = t.selectionStart, j = t.selectionEnd, v = t.value;
-        if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + 1}
+        if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + 1; emV(t); }
         pd(x); return
+      } else {
+        emC(s);
       }
+
     }
   })
   let fk = x => {
     let t = x.target
     if (bqm) {
       let i = t.selectionStart, v = t.value, c = bqc[x.key]; if (x.which > 31) { bqm = 0; d.body.classList.remove('ngn_bq') }
-      if (c) { t.value = v.slice(0, i) + c + v.slice(i); t.selectionStart = t.selectionEnd = i + 1; pd(x); emC(c); return !1 }
+      if (c) { t.value = v.slice(0, i) + c + v.slice(i); t.selectionStart = t.selectionEnd = i + 1; pd(x); emV(t); return !1 }
     }
     if (!x.ctrlKey && !x.shiftKey && !x.altKey && !x.metaKey) {
       if ("`½²^º§ùµ°".indexOf(x.key) > -1) {
         bqm = 1; d.body.classList.add('ngn_bq'); pd(x); // ` or other trigger symbol pressed, wait for next key
       } else if (x.key == "Tab") {
         let i = t.selectionStart, v = t.value, c = tc[v.slice(i - 2, i)]
-        if (c) { t.value = v.slice(0, i - 2) + c + v.slice(i); t.selectionStart = t.selectionEnd = i - 1; pd(x); emC(c); }
+        if (c) { t.value = v.slice(0, i - 2) + c + v.slice(i); t.selectionStart = t.selectionEnd = i - 1; pd(x); emV(t); }
       }
     }
   }

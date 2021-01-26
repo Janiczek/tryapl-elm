@@ -247,6 +247,7 @@ view model =
                         , Attrs.value model.input
                         , Attrs.placeholder "Put your APL expression here!"
                         , Attrs.disabled model.isLoading
+                        , Events.on "lang-bar-updated-input-value" (Decode.map SetInput Events.targetValue)
                         ]
                         []
                     , Html.button
