@@ -10405,7 +10405,17 @@ var $author$project$Main$view = function (model) {
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text('Example expressions (click to paste):'),
+										$elm$html$Html$text('Click on expressions anywhere (log, examples below, docs on left) to edit them.')
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('hint')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Example expressions:'),
 										A2(
 										$elm$html$Html$ul,
 										_List_fromArray(
@@ -10430,16 +10440,6 @@ var $author$project$Main$view = function (model) {
 											},
 											_List_fromArray(
 												['3 7⍴10', '¯1+?3 7⍴2', '(~R∊R∘.×R)/R←1↓⍳20', '(+⌿÷≢),¯1+?1000 1000⍴2'])))
-									])),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('hint')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Click on expressions in the log to edit them.')
 									])),
 								A2(
 								$elm$html$Html$pre,

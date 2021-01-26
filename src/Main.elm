@@ -260,7 +260,10 @@ view model =
                     ]
                 , Html.div
                     [ Attrs.class "hint" ]
-                    [ Html.text "Example expressions (click to paste):"
+                    [ Html.text "Click on expressions anywhere (log, examples below, docs on left) to edit them." ]
+                , Html.div
+                    [ Attrs.class "hint" ]
+                    [ Html.text "Example expressions:"
                     , [ "3 7⍴10"
                       , "¯1+?3 7⍴2"
                       , "(~R∊R∘.×R)/R←1↓⍳20"
@@ -276,9 +279,6 @@ view model =
                             )
                         |> Html.ul [ Attrs.class "example-expressions" ]
                     ]
-                , Html.div
-                    [ Attrs.class "hint" ]
-                    [ Html.text "Click on expressions in the log to edit them." ]
                 , Html.pre
                     [ Attrs.class "log"
                     , Attrs.id logId
