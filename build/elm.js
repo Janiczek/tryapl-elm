@@ -7565,13 +7565,16 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 			default:
 				var index = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{
-							o: A2($elm_community$list_extra$List$Extra$removeAt, index, model.o)
-						}),
-					$elm$core$Platform$Cmd$none);
+				return A2(
+					$Janiczek$cmd_extra$Cmd$Extra$andThen,
+					$author$project$Main$persistStateToUrl,
+					_Utils_Tuple2(
+						_Utils_update(
+							model,
+							{
+								o: A2($elm_community$list_extra$List$Extra$removeAt, index, model.o)
+							}),
+						$elm$core$Platform$Cmd$none));
 		}
 	});
 var $author$project$Main$RemoveLog = function (a) {

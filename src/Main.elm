@@ -203,6 +203,7 @@ update msg model =
             ( { model | log = List.removeAt index model.log }
             , Cmd.none
             )
+                |> Cmd.andThen persistStateToUrl
 
 
 type alias UrlData =
