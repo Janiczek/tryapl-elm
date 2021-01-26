@@ -509,7 +509,9 @@ viewHelp { char, name, completions, description } =
                                             |> List.map
                                                 (\line ->
                                                     Html.span
-                                                        [ Events.onClick (SetInput line) ]
+                                                        [ Events.onClick (SetInput line)
+                                                        , Attrs.class "help-description-input-line"
+                                                        ]
                                                         [ Html.text line ]
                                                 )
                                             |> List.intersperse (Html.text "\n")

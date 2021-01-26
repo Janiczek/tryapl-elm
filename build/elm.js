@@ -11470,7 +11470,8 @@ var $author$project$Main$viewHelp = function (_v0) {
 																_List_fromArray(
 																	[
 																		$elm$html$Html$Events$onClick(
-																		$author$project$Main$SetInput(line))
+																		$author$project$Main$SetInput(line)),
+																		$elm$html$Html$Attributes$class('help-description-input-line')
 																	]),
 																_List_fromArray(
 																	[

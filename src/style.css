@@ -202,7 +202,7 @@ body {
   color: #951a1a;
 }
 
-.help-description-input:hover,
+.help-description-input-line:hover,
 .expr:hover .input {
    text-shadow: 0.5px 0px rgba(0,0,0,0.25), -0.5px 0px rgba(0,0,0,0.25);
 }
