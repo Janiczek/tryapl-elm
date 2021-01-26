@@ -176,6 +176,27 @@ body {
 }
 .expr {
   padding-bottom: var(--input-output-line-height);
+  position: relative;
+}
+.expr:hover {
+  background-color: #f4f0d6;
+}
+.expr-remove-btn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  background-color: #eee;
+  cursor: pointer;
+  font-size: 24px;
+}
+.expr-remove-btn:hover {
+  color: #951a1a;
 }
 
 .help-description-input:hover,

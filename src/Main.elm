@@ -13,6 +13,7 @@ import Html.Extra as Html
 import Http
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
+import List.Extra as List
 import Task
 
 
@@ -76,6 +77,7 @@ type Msg
     | FocusAttempted (Result Browser.Dom.Error ())
     | LangBarCharHovered String
     | LangBarCharClicked String
+    | RemoveLog Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -167,6 +169,11 @@ update msg model =
         FocusAttempted _ ->
             -- We're ignoring it
             ( model, Cmd.none )
+
+        RemoveLog index ->
+            ( { model | log = List.removeAt index model.log }
+            , Cmd.none
+            )
 
 
 focusInput : Cmd Msg
@@ -284,13 +291,18 @@ view model =
                     , Attrs.id logId
                     ]
                     (model.log
-                        |> List.map
-                            (\{ input, output } ->
+                        |> List.indexedMap
+                            (\index { input, output } ->
                                 Html.div
                                     [ Events.onClick (SetInput input)
                                     , Attrs.class "expr"
                                     ]
                                     [ Html.div
+                                        [ Attrs.class "expr-remove-btn"
+                                        , Events.onClick (RemoveLog index)
+                                        ]
+                                        [ Html.text "×" ]
+                                    , Html.div
                                         [ Attrs.class "input" ]
                                         [ Html.text <| String.repeat 6 " " ++ input ]
                                     , Html.div
