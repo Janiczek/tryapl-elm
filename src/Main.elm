@@ -2,10 +2,11 @@ port module Main exposing (main)
 
 import Browser
 import Browser.Dom
-import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..), IO(..))
+import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..))
 import Dict exposing (Dict)
 import Html exposing (Html)
 import Html.Attributes as Attrs
+import Html.Attributes.Extra as Attrs
 import Html.Events as Events
 import Html.Events.Extra as Events
 import Html.Extra as Html
@@ -386,30 +387,39 @@ viewHelp { char, name, completions, description } =
                                 ]
                             ]
 
-                        Example parts ->
+                        Example { input, output } ->
+                            let
+                                lastInputLine : Maybe String
+                                lastInputLine =
+                                    input
+                                        |> List.reverse
+                                        |> List.filter (not << String.isEmpty)
+                                        |> List.head
+                            in
                             [ Html.div
                                 [ Attrs.class "help-description-example" ]
-                                (parts
-                                    |> List.map
-                                        (\part ->
-                                            case part of
-                                                Input lines ->
-                                                    Html.div
-                                                        [ Attrs.class "help-description-input" ]
-                                                        [ lines
-                                                            |> String.join "\n"
-                                                            |> Html.text
-                                                        ]
-
-                                                Output lines ->
-                                                    Html.div
-                                                        [ Attrs.class "help-description-output" ]
-                                                        [ lines
-                                                            |> String.join "\n"
-                                                            |> Html.text
-                                                        ]
+                                [ Html.viewIf (not (List.isEmpty input)) <|
+                                    Html.div
+                                        [ Attrs.class "help-description-input" ]
+                                        (input
+                                            |> List.map
+                                                (\line ->
+                                                    Html.span
+                                                        [ Events.onClick (SetInput line) ]
+                                                        [ Html.text line ]
+                                                )
+                                            |> List.intersperse (Html.text "\n")
                                         )
-                                )
+                                , Html.viewIf (not (List.isEmpty output)) <|
+                                    Html.div
+                                        [ Attrs.class "help-description-output"
+                                        , Attrs.attributeMaybe (Events.onClick << SetInput) lastInputLine
+                                        ]
+                                        [ output
+                                            |> String.join "\n"
+                                            |> Html.text
+                                        ]
+                                ]
                             ]
                 )
         )

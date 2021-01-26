@@ -178,12 +178,13 @@ body {
   padding-bottom: var(--input-output-line-height);
 }
 
-.help-description-example:hover .help-description-input,
+.help-description-input:hover,
 .expr:hover .input {
    text-shadow: 0.5px 0px rgba(0,0,0,0.25), -0.5px 0px rgba(0,0,0,0.25);
 }
 
-.help-description-example:hover .help-description-output,
+.help-description-input:hover + .help-description-output,
+.help-description-output:hover,
 .expr:hover .output {
   color: #666;
 }
