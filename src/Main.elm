@@ -2,7 +2,7 @@ port module Main exposing (main)
 
 import Browser
 import Browser.Dom
-import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..))
+import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..), IO(..))
 import Dict exposing (Dict)
 import Html exposing (Html)
 import Html.Attributes as Attrs
@@ -385,22 +385,30 @@ viewHelp { char, name, completions, description } =
                                 ]
                             ]
 
-                        Input lines ->
+                        Example parts ->
                             [ Html.div
-                                [ Attrs.class "help-description-input" ]
-                                [ lines
-                                    |> String.join "\n"
-                                    |> Html.text
-                                ]
-                            ]
+                                [ Attrs.class "help-description-example" ]
+                                (parts
+                                    |> List.map
+                                        (\part ->
+                                            case part of
+                                                Input lines ->
+                                                    Html.div
+                                                        [ Attrs.class "help-description-input" ]
+                                                        [ lines
+                                                            |> String.join "\n"
+                                                            |> Html.text
+                                                        ]
 
-                        Output lines ->
-                            [ Html.div
-                                [ Attrs.class "help-description-output" ]
-                                [ lines
-                                    |> String.join "\n"
-                                    |> Html.text
-                                ]
+                                                Output lines ->
+                                                    Html.div
+                                                        [ Attrs.class "help-description-output" ]
+                                                        [ lines
+                                                            |> String.join "\n"
+                                                            |> Html.text
+                                                        ]
+                                        )
+                                )
                             ]
                 )
         )

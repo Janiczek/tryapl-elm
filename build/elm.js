@@ -6399,14 +6399,17 @@ var $elm$html$Html$input = _VirtualDom_node('input');
 var $author$project$CharInfo$Backquote = function (a) {
 	return {$: 1, a: a};
 };
+var $author$project$CharInfo$Example = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$CharInfo$Heading = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$CharInfo$Input = function (a) {
-	return {$: 4, a: a};
+	return {$: 0, a: a};
 };
 var $author$project$CharInfo$Output = function (a) {
-	return {$: 5, a: a};
+	return {$: 1, a: a};
 };
 var $author$project$CharInfo$Tab = function (a) {
 	return {$: 0, a: a};
@@ -6420,20 +6423,28 @@ var $author$project$CharInfo$alpha = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Alpha Syntax:           Left argument of a dfn'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Heading('Alpha Syntax: Left argument of a dfn'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 {⍺+1} 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 {⍺+1} 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3']))
+				])),
+			$author$project$CharInfo$Heading('Double-Alpha Syntax: Left Operand of a dop'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3'])),
-			$author$project$CharInfo$Heading('Double-Alpha Syntax:    Left Operand of a dop'),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['3 +{⍺ ⍺⍺ ⍵} 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['7']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 +{⍺ ⍺⍺ ⍵} 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['7']))
+				]))
 		]),
 	d: 'Alpha'
 };
@@ -6447,30 +6458,46 @@ var $author$project$CharInfo$ampersand = {
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Spawn'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['delay←{\'Delayed: \',⎕DL ⍵}    ⍝ delay function', '', 'delay 10    ⍝ delay for 10 seconds'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['delay←{\'Delayed: \',⎕DL ⍵}    ⍝ delay function', '', 'delay 10    ⍝ delay for 10 seconds'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Delayed:  10.2228']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['Delayed:  10.2228'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⎕←delay&10  ⍝ delay for 10 seconds in new thread 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⎕←delay&10  ⍝ delay for 10 seconds in new thread 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2+3 4       ⍝ execute something in current thread'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2+3 4       ⍝ execute something in current thread'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['            ⍝ thread 1 completes:'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['Delayed:  10.03183']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['            ⍝ thread 1 completes:'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Delayed:  10.03183']))
+				]))
 		]),
 	d: 'Ampersand'
 };
@@ -6481,36 +6508,56 @@ var $author$project$CharInfo$at = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('At'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(0@2 4) 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(0@2 4) 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 3 0 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 0 3 0 5'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['10 (×@2 4) 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 20 3 40 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['10 (×@2 4) 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(÷@2 4) 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0.5 3 0.25 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 20 3 40 5'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'*\'@(2∘|) 1 2 3 4 5   ⍝ Boolean selection 1 0 1 0 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['* 2 * 4 *']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(÷@2 4) 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0.5 3 0.25 5'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'*\'@(2∘|) 1 2 3 4 5   ⍝ Boolean selection 1 0 1 0 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['* 2 * 4 *'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌽@(2∘|) 1 2 3 4 5     ⍝ Reversal of sub-array 1 3 5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5 2 3 4 1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌽@(2∘|) 1 2 3 4 5     ⍝ Reversal of sub-array 1 3 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 2 3 4 1']))
+				]))
 		]),
 	d: 'At'
 };
@@ -6521,44 +6568,68 @@ var $author$project$CharInfo$backslash = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Expand'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 ¯2 4 \\ 7 8'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 ¯2 4 \\ 7 8'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['7 7 7 0 0 8 8 8 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['7 7 7 0 0 8 8 8 8'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 0 1 0 1 \\ \'Hat\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['H a t'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 0 1 0 1 \\ \'Hat\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['H a t']))
+				])),
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Scan'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+\\ 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+\\ 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 3 6 10 15']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 3 6 10 15'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+\\ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  3  6 10', '5 11 18 26', '9 19 30 42']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+\\ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  3  6 10', '5 11 18 26', '9 19 30 42'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+\\[1] mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+\\[1] mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24']))
+				]))
 		]),
 	d: 'Backslash'
 };
@@ -6573,26 +6644,38 @@ var $author$project$CharInfo$backslashBar = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Expand First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 0 2 1 ⍀ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  2  3  4', '0  0  0  0', '5  6  7  8', '5  6  7  8', '9 10 11 12'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 0 2 1 ⍀ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '0  0  0  0', '5  6  7  8', '5  6  7  8', '9 10 11 12']))
+				])),
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Scan First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+⍀ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+⍀ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24']))
+				]))
 		]),
 	d: 'Backslash Bar'
 };
@@ -6610,29 +6693,41 @@ var $author$project$CharInfo$circle = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Pi Times'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['○ 0 1 2'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['○ 0 1 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 3.14159 6.28319']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 3.14159 6.28319'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌹ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯2    1', ' 1.5 ¯0.5'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌹ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯2    1', ' 1.5 ¯0.5']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Circular Functions (Trig)'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Note: Angles are in radians'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['radians ← ○ degrees ÷ 180', '', '1 ○ 0 1.5707963 3.1415927'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 ¯4.64102E¯8'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['radians ← ○ degrees ÷ 180', '', '1 ○ 0 1.5707963 3.1415927'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 ¯4.64102E¯8']))
+				])),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				[' ⍺   ⍺ ○ ⍵         ⍺   ⍺ ○ ⍵', '                   0   (1-⍵*2)*0.5', '¯1   Arcsin ⍵      1   Sine ⍵', '¯2   Arccos ⍵      2   Cosine ⍵', '¯3   Arctan ⍵      3   Tangent ⍵', '¯4   (¯1+⍵*2)*0.5  4   (1+⍵*2)*0.5', '¯5   Arcsinh ⍵     5   Sinh ⍵', '¯6   Arccosh ⍵     6   Cosh ⍵', '¯7   Arctanh ⍵     7   Tanh ⍵', '¯8   -8○⍵          8   (-1+⍵*2)*0.5', '¯9   ⍵             9   real part of ⍵', '¯10  +⍵           10   |⍵', '¯11  ⍵×0J1        11   imaginary part of ⍵', '¯12  *⍵×0J1       12   phase of ⍵']))
@@ -6650,26 +6745,38 @@ var $author$project$CharInfo$circleBar = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reverse First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊖ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['9 10 11 12', '5  6  7  8', '1  2  3  4'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊖ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['9 10 11 12', '5  6  7  8', '1  2  3  4']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Rotate First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 2 ¯1 ⊖ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  6 11 12', '5 10  3  4', '9  2  7  8']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 2 ¯1 ⊖ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  6 11 12', '5 10  3  4', '9  2  7  8']))
+				]))
 		]),
 	d: 'Circle Bar'
 };
@@ -6685,30 +6792,46 @@ var $author$project$CharInfo$circleDiaeresis = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Over'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['-⍥⌊ 3.6                 ⍝ Same as ∘ or ⍤ monadically'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['-⍥⌊ 3.6                 ⍝ Same as ∘ or ⍤ monadically'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯3']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯3'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['5.1 -⍥⌊ 3.6             ⍝ Applies ⌊ to both arguments'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['5.1 -⍥⌊ 3.6             ⍝ Applies ⌊ to both arguments'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Dyalog\' ≡⍥⎕C \'DYALOG\'  ⍝ Case-insensitive match'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'Dyalog\' ≡⍥⎕C \'DYALOG\'  ⍝ Case-insensitive match'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'Dyalog\' ≡⍥⎕C \'IBM\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Dyalog\' ≡⍥⎕C \'IBM\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				]))
 		]),
 	d: 'Circle Diaeresis'
 };
@@ -6723,62 +6846,98 @@ var $author$project$CharInfo$circleStile = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reverse'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⌽ \'trams\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌽ \'trams\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['smart']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['smart'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌽ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 4  3  2 1', ' 8  7  6 5', '12 11 10 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌽ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 4  3  2 1', ' 8  7  6 5', '12 11 10 9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌽[1] mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['9 10 11 12', '5  6  7  8', '1  2  3  4'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌽[1] mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['9 10 11 12', '5  6  7  8', '1  2  3  4']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Rotate'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 ⌽ \'HatStand\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 ⌽ \'HatStand\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['StandHat']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['StandHat'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯2 ⌽ 1 2 3 4 5 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 6 1 2 3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯2 ⌽ 1 2 3 4 5 6'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯1 ⌽ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 4 1  2  3', ' 8 5  6  7', '12 9 10 11']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['5 6 1 2 3 4'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 ¯1 2 ⌽ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 2  3 4  1', ' 8  5 6  7', '11 12 9 10']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯1 ⌽ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 4 1  2  3', ' 8 5  6  7', '12 9 10 11'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 ¯1 2 ⌽ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 2  3 4  1', ' 8  5 6  7', '11 12 9 10'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['0 1 2 ¯1 ⌽[1] mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  6 11 12', '5 10  3  4', '9  2  7  8']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 2 ¯1 ⌽[1] mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  6 11 12', '5 10  3  4', '9  2  7  8']))
+				]))
 		]),
 	d: 'Circle Stile'
 };
@@ -6789,44 +6948,68 @@ var $author$project$CharInfo$comma = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Ravel'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube    ⍝ 3D array'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube    ⍝ 3D array'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4', '', '5 6', '7 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2', '3 4', '', '5 6', '7 8'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						[', cube'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4 5 6 7 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				[', cube'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3 4 5 6 7 8'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				[',[2 3] cube    ⍝ Ravel with axes'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3 4', '5 6 7 8'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						[',[2 3] cube    ⍝ Ravel with axes'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4', '5 6 7 8']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Catenate/Laminate (Join)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 , 4 5 6'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 , 4 5 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 4 5 6'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube , 99'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 99', '3 4 99', '', '5 6 99', '7 8 99']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube , 99'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 99', '3 4 99', '', '5 6 99', '7 8 99'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 ,[0.5] 4 5 6   ⍝ Laminate'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '4 5 6']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ,[0.5] 4 5 6   ⍝ Laminate'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				]))
 		]),
 	d: 'Comma'
 };
@@ -6841,44 +7024,68 @@ var $author$project$CharInfo$commaBar = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Table'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍪ 2 3 4'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍪ 2 3 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2', '3', '4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2', '3', '4'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube    ⍝ 3D array'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4', '', '5 6', '7 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube    ⍝ 3D array'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2', '3 4', '', '5 6', '7 8'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍪ cube'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3 4', '5 6 7 8'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍪ cube'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4', '5 6 7 8']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Catenate First/Laminate'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3', '4 5 6'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ⍪ 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6', '0 0 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat ⍪ 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '4 5 6', '0 0 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat ⍪ 7 8 9'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '4 5 6', '7 8 9']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ⍪ 7 8 9'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6', '7 8 9']))
+				]))
 		]),
 	d: 'Comma Bar'
 };
@@ -6892,14 +7099,22 @@ var $author$project$CharInfo$del = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Del Syntax:         dfn self-reference (recursion)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Heading('Del Syntax: dfn self-reference (recursion)'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['fact←{             ⍝ Factorial ⍵.', '    ⍵≤1: 1         ⍝ small ⍵: finished', '    ⍵×∇ ⍵-1        ⍝ otherwise: recurse', '}'])),
-			$author$project$CharInfo$Heading('Double-Del Syntax:  dop self-reference'),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['fact←{             ⍝ Factorial ⍵.', '    ⍵≤1: 1         ⍝ small ⍵: finished', '    ⍵×∇ ⍵-1        ⍝ otherwise: recurse', '}']))
+				])),
+			$author$project$CharInfo$Heading('Double-Del Syntax: dop self-reference'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['pow←{                ⍝ power operator: apply ⍵⍵ times', '    ⍵⍵=0:⍵           ⍝ ⍵⍵ is 0: finished', '    ⍺⍺ ∇∇(⍵⍵-1)⍺⍺ ⍵  ⍝ otherwise: recurse', '}']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['pow←{                ⍝ power operator: apply ⍵⍵ times', '    ⍵⍵=0:⍵           ⍝ ⍵⍵ is 0: finished', '    ⍺⍺ ∇∇(⍵⍵-1)⍺⍺ ⍵  ⍝ otherwise: recurse', '}']))
+				]))
 		]),
 	d: 'Del'
 };
@@ -6943,30 +7158,46 @@ var $author$project$CharInfo$diaeresis = {
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Each (Map)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊃¨ 1 2 3 \'ABC\' (9 8 7)'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊃¨ 1 2 3 \'ABC\' (9 8 7)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 A 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 A 9'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/¨ (1 2 3 4)(5 6 7)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['10 18']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+/¨ (1 2 3 4)(5 6 7)'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 ↑¨ 1 2 (3 4) \'V\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─────┬─────┬─────┬───┐', '│1 0 0│2 0 0│3 4 0│V  │', '└─────┴─────┴─────┴───┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['10 18'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['3 ↑¨ 1 2 (3 4) \'V\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─────┬─────┬─────┬───┐', '│1 0 0│2 0 0│3 4 0│V  │', '└─────┴─────┴─────┴───┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 ,¨ 99'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌────┬────┬────┐', '│1 99│2 99│3 99│', '└────┴────┴────┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ,¨ 99'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌────┬────┬────┐', '│1 99│2 99│3 99│', '└────┴────┴────┘']))
+				]))
 		]),
 	d: 'Diaeresis'
 };
@@ -6984,12 +7215,16 @@ var $author$project$CharInfo$diamond = {
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Statements are evaluated sequentially from left to right.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['A←4 ⋄ A←A×3 ⋄ A÷2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['6']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['A←4 ⋄ A←A×3 ⋄ A÷2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6']))
+				]))
 		]),
 	d: 'Diamond'
 };
@@ -7004,26 +7239,38 @@ var $author$project$CharInfo$divide = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reciprocal'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['÷ 1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0.5 0.333333'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['÷ 1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0.5 0.333333']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Divide'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 ÷ 4 5 7'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ÷ 4 5 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0.25 0.4 0.428571']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0.25 0.4 0.428571'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['10 ÷ ¯2 0.5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯5 20']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['10 ÷ ¯2 0.5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯5 20']))
+				]))
 		]),
 	d: 'Divide'
 };
@@ -7039,26 +7286,38 @@ var $author$project$CharInfo$domino = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Matrix Inverse'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2', '3 4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌹ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯2    1', ' 1.5 ¯0.5'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌹ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯2    1', ' 1.5 ¯0.5']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Matrix Divide'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['5 6 ⌹ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯4 4.5']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['5 6 ⌹ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯4 4.5']))
+				]))
 		]),
 	d: 'Domino'
 };
@@ -7070,37 +7329,57 @@ var $author$project$CharInfo$dot = {
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Product'),
 			$author$project$CharInfo$Heading('Inner Product f.g'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 +.× 4 5 6'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 +.× 4 5 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['32']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['32'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 ∧.= 3 3 3 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 ∧.= 3 3 3 3'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2', '3 4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat +.× mat   ⍝ matrix product'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 7 10', '15 22'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat +.× mat   ⍝ matrix product'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 7 10', '15 22']))
+				])),
 			$author$project$CharInfo$Heading('Outer Product ∘.g'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 ∘.× 4 5 6 7'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 4  5  6  7', ' 8 10 12 14', '12 15 18 21']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ∘.× 4 5 6 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 4  5  6  7', ' 8 10 12 14', '12 15 18 21']))
+				]))
 		]),
 	d: 'Dot'
 };
@@ -7115,50 +7394,78 @@ var $author$project$CharInfo$downArrow = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Split'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['↓ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───────┬───────┬──────────┐', '│1 2 3 4│5 6 7 8│9 10 11 12│', '└───────┴───────┴──────────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['↓ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───────┬───────┬──────────┐', '│1 2 3 4│5 6 7 8│9 10 11 12│', '└───────┴───────┴──────────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['↓[1] mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─────┬──────┬──────┬──────┐', '│1 5 9│2 6 10│3 7 11│4 8 12│', '└─────┴──────┴──────┴──────┘'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['↓[1] mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─────┬──────┬──────┬──────┐', '│1 5 9│2 6 10│3 7 11│4 8 12│', '└─────┴──────┴──────┴──────┘']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Drop'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 ↓ \'Pineapple\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['4 ↓ \'Pineapple\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['apple']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['apple'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯5 ↓ \'Pineapple\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Pine']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯5 ↓ \'Pineapple\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 ¯2 ↓ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5  6', '9 10']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['Pine'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 ¯2 ↓ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5  6', '9 10'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 ↓ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5  6  7  8', '9 10 11 12']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 ↓ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5  6  7  8', '9 10 11 12']))
+				]))
 		]),
 	d: 'Down Arrow'
 };
@@ -7174,32 +7481,48 @@ var $author$project$CharInfo$downShoe = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Unique'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['∪ \'ab\' \'ba\' \'ab\' 1 1 2'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['∪ \'ab\' \'ba\' \'ab\' 1 1 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌──┬──┬─┬─┐', '│ab│ba│1│2│', '└──┴──┴─┴─┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌──┬──┬─┬─┐', '│ab│ba│1│2│', '└──┴──┴─┴─┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['flywheel', 'shyster ', 'flywheel']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['flywheel', 'shyster ', 'flywheel'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['∪mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['flywheel', 'shyster '])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['∪mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['flywheel', 'shyster ']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Union'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'ab\' \'cde\' \'fg\' ∪ \'a\' \'ab\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌──┬───┬──┬─┐', '│ab│cde│fg│a│', '└──┴───┴──┴─┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'ab\' \'cde\' \'fg\' ∪ \'a\' \'ab\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌──┬───┬──┬─┐', '│ab│cde│fg│a│', '└──┴───┴──┴─┘']))
+				]))
 		]),
 	d: 'Down Shoe'
 };
@@ -7217,21 +7540,29 @@ var $author$project$CharInfo$downTack = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Encode'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 2 2 2 ⊤ 5 7 12   ⍝ binary encode'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 0 1', '1 1 1', '0 1 0', '1 1 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 2 2 2 ⊤ 5 7 12   ⍝ binary encode'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 1', '1 1 1', '0 1 0', '1 1 0']))
+				])),
 			$author$project$CharInfo$CodeComment(
 			_List_fromArray(
 				['⍝ mixed radix: encode of 10000 seconds', '⍝ to hours, minutes and seconds:'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['24 60 60 ⊤ 10000'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 46 40']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['24 60 60 ⊤ 10000'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 46 40']))
+				]))
 		]),
 	d: 'Down Tack'
 };
@@ -7247,26 +7578,38 @@ var $author$project$CharInfo$downstile = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Floor (Round Down)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⌊ 3.4 ¯3.4 3 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 ¯4 3 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌊ 3.4 ¯3.4 3 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 ¯4 3 0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Minimum'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1.1 ¯2 ⌊ 8.1 ¯3.4'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1.1 ¯2 ⌊ 8.1 ¯3.4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1.1 ¯3.4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1.1 ¯3.4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌊/ 3 1 4 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌊/ 3 1 4 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				]))
 		]),
 	d: 'Downstile'
 };
@@ -7281,38 +7624,58 @@ var $author$project$CharInfo$epsilon = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Enlist'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3', '4 5 6'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['∊ 0 mat (7 8) 9'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 2 3 4 5 6 7 8 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['∊ 0 mat (7 8) 9'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 2 3 4 5 6 7 8 9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['∊ 2 3⍴1 \'abc\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 abc 1 abc 1 abc'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['∊ 2 3⍴1 \'abc\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 abc 1 abc 1 abc']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Membership'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'abc\' 4 ∊ 4 \'ab\' \'abcd\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'abc\' 4 ∊ 4 \'ab\' \'abcd\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat ∊ 6 2 7 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 0', '1 0 1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ∊ 6 2 7 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 0', '1 0 1']))
+				]))
 		]),
 	d: 'Epsilon'
 };
@@ -7327,24 +7690,36 @@ var $author$project$CharInfo$epsilonUnderbar = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Find'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'ana\' ⍷ \'Banana\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'ana\' ⍷ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 0 1 0 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 0 0'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['X Y'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬───────┐', '│0 1│0 1 0 0│', '│1 0│1 0 0 1│', '│   │0 0 1 0│', '│   │0 1 0 0│', '└───┴───────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['X Y'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬───────┐', '│0 1│0 1 0 0│', '│1 0│1 0 0 1│', '│   │0 0 1 0│', '│   │0 1 0 0│', '└───┴───────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['X ⍷ Y'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0 0 0', '0 0 1 0', '0 1 0 0', '0 0 0 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['X ⍷ Y'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 0 0', '0 0 1 0', '0 1 0 0', '0 0 0 0']))
+				]))
 		]),
 	d: 'Epsilon Underbar'
 };
@@ -7358,30 +7733,46 @@ var $author$project$CharInfo$equal = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Equal To'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 = 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 = 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 = 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 = 0 0 1 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Banana\' = \'a\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 0 1 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 0 0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'Banana\' = \'a\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 0 1 0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['7 = \'7\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['7 = \'7\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				]))
 		]),
 	d: 'Equal'
 };
@@ -7397,44 +7788,68 @@ var $author$project$CharInfo$equalUnderbar = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Depth'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≡ 7'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≡ 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≡ \'abc\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≡ \'abc\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≡ (1 2)(3 4)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['≡ (1 2)(3 4)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['≡ (1 2)(3 4)5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯2'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≡ (1 2)(3 4)5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯2']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Match'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'b\' \'e\' \'x\' ≡ \'bex\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'b\' \'e\' \'x\' ≡ \'bex\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 ≡ 1 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 ≡ 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				]))
 		]),
 	d: 'Equal Underbar'
 };
@@ -7450,62 +7865,98 @@ var $author$project$CharInfo$equalUnderbarSlash = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Tally'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≢ \'a\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≢ \'a\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≢ 7 4 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≢ 7 4 2'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≢ 5 4 3⍴0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≢ (1 2)(3 4)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≢ 5 4 3⍴0'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['5'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≢ mat   ⍝ note how \"tally\"'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≢ (1 2)(3 4)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '4 5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['≢ mat   ⍝ note how \"tally\"'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍴ mat   ⍝ differs from \"shape\"'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 3'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴ mat   ⍝ differs from \"shape\"'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 3']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Not Match'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'bex\' ≢ \'b\',\'e\',\'x\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'bex\' ≢ \'b\',\'e\',\'x\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 ≢ 1 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 ≢ 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				]))
 		]),
 	d: 'Equal Underbar Slash'
 };
@@ -7519,20 +7970,28 @@ var $author$project$CharInfo$exclamationMark = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Factorial'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['! 3 9 ¯0.11'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['6 362880 1.07683'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['! 3 9 ¯0.11'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6 362880 1.07683']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Binomial'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 1 3 ! 3 10 ¯0.11'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 10 ¯0.0429385']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 1 3 ! 3 10 ¯0.11'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 10 ¯0.0429385']))
+				]))
 		]),
 	d: 'Exclamation Mark'
 };
@@ -7550,41 +8009,61 @@ var $author$project$CharInfo$gradeDown = {
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Indices which would select items in descending order.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍒ 33 11 44 66 22'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍒ 33 11 44 66 22'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4 3 1 5 2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 3 1 5 2'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['names←\'Joe\' \'Sue\' \'Sam\'', 'ages←34 22 25', '', 'names[⍒ages]'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬───┬───┐', '│Joe│Sam│Sue│', '└───┴───┴───┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['names←\'Joe\' \'Sue\' \'Sam\'', 'ages←34 22 25', '', 'names[⍒ages]'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬───┬───┐', '│Joe│Sam│Sue│', '└───┴───┴───┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍒ \'ABC\' ⎕NULL ⍬ ¯3j4 \'A\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 5 4 2 3'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍒ \'ABC\' ⎕NULL ⍬ ¯3j4 \'A\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 5 4 2 3']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Dyadic Grade Down'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Provide collating sequence for character data.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍒ \'Banana\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍒ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 5 2 4 6 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 5 2 4 6 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'an\' ⍒ \'Banana\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 3 5 2 4 6']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'an\' ⍒ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 3 5 2 4 6']))
+				]))
 		]),
 	d: 'Grade Down'
 };
@@ -7602,41 +8081,61 @@ var $author$project$CharInfo$gradeUp = {
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Indices which would select items in ascending order.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍋ 33 11 44 66 22'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍋ 33 11 44 66 22'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 5 1 3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 5 1 3 4'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['names←\'Joe\' \'Sue\' \'Sam\'', 'ages←34 22 25', '', 'names[⍋ages]'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬───┬───┐', '│Sue│Sam│Joe│', '└───┴───┴───┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['names←\'Joe\' \'Sue\' \'Sam\'', 'ages←34 22 25', '', 'names[⍋ages]'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬───┬───┐', '│Sue│Sam│Joe│', '└───┴───┴───┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍋ \'ABC\' ⎕NULL ⍬ ¯3j4 \'A\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 2 4 5 1'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍋ \'ABC\' ⎕NULL ⍬ ¯3j4 \'A\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 2 4 5 1']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Dyadic Grade Up'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Provide collating sequence for character data.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍋ \'Banana\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍋ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 4 6 3 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 4 6 3 5'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'an\' ⍋ \'Banana\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 4 6 3 5 1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'an\' ⍋ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 4 6 3 5 1']))
+				]))
 		]),
 	d: 'Grade Up'
 };
@@ -7650,18 +8149,26 @@ var $author$project$CharInfo$greaterThan = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greater Than'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 > 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 > 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 > 2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 0 1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 > 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 1']))
+				]))
 		]),
 	d: 'Greater Than'
 };
@@ -7677,18 +8184,26 @@ var $author$project$CharInfo$greaterThanOrEqualTo = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greater Than or Equal To'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 ≥ 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ≥ 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 ≥ 2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ≥ 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 1']))
+				]))
 		]),
 	d: 'Greater Than Or Equal To'
 };
@@ -7702,18 +8217,26 @@ var $author$project$CharInfo$highMinus = {
 	c: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Qualifier for negative number'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 + ¯1 0 1 ¯3'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 + ¯1 0 1 ¯3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 2 ¯2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 2 ¯2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['3e¯2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0.03']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3e¯2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0.03']))
+				]))
 		]),
 	d: 'High Minus'
 };
@@ -7728,18 +8251,26 @@ var $author$project$CharInfo$hydrant = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Execute'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍎ \'1+1\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍎ \'1+1\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['V ← 1 2 3', '⍎ \'V\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['V ← 1 2 3', '⍎ \'V\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3']))
+				]))
 		]),
 	d: 'Hydrant'
 };
@@ -7772,38 +8303,58 @@ var $author$project$CharInfo$iota = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Index Generator'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍳ 10'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍳ 10'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4 5 6 7 8 9 10']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 4 5 6 7 8 9 10'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍳ 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬───┬───┐', '│1 1│1 2│1 3│', '├───┼───┼───┤', '│2 1│2 2│2 3│', '└───┴───┴───┘'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍳ 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬───┬───┐', '│1 1│1 2│1 3│', '├───┼───┼───┤', '│2 1│2 2│2 3│', '└───┴───┴───┘']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Index Of'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'ABCDABCDEF\' ⍳ \'ACF\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'ABCDABCDEF\' ⍳ \'ACF\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 3 10']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 3 10'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4', '5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2', '3 4', '5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat ⍳ 5 6'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ⍳ 5 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3']))
+				]))
 		]),
 	d: 'Iota'
 };
@@ -7818,56 +8369,88 @@ var $author$project$CharInfo$iotaUnderbar = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Where'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍸ 1 0 0 1 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍸ 1 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 4 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 4 5'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['bmat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 0', '1 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['bmat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 1 0', '1 0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍸ bmat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬───┬───┐', '│1 2│2 1│2 3│', '└───┴───┴───┘'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍸ bmat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬───┬───┐', '│1 2│2 1│2 3│', '└───┴───┴───┘']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Interval Index'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'AEIOU\' ⍸ \'DYALOG\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'AEIOU\' ⍸ \'DYALOG\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 5 1 3 4 2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 5 1 3 4 2'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 4 6 ⍸ 1 2 3 4 5 6 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 1 2 2 3 3']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 4 6 ⍸ 1 2 3 4 5 6 7'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2', '3 4', '5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 1 2 2 3 3'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ⍸ 3 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2', '3 4', '5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat ⍸ 3 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat ⍸ 3 5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat ⍸ 3 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				]))
 		]),
 	d: 'Iota Underbar'
 };
@@ -7886,24 +8469,36 @@ var $author$project$CharInfo$jot = {
 			_List_fromArray(
 				['NB: ∘ is also used in outer product ∘.f - see Dot (.)'])),
 			$author$project$CharInfo$Heading('Beside'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⌽∘⍳¨ 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌽∘⍳¨ 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─────┬───────┬─────────┐', '│3 2 1│4 3 2 1│5 4 3 2 1│', '└─────┴───────┴─────────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌─────┬───────┬─────────┐', '│3 2 1│4 3 2 1│5 4 3 2 1│', '└─────┴───────┴─────────┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯1 ⌽∘⍳¨ 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─────┬───────┬─────────┐', '│3 1 2│4 1 2 3│5 1 2 3 4│', '└─────┴───────┴─────────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯1 ⌽∘⍳¨ 3 4 5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─────┬───────┬─────────┐', '│3 1 2│4 1 2 3│5 1 2 3 4│', '└─────┴───────┴─────────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+∘÷/ 40⍴1    ⍝ continued fraction'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1.61803']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+∘÷/ 40⍴1    ⍝ continued fraction'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1.61803']))
+				]))
 		]),
 	d: 'Jot'
 };
@@ -7919,62 +8514,98 @@ var $author$project$CharInfo$jotDiaeresis = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator (f⍤g)'),
 			$author$project$CharInfo$Heading('Atop'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['-⍤÷ 4      ⍝ (  f⍤g y) ≡  f   g y'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['-⍤÷ 4      ⍝ (  f⍤g y) ≡  f   g y'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯0.25']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯0.25'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['12 -⍤÷ 4   ⍝ (x f⍤g y) ≡ (f x g y)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯3']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['12 -⍤÷ 4   ⍝ (x f⍤g y) ≡ (f x g y)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯3'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['3 1 4 1 5 ~⍤∊ 1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 0 1 0 1'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 1 4 1 5 ~⍤∊ 1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 1 0 1']))
+				])),
 			$author$project$CharInfo$Category('Dyadic operator (f⍤a)'),
 			$author$project$CharInfo$Heading('Rank'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube    ⍝ 3D array'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube    ⍝ 3D array'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 1  2  3', ' 4  5  6', '', ' 7  8  9', '10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				[' 1  2  3', ' 4  5  6', '', ' 7  8  9', '10 11 12'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(,⍤2) cube'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3  4  5  6', '7 8 9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(,⍤2) cube'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cmat    ⍝ character matrix'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['abc', 'zxy']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3  4  5  6', '7 8 9 10 11 12'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(⍋⍤1) cmat    ⍝ grade-up by row'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '2 3 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cmat    ⍝ character matrix'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['nmat     ⍝ numeric matrix'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['abc', 'zxy'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['(⍋⍤1) cmat    ⍝ grade-up by row'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '2 3 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['nmat     ⍝ numeric matrix'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['10 20 30 (+⍤0 1) nmat  ⍝ scalars plus vectors'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['11 12 13 14', '25 26 27 28', '39 40 41 42']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['10 20 30 (+⍤0 1) nmat  ⍝ scalars plus vectors'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['11 12 13 14', '25 26 27 28', '39 40 41 42']))
+				]))
 		]),
 	d: 'Jot Diaeresis'
 };
@@ -7991,12 +8622,16 @@ var $author$project$CharInfo$lamp = {
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Text to the right of ⍝ is ignored.'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2+3  ⍝ this is a comment'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2+3  ⍝ this is a comment'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5']))
+				]))
 		]),
 	d: 'Lamp'
 };
@@ -8011,13 +8646,21 @@ var $author$project$CharInfo$leftArrow = {
 		[
 			$author$project$CharInfo$Heading('Assignment'),
 			$author$project$CharInfo$Heading('Naming:'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['V ← 5 6 7', '(i(j k)) ← 4(5 6)', 'sum ← +⌿', 'product ← {×/⍵}', 'inverse ← ⍣¯1'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['V ← 5 6 7', '(i(j k)) ← 4(5 6)', 'sum ← +⌿', 'product ← {×/⍵}', 'inverse ← ⍣¯1']))
+				])),
 			$author$project$CharInfo$Heading('Modification:'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['V +← 1', 'V[2] ← 0', '(⊃V) ← 2\'']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['V +← 1', 'V[2] ← 0', '(⊃V) ← 2\'']))
+				]))
 		]),
 	d: 'Left Arrow'
 };
@@ -8033,32 +8676,48 @@ var $author$project$CharInfo$leftShoe = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Enclose'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1(2 3)'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1(2 3)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬───┐', '│1│2 3│', '└─┴───┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌─┬───┐', '│1│2 3│', '└─┴───┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊂ 1(2 3)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───────┐', '│┌─┬───┐│', '││1│2 3││', '│└─┴───┘│', '└───────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊂ 1(2 3)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───────┐', '│┌─┬───┐│', '││1│2 3││', '│└─┴───┘│', '└───────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊂⊂ 1(2 3)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─────────┐', '│┌───────┐│', '││┌─┬───┐││', '│││1│2 3│││', '││└─┴───┘││', '│└───────┘│', '└─────────┘'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊂⊂ 1(2 3)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─────────┐', '│┌───────┐│', '││┌─┬───┐││', '│││1│2 3│││', '││└─┴───┘││', '│└───────┘│', '└─────────┘']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Partitioned Enclose'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ⊂ 1 2 3 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬─┐', '│2 3│4│', '└───┴─┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ⊂ 1 2 3 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬─┐', '│2 3│4│', '└───┴─┘']))
+				]))
 		]),
 	d: 'Left Shoe'
 };
@@ -8074,38 +8733,58 @@ var $author$project$CharInfo$leftShoeUnderbar = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Nest'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊆ \'this\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊆ \'this\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌────┐', '│this│', '└────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌────┐', '│this│', '└────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊆ \'this\' \'that\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌────┬────┐', '│this│that│', '└────┴────┘'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊆ \'this\' \'that\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌────┬────┐', '│this│that│', '└────┴────┘']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Partition'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 0 0 1 1 ⊆ 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 0 0 1 1 ⊆ 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬───┐', '│1│4 5│', '└─┴───┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌─┬───┐', '│1│4 5│', '└─┴───┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 1 2 2 2⊆⍳5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───┬─────┐', '│1 2│3 4 5│', '└───┴─────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 1 2 2 2⊆⍳5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌───┬─────┐', '│1 2│3 4 5│', '└───┴─────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\' \' (≠⊆⊢) \' many a  time\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌────┬─┬────┐', '│many│a│time│', '└────┴─┴────┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\' \' (≠⊆⊢) \' many a  time\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌────┬─┬────┐', '│many│a│time│', '└────┴─┴────┘']))
+				]))
 		]),
 	d: 'Left Shoe Underbar'
 };
@@ -8120,26 +8799,38 @@ var $author$project$CharInfo$leftTack = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Same'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊣  1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊣  1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Left'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'L\' ⊣ \'R\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'L\' ⊣ \'R\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['L']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['L'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊣/ 1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊣/ 1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				]))
 		]),
 	d: 'Left Tack'
 };
@@ -8153,18 +8844,26 @@ var $author$project$CharInfo$lessThan = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Less Than'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 < 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 < 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 0 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 < 2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 < 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 0']))
+				]))
 		]),
 	d: 'Less Than'
 };
@@ -8180,18 +8879,26 @@ var $author$project$CharInfo$lessThanOrEqualTo = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Less Than or Equal To'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 ≤ 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ≤ 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 1 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 1 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 2 3 ≤ 2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 1 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ≤ 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 1 0']))
+				]))
 		]),
 	d: 'Less Than Or Equal To'
 };
@@ -8206,20 +8913,28 @@ var $author$project$CharInfo$log = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Natural Logarithm'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍟ 1 2 3 2.7182818285'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 0.693147 1.09861 1'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍟ 1 2 3 2.7182818285'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0.693147 1.09861 1']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Logarithm'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 10 ⍟ 32 1000'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5 3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 10 ⍟ 32 1000'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 3']))
+				]))
 		]),
 	d: 'Log'
 };
@@ -8234,18 +8949,26 @@ var $author$project$CharInfo$logicalAnd = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Lowest Common Multiple (AND)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ∧ 0 0 1 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ∧ 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 0 0 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['15 1 2 7 ∧ 35 1 4 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['105 1 4 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['15 1 2 7 ∧ 35 1 4 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['105 1 4 0']))
+				]))
 		]),
 	d: 'Logical AND'
 };
@@ -8260,12 +8983,16 @@ var $author$project$CharInfo$logicalNand = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('NAND'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ⍲ 0 0 1 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 1 1 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ⍲ 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 1 1 0']))
+				]))
 		]),
 	d: 'Logical NAND'
 };
@@ -8280,12 +9007,16 @@ var $author$project$CharInfo$logicalNor = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('NOR'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ⍱ 0 0 1 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0 0 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ⍱ 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 0 0']))
+				]))
 		]),
 	d: 'Logical NOR'
 };
@@ -8300,18 +9031,26 @@ var $author$project$CharInfo$logicalOr = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greatest Common Divisor (OR)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ∨ 0 0 1 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ∨ 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 1 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 1 1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['15 1 2 7 ∨ 35 1 4 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5 1 2 7']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['15 1 2 7 ∨ 35 1 4 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 1 2 7']))
+				]))
 		]),
 	d: 'Logical OR'
 };
@@ -8322,26 +9061,38 @@ var $author$project$CharInfo$minus = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Negate'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['- 3.2 ¯7 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯3.2 7 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['- 3.2 ¯7 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯3.2 7 0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Minus'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 7 9 - 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 7 9 - 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯2 2 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯2 2 4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['5 1 4 - 2 3 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 ¯2 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['5 1 4 - 2 3 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 ¯2 0']))
+				]))
 		]),
 	d: 'Minus'
 };
@@ -8357,44 +9108,68 @@ var $author$project$CharInfo$notEqual = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Unique Mask'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['≠ \'Banana\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≠ \'Banana\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 1 1 0 0 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 1 1 0 0 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['≠ \'Mississippi\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 1 1 0 0 0 0 0 1 0 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['≠ \'Mississippi\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 1 1 0 0 0 0 0 1 0 0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Not Equal To'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 ≠ 4 2 ¯1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 ≠ 4 2 ¯1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 0 1'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['0 1 0 1 ≠ 0 0 1 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 1 1 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 0 1 ≠ 0 0 1 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Banana\' ≠ \'a\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 1 0 1 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['0 1 1 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'Banana\' ≠ \'a\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0 1 0 1 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['7 ≠ \'7\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['7 ≠ \'7\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				]))
 		]),
 	d: 'Not Equal'
 };
@@ -8407,20 +9182,28 @@ var $author$project$CharInfo$omega = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Omega Syntax:           Right argument of a dfn'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Heading('Omega Syntax: Right argument of a dfn'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 {⍵+1} 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 {⍵+1} 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6']))
+				])),
+			$author$project$CharInfo$Heading('Double-Omega Syntax: Right operand of a dop'),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['6'])),
-			$author$project$CharInfo$Heading('Double-Omega Syntax:    Right operand of a dop'),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['3 +{⍺ ⍵⍵ ⍵}× 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['12']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 +{⍺ ⍵⍵ ⍵}× 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['12']))
+				]))
 		]),
 	d: 'Omega'
 };
@@ -8431,32 +9214,48 @@ var $author$project$CharInfo$plus = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Conjugate'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+ 1.2 0j4 ¯5j¯6'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1.2 0J¯4 ¯5J6'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+ 1.2 0j4 ¯5j¯6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1.2 0J¯4 ¯5J6']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Plus'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 4 + 10'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 4 + 10'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['11 12 13 14']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['11 12 13 14'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 2 3 + 2 ¯4 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 ¯2 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3 + 2 ¯4 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 ¯2 4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+/ 1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['6']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/ 1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6']))
+				]))
 		]),
 	d: 'Plus'
 };
@@ -8470,24 +9269,36 @@ var $author$project$CharInfo$quad = {
 	c: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Niladic:     Evaluated Input/Output'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2+⎕+4'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2+⎕+4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['⎕:']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⎕:'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['8-5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['8-5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2+⎕←3+4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['7', '9']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2+⎕←3+4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['7', '9']))
+				]))
 		]),
 	d: 'Quad'
 };
@@ -8503,24 +9314,36 @@ var $author$project$CharInfo$quadColon = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Variant'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(\'a\' ⎕R \'x\') \'ABC\'           ⍝ \'a\' replaced with \'x\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(\'a\' ⎕R \'x\') \'ABC\'           ⍝ \'a\' replaced with \'x\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['ABC']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['ABC'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(\'a\' ⎕R \'x\' ⍠ \'IC\' 1) \'ABC\'  ⍝ .. Ignoring Case'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['xBC']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(\'a\' ⎕R \'x\' ⍠ \'IC\' 1) \'ABC\'  ⍝ .. Ignoring Case'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['xBC'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['IgnCase ← ⍠ \'IC\' 1', '', '\'a\' ⎕R \'x\' IgnCase \'ABC\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['xBC']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['IgnCase ← ⍠ \'IC\' 1', '', '\'a\' ⎕R \'x\' IgnCase \'ABC\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['xBC']))
+				]))
 		]),
 	d: 'Quad Colon'
 };
@@ -8536,30 +9359,46 @@ var $author$project$CharInfo$quadDiamond = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Stencil'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 1  2  3  4', ' 5  6  7  8', ' 9 10 11 12', '13 14 15 16']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				[' 1  2  3  4', ' 5  6  7  8', ' 9 10 11 12', '13 14 15 16'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['({⊂⍵}⌺3 3) mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───────┬────────┬────────┬───────┐', '│0 0 0  │0 0 0   │0 0 0   │0 0 0  │', '│0 1 2  │1 2 3   │2 3 4   │3 4 0  │', '│0 5 6  │5 6 7   │6 7 8   │7 8 0  │', '├───────┼────────┼────────┼───────┤', '│0 1  2 │1  2  3 │ 2  3  4│ 3  4 0│', '│0 5  6 │5  6  7 │ 6  7  8│ 7  8 0│', '│0 9 10 │9 10 11 │10 11 12│11 12 0│', '├───────┼────────┼────────┼───────┤', '│0  5  6│ 5  6  7│ 6  7  8│ 7  8 0│', '│0  9 10│ 9 10 11│10 11 12│11 12 0│', '│0 13 14│13 14 15│14 15 16│15 16 0│', '├───────┼────────┼────────┼───────┤', '│0  9 10│ 9 10 11│10 11 12│11 12 0│', '│0 13 14│13 14 15│14 15 16│15 16 0│', '│0  0  0│ 0  0  0│ 0  0  0│ 0  0 0│', '└───────┴────────┴────────┴───────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['({⊂⍵}⌺3 3) mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['({+/,⍵}⌺3 3) mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['14 24 30 22', '33 54 63 45', '57 90 99 69', '46 72 78 54']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌───────┬────────┬────────┬───────┐', '│0 0 0  │0 0 0   │0 0 0   │0 0 0  │', '│0 1 2  │1 2 3   │2 3 4   │3 4 0  │', '│0 5 6  │5 6 7   │6 7 8   │7 8 0  │', '├───────┼────────┼────────┼───────┤', '│0 1  2 │1  2  3 │ 2  3  4│ 3  4 0│', '│0 5  6 │5  6  7 │ 6  7  8│ 7  8 0│', '│0 9 10 │9 10 11 │10 11 12│11 12 0│', '├───────┼────────┼────────┼───────┤', '│0  5  6│ 5  6  7│ 6  7  8│ 7  8 0│', '│0  9 10│ 9 10 11│10 11 12│11 12 0│', '│0 13 14│13 14 15│14 15 16│15 16 0│', '├───────┼────────┼────────┼───────┤', '│0  9 10│ 9 10 11│10 11 12│11 12 0│', '│0 13 14│13 14 15│14 15 16│15 16 0│', '│0  0  0│ 0  0  0│ 0  0  0│ 0  0 0│', '└───────┴────────┴────────┴───────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['({+/,⍵}⌺3 3) mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['14 24 30 22', '33 54 63 45', '57 90 99 69', '46 72 78 54'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['{⍺ ⍵}⌸ \'Banana\'  ⍝ (same as above)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['{⍺ ⍵}⌸ \'Banana\'  ⍝ (same as above)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘']))
+				]))
 		]),
 	d: 'Quad Diamond'
 };
@@ -8575,30 +9414,46 @@ var $author$project$CharInfo$quadEqual = {
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Key'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'Banana\' {⍺ ⍵}⌸ 3 1 4 1 5 9'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Banana\' {⍺ ⍵}⌸ 3 1 4 1 5 9'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬─────┐', '│B│3    │', '├─┼─────┤', '│a│1 1 9│', '├─┼─────┤', '│n│4 5  │', '└─┴─────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌─┬─────┐', '│B│3    │', '├─┼─────┤', '│a│1 1 9│', '├─┼─────┤', '│n│4 5  │', '└─┴─────┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Banana\' {⍺,+/⍵}⌸ 3 1 4 1 5 9'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['B  3', 'a 11', 'n  9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'Banana\' {⍺,+/⍵}⌸ 3 1 4 1 5 9'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'Banana\' {⍺ ⍵}⌸ 1 2 3 4 5 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['B  3', 'a 11', 'n  9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'Banana\' {⍺ ⍵}⌸ 1 2 3 4 5 6'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['{⍺ ⍵}⌸ \'Banana\'  ⍝ (same as above)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['{⍺ ⍵}⌸ \'Banana\'  ⍝ (same as above)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘']))
+				]))
 		]),
 	d: 'Quad Equal'
 };
@@ -8612,26 +9467,38 @@ var $author$project$CharInfo$questionMark = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Roll'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['? 6 6 6 6 6'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['? 6 6 6 6 6'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4 3 6 3 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 3 6 3 5'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['? 0 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0.260561 0.929928'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['? 0 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0.260561 0.929928']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Deal'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['13 ? 52'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['36 31 44 11 27 42 13 8 2 33 19 34 6']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['13 ? 52'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['36 31 44 11 27 42 13 8 2 33 19 34 6']))
+				]))
 		]),
 	d: 'Question Mark'
 };
@@ -8646,36 +9513,56 @@ var $author$project$CharInfo$quoteQuad = {
 	c: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Niladic:     Character Input/Output'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['chars ← ⍞     ⍝ input session line'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['chars ← ⍞     ⍝ input session line'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['hello']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['hello'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['chars'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['hello']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['chars'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍞ ← \'Name:\'   ⍝ places text in session'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Name:']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['hello'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['ask ← {⍞←⍵ ⋄ (≢⍵)↓⍞}   ⍝ prompt for input:', '', 'name ← ask¨ \'First:  \' \'Second: \''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['First:  John', 'Second: Brown']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍞ ← \'Name:\'   ⍝ places text in session'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['Name:'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['ask ← {⍞←⍵ ⋄ (≢⍵)↓⍞}   ⍝ prompt for input:', '', 'name ← ask¨ \'First:  \' \'Second: \''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['First:  John', 'Second: Brown'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['name'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌────┬─────┐', '│John│Brown│', '└────┴─────┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['name'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌────┬─────┐', '│John│Brown│', '└────┴─────┘']))
+				]))
 		]),
 	d: 'Quote Quad'
 };
@@ -8691,50 +9578,78 @@ var $author$project$CharInfo$rho = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Shape'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍴ mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴⍴ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 4'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴ \'your boat\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍴⍴ mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴ 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍴ \'your boat\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍴ 7'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[''])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍴⍴ 7'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴⍴ 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Reshape'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 3 4 ⍴ 1 2 3 4 5 6 7'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3 4', '5 6 7 1', '2 3 4 5', '', '6 7 1 2', '3 4 5 6', '7 1 2 3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 3 4 ⍴ 1 2 3 4 5 6 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3 4', '5 6 7 1', '2 3 4 5', '', '6 7 1 2', '3 4 5 6', '7 1 2 3']))
+				]))
 		]),
 	d: 'Rho'
 };
@@ -8748,9 +9663,13 @@ var $author$project$CharInfo$rightArrow = {
 	c: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Syntax:    Branch (Clear suspension)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['→ Label  ⍝ branch to Label:', '→ ⎕LC    ⍝ resume suspended execution', '→ 0      ⍝ exit current function and resume calling line', '→        ⍝ clear one stack suspension'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['→ Label  ⍝ branch to Label:', '→ ⎕LC    ⍝ resume suspended execution', '→ 0      ⍝ exit current function and resume calling line', '→        ⍝ clear one stack suspension']))
+				])),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Branching is superseded by the more modern control structures such as :If ... :EndIf']))
@@ -8768,38 +9687,58 @@ var $author$project$CharInfo$rightShoe = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊃ \'Word\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊃ \'Word\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['W']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['W'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊃ (1 2)(3 4 5)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊃ (1 2)(3 4 5)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Pick'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 ⊃ \'Word\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 ⊃ \'Word\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['r']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['r'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⊃ (1 2)(3 4 5)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 4 5']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 ⊃ (1 2)(3 4 5)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 4 5'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2 1 ⊃ (1 2)(3 4 5)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 1 ⊃ (1 2)(3 4 5)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3']))
+				]))
 		]),
 	d: 'Right Shoe'
 };
@@ -8814,26 +9753,38 @@ var $author$project$CharInfo$rightTack = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Same'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⊢  1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊢  1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Right'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'L\' ⊢ \'R\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'L\' ⊢ \'R\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['R']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['R'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⊢/ 1 2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⊢/ 1 2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3']))
+				]))
 		]),
 	d: 'Right Tack'
 };
@@ -8844,56 +9795,88 @@ var $author$project$CharInfo$slash = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Replicate'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 1 ¯2 2 / 6 7 8 9'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 1 ¯2 2 / 6 7 8 9'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6 6 6 7 0 0 9 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['6 6 6 7 0 0 9 9'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 0 1 0 1 / \'Heart\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['Hat'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 0 1 0 1 / \'Heart\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Hat']))
+				])),
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Reduce (Fold, N-Wise Reduce)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+/ 1 2 3 4 5'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/ 1 2 3 4 5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['15']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['15'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 +/ 1 2 3 4 5   ⍝ pair-wise sum'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 5 7 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 +/ 1 2 3 4 5   ⍝ pair-wise sum'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube    ⍝ 3D array'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 1  2  3  4', ' 5  6  7  8', ' 9 10 11 12', '           ', '13 14 15 16', '17 18 19 20', '21 22 23 24']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 5 7 9'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/ cube'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['10 26 42', '58 74 90']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube    ⍝ 3D array'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/[1] cube    ⍝ sum of planes'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['14 16 18 20', '22 24 26 28', '30 32 34 36']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				[' 1  2  3  4', ' 5  6  7  8', ' 9 10 11 12', '           ', '13 14 15 16', '17 18 19 20', '21 22 23 24'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+/ cube'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['10 26 42', '58 74 90'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+/[1] cube    ⍝ sum of planes'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['14 16 18 20', '22 24 26 28', '30 32 34 36'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['+/[2] cube    ⍝ column sums'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['15 18 21 24', '51 54 57 60']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+/[2] cube    ⍝ column sums'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['15 18 21 24', '51 54 57 60']))
+				]))
 		]),
 	d: 'Slash'
 };
@@ -8908,32 +9891,48 @@ var $author$project$CharInfo$slashBar = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Replicate First (Compress First)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 0 2 ⌿ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1  2  3  4', '9 10 11 12', '9 10 11 12'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 0 2 ⌿ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '9 10 11 12', '9 10 11 12']))
+				])),
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Reduce First'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['+⌿ mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['+⌿ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['15 18 21 24']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['15 18 21 24'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2 +⌿ mat     ⍝ pair-wise'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				[' 6  8 10 12', '14 16 18 20']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 +⌿ mat     ⍝ pair-wise'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						[' 6  8 10 12', '14 16 18 20']))
+				]))
 		]),
 	d: 'Slash Bar'
 };
@@ -8949,38 +9948,58 @@ var $author$project$CharInfo$squad = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Materialise'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⌷ ⍵'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌷ ⍵']))
+				])),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['If ⍵ is an array, returns ⍵.', 'If ⍵ is ref to an instance of a Class with a Numbered Default property, all items of that property are returned.', 'If ⍵ is a collection, returns all elements in the collection as an array.'])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Index'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 3 ⌷ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['7']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 3 ⌷ mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⌷ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5 6 7 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['7'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2 ⌷ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5 6 7 8'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2 ⌷[2] mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 6 10']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⌷[2] mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 6 10']))
+				]))
 		]),
 	d: 'Squad'
 };
@@ -8994,20 +10013,28 @@ var $author$project$CharInfo$star = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Exponential'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['* 0 1 2'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2.71828 7.38906'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['* 0 1 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2.71828 7.38906']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Power'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['49 5 ¯4 * 0.5 2 0.5'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['7 25 0J2']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['49 5 ¯4 * 0.5 2 0.5'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['7 25 0J2']))
+				]))
 		]),
 	d: 'Star'
 };
@@ -9023,42 +10050,66 @@ var $author$project$CharInfo$starDiaeresis = {
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Power'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['cube    ⍝ 3D array'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['cube    ⍝ 3D array'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['AB', 'CD', '', 'EF', 'GH']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['AB', 'CD', '', 'EF', 'GH'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(↓⍣1) cube   ⍝ split once'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌──┬──┐', '│AB│CD│', '├──┼──┤', '│EF│GH│', '└──┴──┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(↓⍣1) cube   ⍝ split once'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['(↓⍣2) cube   ⍝ split twice'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌───────┬───────┐', '│┌──┬──┐│┌──┬──┐│', '││AB│CD│││EF│GH││', '│└──┴──┘│└──┴──┘│', '└───────┴───────┘']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌──┬──┐', '│AB│CD│', '├──┼──┤', '│EF│GH│', '└──┴──┘'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['f ← (32∘+)∘(×∘1.8)   ⍝ Fahrenheit from Celsius', '', 'f ¯273 ¯40 0 100     ⍝ Fahrenheit'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯459.4 ¯40 32 212']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['(↓⍣2) cube   ⍝ split twice'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['c ← f⍣¯1             ⍝ Inverse: Celsius from Fahrenheit', '', 'c ¯459.4 ¯40 32 212  ⍝ Celsius'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯273 ¯40 0 100']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['┌───────┬───────┐', '│┌──┬──┐│┌──┬──┐│', '││AB│CD│││EF│GH││', '│└──┴──┘│└──┴──┘│', '└───────┴───────┘'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['f ← (32∘+)∘(×∘1.8)   ⍝ Fahrenheit from Celsius', '', 'f ¯273 ¯40 0 100     ⍝ Fahrenheit'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯459.4 ¯40 32 212'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['c ← f⍣¯1             ⍝ Inverse: Celsius from Fahrenheit', '', 'c ¯459.4 ¯40 32 212  ⍝ Celsius'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯273 ¯40 0 100'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 +∘÷⍣= 1            ⍝ fixpoint: golden mean'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1.61803']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 +∘÷⍣= 1            ⍝ fixpoint: golden mean'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1.61803']))
+				]))
 		]),
 	d: 'Star Diaeresis'
 };
@@ -9072,20 +10123,28 @@ var $author$project$CharInfo$stile = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Magnitude (Absolute value)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['| 2.3 ¯4 0 3j4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2.3 4 0 5'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['| 2.3 ¯4 0 3j4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2.3 4 0 5']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Residue (Remainder/Modulus)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 10 ¯2.5 | 7 ¯13 8'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 7 ¯2']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 10 ¯2.5 | 7 ¯13 8'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 7 ¯2']))
+				]))
 		]),
 	d: 'Stile'
 };
@@ -9104,53 +10163,81 @@ var $author$project$CharInfo$thorn = {
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['NB: In the following examples space characters are represented by small dots: ···'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 5 6          ⍝ numeric vector'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['4 5 6          ⍝ numeric vector'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 5 6'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍕ 4 5 6        ⍝ equivalent character vector'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4·5·6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍕ 4 5 6        ⍝ equivalent character vector'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat            ⍝ numeric matrix'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4·5·6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['mat            ⍝ numeric matrix'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 2 3', '4 5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍕ mat          ⍝ equivalent character matrix'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1·2·3', '4·5·6'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍕ mat          ⍝ equivalent character matrix'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1·2·3', '4·5·6']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Format By Specification'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Field-width and number of decimal places:'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['6 2 ⍕ 3.125 0.002'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['6 2 ⍕ 3.125 0.002'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['··3.13··0.00']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['··3.13··0.00'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['6 2 ⍕ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['··1.00··2.00··3.00', '··4.00··5.00··6.00']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['6 2 ⍕ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['··1.00··2.00··3.00', '··4.00··5.00··6.00'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['6 2 ⍕ 1234   ⍝ (field not wide enough)'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['******']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['6 2 ⍕ 1234   ⍝ (field not wide enough)'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['******']))
+				]))
 		]),
 	d: 'Thorn'
 };
@@ -9164,26 +10251,38 @@ var $author$project$CharInfo$tilde = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('NOT'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['~ 0 1 0 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 0 1 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['~ 0 1 0 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 0 1 0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Without'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 1 4 1 5 ~ 5 1'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 1 4 1 5 ~ 5 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 4']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 4'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['\'aa\' \'bb\' \'cc\' \'bb\'  ~ \'bb\' \'xx\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌──┬──┐', '│aa│cc│', '└──┴──┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'aa\' \'bb\' \'cc\' \'bb\'  ~ \'bb\' \'xx\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌──┬──┐', '│aa│cc│', '└──┴──┘']))
+				]))
 		]),
 	d: 'Tilde'
 };
@@ -9199,44 +10298,68 @@ var $author$project$CharInfo$tildeDiaeresis = {
 		[
 			$author$project$CharInfo$Category('Monadic operator (f⍨)'),
 			$author$project$CharInfo$Heading('Commute (Switch)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 ⍴ 3     ⍝ ⍺ ⍴ ⍵'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⍴ 3     ⍝ ⍺ ⍴ ⍵'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 3']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 3'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⍴⍨ 3    ⍝ ⍵ ⍴ ⍺'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 2 2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 ⍴⍨ 3    ⍝ ⍵ ⍴ ⍺'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 2 2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍴⍨ 3      ⍝ ⍵ ⍴ ⍵'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['3 3 3'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍴⍨ 3      ⍝ ⍵ ⍴ ⍵'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['3 3 3']))
+				])),
 			$author$project$CharInfo$Category('Monadic operator (a⍨)'),
 			$author$project$CharInfo$Heading('Constant'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['\'mu\'⍨ \'any\' ⎕NULL   ⍝ Always returns its operand'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['\'mu\'⍨ \'any\' ⎕NULL   ⍝ Always returns its operand'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['mu']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mu'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1E100 (\'mu\'⍨) 1j1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['mu']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1E100 (\'mu\'⍨) 1j1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['mu'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['¯1⍨¨ ⍳2 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['¯1 ¯1 ¯1', '¯1 ¯1 ¯1']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯1⍨¨ ⍳2 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯1 ¯1 ¯1', '¯1 ¯1 ¯1']))
+				]))
 		]),
 	d: 'Tilde Diaeresis'
 };
@@ -9252,32 +10375,48 @@ var $author$project$CharInfo$times = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Direction'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['× 3.1 ¯2 0 3j4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 ¯1 0 0.6J0.8'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['× 3.1 ¯2 0 3j4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 ¯1 0 0.6J0.8']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Times'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 ¯3 4.5 × ¯3 ¯4 2'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ¯3 4.5 × ¯3 ¯4 2'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['¯6 12 9']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯6 12 9'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['3 1 4 × 10'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['30 10 40']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['3 1 4 × 10'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['30 10 40'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['×/ 2 3 4'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['24']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['×/ 2 3 4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['24']))
+				]))
 		]),
 	d: 'Times'
 };
@@ -9292,32 +10431,48 @@ var $author$project$CharInfo$transpose = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Transpose'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 2 3', '4 5 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 2 3', '4 5 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍉ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 4', '2 5', '3 6'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍉ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 4', '2 5', '3 6']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Dyadic Transpose'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 1 ⍉ mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 1 ⍉ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 4', '2 5', '3 6']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1 4', '2 5', '3 6'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['1 1 ⍉ mat   ⍝ leading diagonal'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['1 5']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1 1 ⍉ mat   ⍝ leading diagonal'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1 5']))
+				]))
 		]),
 	d: 'Transpose'
 };
@@ -9332,62 +10487,98 @@ var $author$project$CharInfo$upArrow = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Mix'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['↑ \'Hip\' \'Hop\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['↑ \'Hip\' \'Hop\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Hip', 'Hop']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['Hip', 'Hop'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['↑ (6 4) 5 3'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['6 4', '5 0', '3 0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['↑ (6 4) 5 3'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['6 4', '5 0', '3 0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['↑[0.5] \'Hip\' \'Hop\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['HH', 'io', 'pp'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['↑[0.5] \'Hip\' \'Hop\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['HH', 'io', 'pp']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Take'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['4 ↑ \'Pineapple\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['4 ↑ \'Pineapple\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['Pine']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['Pine'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯5 ↑ \'Pineapple\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['apple']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['¯5 ↑ \'Pineapple\''])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1  2  3  4', '5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['apple'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ¯3 ↑ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['2 3 4', '6 7 8']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['mat'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯2 ↑ mat'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['5  6  7  8', '9 10 11 12']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1  2  3  4', '5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['2 ¯3 ↑ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['2 3 4', '6 7 8'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['¯2 ↑ mat'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['5  6  7  8', '9 10 11 12'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['¯2 3 ↑ 7'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0 0 0', '7 0 0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['¯2 3 ↑ 7'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0 0 0', '7 0 0']))
+				]))
 		]),
 	d: 'Up Arrow'
 };
@@ -9402,12 +10593,16 @@ var $author$project$CharInfo$upShoe = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Intersection'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['22 \'ab\' \'fg\' ∩ \'a\' \'ab\' 22'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['┌──┬──┐', '│22│ab│', '└──┴──┘']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['22 \'ab\' \'fg\' ∩ \'a\' \'ab\' 22'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['┌──┬──┐', '│22│ab│', '└──┴──┘']))
+				]))
 		]),
 	d: 'Up Shoe'
 };
@@ -9422,21 +10617,29 @@ var $author$project$CharInfo$upTack = {
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Decode'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['2 ⊥ 1 1 0 1   ⍝ binary decode'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['13'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['2 ⊥ 1 1 0 1   ⍝ binary decode'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['13']))
+				])),
 			$author$project$CharInfo$CodeComment(
 			_List_fromArray(
 				['⍝ mixed radix: conversion of hours,', '⍝ minutes and seconds to seconds:'])),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['24 60 60 ⊥ 2 46 40'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['10000']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['24 60 60 ⊥ 2 46 40'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['10000']))
+				]))
 		]),
 	d: 'Up Tack'
 };
@@ -9452,26 +10655,38 @@ var $author$project$CharInfo$upstile = {
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Ceiling (Round Up)'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⌈ 3.4 ¯3.4 3 0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['4 ¯3 3 0'])),
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌈ 3.4 ¯3.4 3 0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4 ¯3 3 0']))
+				])),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Maximum'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1.1 ¯2 ⌈ 8.1 ¯3.4'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['1.1 ¯2 ⌈ 8.1 ¯3.4'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['8.1 ¯2']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['8.1 ¯2'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⌈/ 3 1 4 1'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['4']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⌈/ 3 1 4 1'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['4']))
+				]))
 		]),
 	d: 'Upstile'
 };
@@ -9485,30 +10700,46 @@ var $author$project$CharInfo$zilde = {
 	c: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Niladic:  Empty Numeric Vector'),
-			$author$project$CharInfo$Input(
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍬≡⍳0'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍬≡⍳0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍬≡0⍴0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['1']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['⍬≡0⍴0'])),
-			$author$project$CharInfo$Output(
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍬≡0 0⍴0'])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				])),
+			$author$project$CharInfo$Example(
 			_List_fromArray(
-				['1'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍬≡0 0⍴0'])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0'])),
-			$author$project$CharInfo$Input(
-			_List_fromArray(
-				['⍬≡\'\''])),
-			$author$project$CharInfo$Output(
-			_List_fromArray(
-				['0']))
+				[
+					$author$project$CharInfo$Input(
+					_List_fromArray(
+						['⍬≡\'\''])),
+					$author$project$CharInfo$Output(
+					_List_fromArray(
+						['0']))
+				]))
 		]),
 	d: 'Zilde'
 };
@@ -9859,37 +11090,48 @@ var $author$project$Main$viewHelp = function (_v0) {
 											A2($elm$core$String$join, '\n', lines))
 										]))
 								]);
-						case 4:
-							var lines = item.a;
-							return _List_fromArray(
-								[
-									A2(
-									$elm$html$Html$div,
-									_List_fromArray(
-										[
-											$elm$html$Html$Attributes$class('help-description-input')
-										]),
-									_List_fromArray(
-										[
-											$elm$html$Html$text(
-											A2($elm$core$String$join, '\n', lines))
-										]))
-								]);
 						default:
-							var lines = item.a;
+							var parts = item.a;
 							return _List_fromArray(
 								[
 									A2(
 									$elm$html$Html$div,
 									_List_fromArray(
 										[
-											$elm$html$Html$Attributes$class('help-description-output')
+											$elm$html$Html$Attributes$class('help-description-example')
 										]),
-									_List_fromArray(
-										[
-											$elm$html$Html$text(
-											A2($elm$core$String$join, '\n', lines))
-										]))
+									A2(
+										$elm$core$List$map,
+										function (part) {
+											if (!part.$) {
+												var lines = part.a;
+												return A2(
+													$elm$html$Html$div,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('help-description-input')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text(
+															A2($elm$core$String$join, '\n', lines))
+														]));
+											} else {
+												var lines = part.a;
+												return A2(
+													$elm$html$Html$div,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('help-description-output')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text(
+															A2($elm$core$String$join, '\n', lines))
+														]));
+											}
+										},
+										parts))
 								]);
 					}
 				},

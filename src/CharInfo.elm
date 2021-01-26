@@ -2,6 +2,7 @@ module CharInfo exposing
     ( CharInfo
     , Completion(..)
     , DescriptionItem(..)
+    , IO(..)
     , allItems
     )
 
@@ -574,12 +575,14 @@ downTack =
     , description =
         [ Category "Dyadic function"
         , Heading "Encode"
-        , Input [ "2 2 2 2 ⊤ 5 7 12   ⍝ binary encode" ]
-        , Output
-            [ "0 0 1"
-            , "1 1 1"
-            , "0 1 0"
-            , "1 1 0"
+        , Example
+            [ Input [ "2 2 2 2 ⊤ 5 7 12   ⍝ binary encode" ]
+            , Output
+                [ "0 0 1"
+                , "1 1 1"
+                , "0 1 0"
+                , "1 1 0"
+                ]
             ]
         , CodeComment
             [ "⍝ mixed radix: encode of 10000 seconds"
@@ -879,10 +882,12 @@ equalUnderbarSlash =
             [ Input [ "≢ (1 2)(3 4)" ]
             , Output [ "2" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
         , Example
             [ Input [ "≢ mat   ⍝ note how \"tally\"" ]
@@ -1001,22 +1006,28 @@ upArrow =
     , description =
         [ Category "Monadic function"
         , Heading "Mix"
-        , Input [ "↑ 'Hip' 'Hop'" ]
-        , Output
-            [ "Hip"
-            , "Hop"
+        , Example
+            [ Input [ "↑ 'Hip' 'Hop'" ]
+            , Output
+                [ "Hip"
+                , "Hop"
+                ]
             ]
-        , Input [ "↑ (6 4) 5 3" ]
-        , Output
-            [ "6 4"
-            , "5 0"
-            , "3 0"
+        , Example
+            [ Input [ "↑ (6 4) 5 3" ]
+            , Output
+                [ "6 4"
+                , "5 0"
+                , "3 0"
+                ]
             ]
-        , Input [ "↑[0.5] 'Hip' 'Hop'" ]
-        , Output
-            [ "HH"
-            , "io"
-            , "pp"
+        , Example
+            [ Input [ "↑[0.5] 'Hip' 'Hop'" ]
+            , Output
+                [ "HH"
+                , "io"
+                , "pp"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Take"
@@ -1028,26 +1039,34 @@ upArrow =
             [ Input [ "¯5 ↑ 'Pineapple'" ]
             , Output [ "apple" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "2 ¯3 ↑ mat" ]
-        , Output
-            [ "2 3 4"
-            , "6 7 8"
+        , Example
+            [ Input [ "2 ¯3 ↑ mat" ]
+            , Output
+                [ "2 3 4"
+                , "6 7 8"
+                ]
             ]
-        , Input [ "¯2 ↑ mat" ]
-        , Output
-            [ "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "¯2 ↑ mat" ]
+            , Output
+                [ "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "¯2 3 ↑ 7" ]
-        , Output
-            [ "0 0 0"
-            , "7 0 0"
+        , Example
+            [ Input [ "¯2 3 ↑ 7" ]
+            , Output
+                [ "0 0 0"
+                , "7 0 0"
+                ]
             ]
         ]
     }
@@ -1064,23 +1083,29 @@ downArrow =
     , description =
         [ Category "Monadic function"
         , Heading "Split"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "↓ mat" ]
-        , Output
-            [ "┌───────┬───────┬──────────┐"
-            , "│1 2 3 4│5 6 7 8│9 10 11 12│"
-            , "└───────┴───────┴──────────┘"
+        , Example
+            [ Input [ "↓ mat" ]
+            , Output
+                [ "┌───────┬───────┬──────────┐"
+                , "│1 2 3 4│5 6 7 8│9 10 11 12│"
+                , "└───────┴───────┴──────────┘"
+                ]
             ]
-        , Input [ "↓[1] mat" ]
-        , Output
-            [ "┌─────┬──────┬──────┬──────┐"
-            , "│1 5 9│2 6 10│3 7 11│4 8 12│"
-            , "└─────┴──────┴──────┴──────┘"
+        , Example
+            [ Input [ "↓[1] mat" ]
+            , Output
+                [ "┌─────┬──────┬──────┬──────┐"
+                , "│1 5 9│2 6 10│3 7 11│4 8 12│"
+                , "└─────┴──────┴──────┴──────┘"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Drop"
@@ -1092,15 +1117,19 @@ downArrow =
             [ Input [ "¯5 ↓ 'Pineapple'" ]
             , Output [ "Pine" ]
             ]
-        , Input [ "1 ¯2 ↓ mat" ]
-        , Output
-            [ "5  6"
-            , "9 10"
+        , Example
+            [ Input [ "1 ¯2 ↓ mat" ]
+            , Output
+                [ "5  6"
+                , "9 10"
+                ]
             ]
-        , Input [ "1 ↓ mat" ]
-        , Output
-            [ "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "1 ↓ mat" ]
+            , Output
+                [ "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
         ]
     }
@@ -1118,37 +1147,45 @@ leftShoe =
     , description =
         [ Category "Monadic function"
         , Heading "Enclose"
-        , Input [ "1(2 3)" ]
-        , Output
-            [ "┌─┬───┐"
-            , "│1│2 3│"
-            , "└─┴───┘"
+        , Example
+            [ Input [ "1(2 3)" ]
+            , Output
+                [ "┌─┬───┐"
+                , "│1│2 3│"
+                , "└─┴───┘"
+                ]
             ]
-        , Input [ "⊂ 1(2 3)" ]
-        , Output
-            [ "┌───────┐"
-            , "│┌─┬───┐│"
-            , "││1│2 3││"
-            , "│└─┴───┘│"
-            , "└───────┘"
+        , Example
+            [ Input [ "⊂ 1(2 3)" ]
+            , Output
+                [ "┌───────┐"
+                , "│┌─┬───┐│"
+                , "││1│2 3││"
+                , "│└─┴───┘│"
+                , "└───────┘"
+                ]
             ]
-        , Input [ "⊂⊂ 1(2 3)" ]
-        , Output
-            [ "┌─────────┐"
-            , "│┌───────┐│"
-            , "││┌─┬───┐││"
-            , "│││1│2 3│││"
-            , "││└─┴───┘││"
-            , "│└───────┘│"
-            , "└─────────┘"
+        , Example
+            [ Input [ "⊂⊂ 1(2 3)" ]
+            , Output
+                [ "┌─────────┐"
+                , "│┌───────┐│"
+                , "││┌─┬───┐││"
+                , "│││1│2 3│││"
+                , "││└─┴───┘││"
+                , "│└───────┘│"
+                , "└─────────┘"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Partitioned Enclose"
-        , Input [ "0 1 0 1 ⊂ 1 2 3 4" ]
-        , Output
-            [ "┌───┬─┐"
-            , "│2 3│4│"
-            , "└───┴─┘"
+        , Example
+            [ Input [ "0 1 0 1 ⊂ 1 2 3 4" ]
+            , Output
+                [ "┌───┬─┐"
+                , "│2 3│4│"
+                , "└───┴─┘"
+                ]
             ]
         ]
     }
@@ -1203,37 +1240,47 @@ leftShoeUnderbar =
     , description =
         [ Category "Monadic function"
         , Heading "Nest"
-        , Input [ "⊆ 'this'" ]
-        , Output
-            [ "┌────┐"
-            , "│this│"
-            , "└────┘"
+        , Example
+            [ Input [ "⊆ 'this'" ]
+            , Output
+                [ "┌────┐"
+                , "│this│"
+                , "└────┘"
+                ]
             ]
-        , Input [ "⊆ 'this' 'that'" ]
-        , Output
-            [ "┌────┬────┐"
-            , "│this│that│"
-            , "└────┴────┘"
+        , Example
+            [ Input [ "⊆ 'this' 'that'" ]
+            , Output
+                [ "┌────┬────┐"
+                , "│this│that│"
+                , "└────┴────┘"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Partition"
-        , Input [ "1 0 0 1 1 ⊆ 1 2 3 4 5" ]
-        , Output
-            [ "┌─┬───┐"
-            , "│1│4 5│"
-            , "└─┴───┘"
+        , Example
+            [ Input [ "1 0 0 1 1 ⊆ 1 2 3 4 5" ]
+            , Output
+                [ "┌─┬───┐"
+                , "│1│4 5│"
+                , "└─┴───┘"
+                ]
             ]
-        , Input [ "1 1 2 2 2⊆⍳5" ]
-        , Output
-            [ "┌───┬─────┐"
-            , "│1 2│3 4 5│"
-            , "└───┴─────┘"
+        , Example
+            [ Input [ "1 1 2 2 2⊆⍳5" ]
+            , Output
+                [ "┌───┬─────┐"
+                , "│1 2│3 4 5│"
+                , "└───┴─────┘"
+                ]
             ]
-        , Input [ "' ' (≠⊆⊢) ' many a  time'" ]
-        , Output
-            [ "┌────┬─┬────┐"
-            , "│many│a│time│"
-            , "└────┴─┴────┘"
+        , Example
+            [ Input [ "' ' (≠⊆⊢) ' many a  time'" ]
+            , Output
+                [ "┌────┬─┬────┐"
+                , "│many│a│time│"
+                , "└────┴─┴────┘"
+                ]
             ]
         ]
     }
@@ -1251,7 +1298,7 @@ squad =
     , description =
         [ Category "Monadic function"
         , Heading "Materialise"
-        , Input [ "⌷ ⍵" ]
+        , Example [ Input [ "⌷ ⍵" ] ]
         , Plain
             [ "If ⍵ is an array, returns ⍵."
             , "If ⍵ is ref to an instance of a Class with a Numbered Default property, all items of that property are returned."
@@ -1259,11 +1306,13 @@ squad =
             ]
         , Category "Dyadic function"
         , Heading "Index"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
         , Example
             [ Input [ "2 3 ⌷ mat" ]
@@ -1297,16 +1346,18 @@ gradeUp =
             [ Input [ "⍋ 33 11 44 66 22" ]
             , Output [ "2 5 1 3 4" ]
             ]
-        , Input
-            [ "names←'Joe' 'Sue' 'Sam'"
-            , "ages←34 22 25"
-            , ""
-            , "names[⍋ages]"
-            ]
-        , Output
-            [ "┌───┬───┬───┐"
-            , "│Sue│Sam│Joe│"
-            , "└───┴───┴───┘"
+        , Example
+            [ Input
+                [ "names←'Joe' 'Sue' 'Sam'"
+                , "ages←34 22 25"
+                , ""
+                , "names[⍋ages]"
+                ]
+            , Output
+                [ "┌───┬───┬───┐"
+                , "│Sue│Sam│Joe│"
+                , "└───┴───┴───┘"
+                ]
             ]
         , Example
             [ Input [ "⍋ 'ABC' ⎕NULL ⍬ ¯3j4 'A'" ]
@@ -1343,16 +1394,18 @@ gradeDown =
             [ Input [ "⍒ 33 11 44 66 22" ]
             , Output [ "4 3 1 5 2" ]
             ]
-        , Input
-            [ "names←'Joe' 'Sue' 'Sam'"
-            , "ages←34 22 25"
-            , ""
-            , "names[⍒ages]"
-            ]
-        , Output
-            [ "┌───┬───┬───┐"
-            , "│Joe│Sam│Sue│"
-            , "└───┴───┴───┘"
+        , Example
+            [ Input
+                [ "names←'Joe' 'Sue' 'Sam'"
+                , "ages←34 22 25"
+                , ""
+                , "names[⍒ages]"
+                ]
+            , Output
+                [ "┌───┬───┬───┐"
+                , "│Joe│Sam│Sue│"
+                , "└───┴───┴───┘"
+                ]
             ]
         , Example
             [ Input [ "⍒ 'ABC' ⎕NULL ⍬ ¯3j4 'A'" ]
@@ -1388,13 +1441,15 @@ iota =
             [ Input [ "⍳ 10" ]
             , Output [ "1 2 3 4 5 6 7 8 9 10" ]
             ]
-        , Input [ "⍳ 2 3" ]
-        , Output
-            [ "┌───┬───┬───┐"
-            , "│1 1│1 2│1 3│"
-            , "├───┼───┼───┤"
-            , "│2 1│2 2│2 3│"
-            , "└───┴───┴───┘"
+        , Example
+            [ Input [ "⍳ 2 3" ]
+            , Output
+                [ "┌───┬───┬───┐"
+                , "│1 1│1 2│1 3│"
+                , "├───┼───┼───┤"
+                , "│2 1│2 2│2 3│"
+                , "└───┴───┴───┘"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Index Of"
@@ -1402,11 +1457,13 @@ iota =
             [ Input [ "'ABCDABCDEF' ⍳ 'ACF'" ]
             , Output [ "1 3 10" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1 2"
-            , "3 4"
-            , "5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2"
+                , "3 4"
+                , "5 6"
+                ]
             ]
         , Example
             [ Input [ "mat ⍳ 5 6" ]
@@ -1431,16 +1488,20 @@ iotaUnderbar =
             [ Input [ "⍸ 1 0 0 1 1" ]
             , Output [ "1 4 5" ]
             ]
-        , Input [ "bmat" ]
-        , Output
-            [ "0 1 0"
-            , "1 0 1"
+        , Example
+            [ Input [ "bmat" ]
+            , Output
+                [ "0 1 0"
+                , "1 0 1"
+                ]
             ]
-        , Input [ "⍸ bmat" ]
-        , Output
-            [ "┌───┬───┬───┐"
-            , "│1 2│2 1│2 3│"
-            , "└───┴───┴───┘"
+        , Example
+            [ Input [ "⍸ bmat" ]
+            , Output
+                [ "┌───┬───┬───┐"
+                , "│1 2│2 1│2 3│"
+                , "└───┴───┴───┘"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Interval Index"
@@ -1452,11 +1513,13 @@ iotaUnderbar =
             [ Input [ "2 4 6 ⍸ 1 2 3 4 5 6 7" ]
             , Output [ "0 1 1 2 2 3 3" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1 2"
-            , "3 4"
-            , "5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2"
+                , "3 4"
+                , "5 6"
+                ]
             ]
         , Example
             [ Input [ "mat ⍸ 3 3" ]
@@ -1481,10 +1544,12 @@ epsilon =
     , description =
         [ Category "Monadic function"
         , Heading "Enlist"
-        , Input [ "mat" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
         , Example
             [ Input [ "∊ 0 mat (7 8) 9" ]
@@ -1503,9 +1568,9 @@ epsilon =
         , Example
             [ Input [ "mat ∊ 6 2 7 4" ]
             , Output
-            ]
-            [ "0 1 0"
-            , "1 0 1"
+                [ "0 1 0"
+                , "1 0 1"
+                ]
             ]
         ]
     }
@@ -1526,21 +1591,25 @@ epsilonUnderbar =
             [ Input [ "'ana' ⍷ 'Banana'" ]
             , Output [ "0 1 0 1 0 0" ]
             ]
-        , Input [ "X Y" ]
-        , Output
-            [ "┌───┬───────┐"
-            , "│0 1│0 1 0 0│"
-            , "│1 0│1 0 0 1│"
-            , "│   │0 0 1 0│"
-            , "│   │0 1 0 0│"
-            , "└───┴───────┘"
+        , Example
+            [ Input [ "X Y" ]
+            , Output
+                [ "┌───┬───────┐"
+                , "│0 1│0 1 0 0│"
+                , "│1 0│1 0 0 1│"
+                , "│   │0 0 1 0│"
+                , "│   │0 1 0 0│"
+                , "└───┴───────┘"
+                ]
             ]
-        , Input [ "X ⍷ Y" ]
-        , Output
-            [ "1 0 0 0"
-            , "0 0 1 0"
-            , "0 1 0 0"
-            , "0 0 0 0"
+        , Example
+            [ Input [ "X ⍷ Y" ]
+            , Output
+                [ "1 0 0 0"
+                , "0 0 1 0"
+                , "0 1 0 0"
+                , "0 0 0 0"
+                ]
             ]
         ]
     }
@@ -1558,30 +1627,38 @@ downShoe =
     , description =
         [ Category "Monadic function"
         , Heading "Unique"
-        , Input [ "∪ 'ab' 'ba' 'ab' 1 1 2" ]
-        , Output
-            [ "┌──┬──┬─┬─┐"
-            , "│ab│ba│1│2│"
-            , "└──┴──┴─┴─┘"
+        , Example
+            [ Input [ "∪ 'ab' 'ba' 'ab' 1 1 2" ]
+            , Output
+                [ "┌──┬──┬─┬─┐"
+                , "│ab│ba│1│2│"
+                , "└──┴──┴─┴─┘"
+                ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "flywheel"
-            , "shyster "
-            , "flywheel"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "flywheel"
+                , "shyster "
+                , "flywheel"
+                ]
             ]
-        , Input [ "∪mat" ]
-        , Output
-            [ "flywheel"
-            , "shyster "
+        , Example
+            [ Input [ "∪mat" ]
+            , Output
+                [ "flywheel"
+                , "shyster "
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Union"
-        , Input [ "'ab' 'cde' 'fg' ∪ 'a' 'ab'" ]
-        , Output
-            [ "┌──┬───┬──┬─┐"
-            , "│ab│cde│fg│a│"
-            , "└──┴───┴──┴─┘"
+        , Example
+            [ Input [ "'ab' 'cde' 'fg' ∪ 'a' 'ab'" ]
+            , Output
+                [ "┌──┬───┬──┬─┐"
+                , "│ab│cde│fg│a│"
+                , "└──┴───┴──┴─┘"
+                ]
             ]
         ]
     }
@@ -1598,11 +1675,13 @@ upShoe =
     , description =
         [ Category "Dyadic function"
         , Heading "Intersection"
-        , Input [ "22 'ab' 'fg' ∩ 'a' 'ab' 22" ]
-        , Output
-            [ "┌──┬──┐"
-            , "│22│ab│"
-            , "└──┴──┘"
+        , Example
+            [ Input [ "22 'ab' 'fg' ∩ 'a' 'ab' 22" ]
+            , Output
+                [ "┌──┬──┐"
+                , "│22│ab│"
+                , "└──┴──┘"
+                ]
             ]
         ]
     }
@@ -1626,11 +1705,13 @@ tilde =
             [ Input [ "3 1 4 1 5 ~ 5 1" ]
             , Output [ "3 4" ]
             ]
-        , Input [ "'aa' 'bb' 'cc' 'bb'  ~ 'bb' 'xx'" ]
-        , Output
-            [ "┌──┬──┐"
-            , "│aa│cc│"
-            , "└──┴──┘"
+        , Example
+            [ Input [ "'aa' 'bb' 'cc' 'bb'  ~ 'bb' 'xx'" ]
+            , Output
+                [ "┌──┬──┐"
+                , "│aa│cc│"
+                , "└──┴──┘"
+                ]
             ]
         ]
     }
@@ -1662,31 +1743,39 @@ slash =
             [ Input [ "2 +/ 1 2 3 4 5   ⍝ pair-wise sum" ]
             , Output [ "3 5 7 9" ]
             ]
-        , Input [ "cube    ⍝ 3D array" ]
-        , Output
-            [ " 1  2  3  4"
-            , " 5  6  7  8"
-            , " 9 10 11 12"
-            , "           "
-            , "13 14 15 16"
-            , "17 18 19 20"
-            , "21 22 23 24"
+        , Example
+            [ Input [ "cube    ⍝ 3D array" ]
+            , Output
+                [ " 1  2  3  4"
+                , " 5  6  7  8"
+                , " 9 10 11 12"
+                , "           "
+                , "13 14 15 16"
+                , "17 18 19 20"
+                , "21 22 23 24"
+                ]
             ]
-        , Input [ "+/ cube" ]
-        , Output
-            [ "10 26 42"
-            , "58 74 90"
+        , Example
+            [ Input [ "+/ cube" ]
+            , Output
+                [ "10 26 42"
+                , "58 74 90"
+                ]
             ]
-        , Input [ "+/[1] cube    ⍝ sum of planes" ]
-        , Output
-            [ "14 16 18 20"
-            , "22 24 26 28"
-            , "30 32 34 36"
+        , Example
+            [ Input [ "+/[1] cube    ⍝ sum of planes" ]
+            , Output
+                [ "14 16 18 20"
+                , "22 24 26 28"
+                , "30 32 34 36"
+                ]
             ]
-        , Input [ "+/[2] cube    ⍝ column sums" ]
-        , Output
-            [ "15 18 21 24"
-            , "51 54 57 60"
+        , Example
+            [ Input [ "+/[2] cube    ⍝ column sums" ]
+            , Output
+                [ "15 18 21 24"
+                , "51 54 57 60"
+                ]
             ]
         ]
     }
@@ -1714,23 +1803,29 @@ backslash =
             [ Input [ "+\\ 1 2 3 4 5" ]
             , Output [ "1 3 6 10 15" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "+\\ mat" ]
-        , Output
-            [ "1  3  6 10"
-            , "5 11 18 26"
-            , "9 19 30 42"
+        , Example
+            [ Input [ "+\\ mat" ]
+            , Output
+                [ "1  3  6 10"
+                , "5 11 18 26"
+                , "9 19 30 42"
+                ]
             ]
-        , Input [ "+\\[1] mat" ]
-        , Output
-            [ " 1  2  3  4"
-            , " 6  8 10 12"
-            , "15 18 21 24"
+        , Example
+            [ Input [ "+\\[1] mat" ]
+            , Output
+                [ " 1  2  3  4"
+                , " 6  8 10 12"
+                , "15 18 21 24"
+                ]
             ]
         ]
     }
@@ -1747,17 +1842,21 @@ slashBar =
     , description =
         [ Category "Dyadic function"
         , Heading "Replicate First (Compress First)"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "1 0 2 ⌿ mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "9 10 11 12"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "1 0 2 ⌿ mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "9 10 11 12"
+                , "9 10 11 12"
+                ]
             ]
         , Category "Monadic operator"
         , Heading "Reduce First"
@@ -1765,10 +1864,12 @@ slashBar =
             [ Input [ "+⌿ mat" ]
             , Output [ "15 18 21 24" ]
             ]
-        , Input [ "2 +⌿ mat     ⍝ pair-wise" ]
-        , Output
-            [ " 6  8 10 12"
-            , "14 16 18 20"
+        , Example
+            [ Input [ "2 +⌿ mat     ⍝ pair-wise" ]
+            , Output
+                [ " 6  8 10 12"
+                , "14 16 18 20"
+                ]
             ]
         ]
     }
@@ -1785,27 +1886,33 @@ backslashBar =
     , description =
         [ Category "Dyadic function"
         , Heading "Expand First"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "1 0 2 1 ⍀ mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "0  0  0  0"
-            , "5  6  7  8"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "1 0 2 1 ⍀ mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "0  0  0  0"
+                , "5  6  7  8"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
         , Category "Monadic operator"
         , Heading "Scan First"
-        , Input [ "+⍀ mat" ]
-        , Output
-            [ " 1  2  3  4"
-            , " 6  8 10 12"
-            , "15 18 21 24"
+        , Example
+            [ Input [ "+⍀ mat" ]
+            , Output
+                [ " 1  2  3  4"
+                , " 6  8 10 12"
+                , "15 18 21 24"
+                ]
             ]
         ]
     }
@@ -1819,22 +1926,26 @@ comma =
     , description =
         [ Category "Monadic function"
         , Heading "Ravel"
-        , Input [ "cube    ⍝ 3D array" ]
-        , Output
-            [ "1 2"
-            , "3 4"
-            , ""
-            , "5 6"
-            , "7 8"
+        , Example
+            [ Input [ "cube    ⍝ 3D array" ]
+            , Output
+                [ "1 2"
+                , "3 4"
+                , ""
+                , "5 6"
+                , "7 8"
+                ]
             ]
         , Example
             [ Input [ ", cube" ]
             , Output [ "1 2 3 4 5 6 7 8" ]
             ]
-        , Input [ ",[2 3] cube    ⍝ Ravel with axes" ]
-        , Output
-            [ "1 2 3 4"
-            , "5 6 7 8"
+        , Example
+            [ Input [ ",[2 3] cube    ⍝ Ravel with axes" ]
+            , Output
+                [ "1 2 3 4"
+                , "5 6 7 8"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Catenate/Laminate (Join)"
@@ -1842,18 +1953,22 @@ comma =
             [ Input [ "1 2 3 , 4 5 6" ]
             , Output [ "1 2 3 4 5 6" ]
             ]
-        , Input [ "cube , 99" ]
-        , Output
-            [ "1 2 99"
-            , "3 4 99"
-            , ""
-            , "5 6 99"
-            , "7 8 99"
+        , Example
+            [ Input [ "cube , 99" ]
+            , Output
+                [ "1 2 99"
+                , "3 4 99"
+                , ""
+                , "5 6 99"
+                , "7 8 99"
+                ]
             ]
-        , Input [ "1 2 3 ,[0.5] 4 5 6   ⍝ Laminate" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "1 2 3 ,[0.5] 4 5 6   ⍝ Laminate" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
         ]
     }
@@ -1870,43 +1985,55 @@ commaBar =
     , description =
         [ Category "Monadic function"
         , Heading "Table"
-        , Input [ "⍪ 2 3 4" ]
-        , Output
-            [ "2"
-            , "3"
-            , "4"
+        , Example
+            [ Input [ "⍪ 2 3 4" ]
+            , Output
+                [ "2"
+                , "3"
+                , "4"
+                ]
             ]
-        , Input [ "cube    ⍝ 3D array" ]
-        , Output
-            [ "1 2"
-            , "3 4"
-            , ""
-            , "5 6"
-            , "7 8"
+        , Example
+            [ Input [ "cube    ⍝ 3D array" ]
+            , Output
+                [ "1 2"
+                , "3 4"
+                , ""
+                , "5 6"
+                , "7 8"
+                ]
             ]
-        , Input [ "⍪ cube" ]
-        , Output
-            [ "1 2 3 4"
-            , "5 6 7 8"
+        , Example
+            [ Input [ "⍪ cube" ]
+            , Output
+                [ "1 2 3 4"
+                , "5 6 7 8"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Catenate First/Laminate"
-        , Input [ "mat" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
-        , Input [ "mat ⍪ 0" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
-            , "0 0 0"
+        , Example
+            [ Input [ "mat ⍪ 0" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                , "0 0 0"
+                ]
             ]
-        , Input [ "mat ⍪ 7 8 9" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
-            , "7 8 9"
+        , Example
+            [ Input [ "mat ⍪ 7 8 9" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                , "7 8 9"
+                ]
             ]
         ]
     }
@@ -1924,11 +2051,13 @@ rho =
     , description =
         [ Category "Monadic function"
         , Heading "Shape"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
         , Example
             [ Input [ "⍴ mat" ]
@@ -1952,15 +2081,17 @@ rho =
             ]
         , Category "Dyadic function"
         , Heading "Reshape"
-        , Input [ "2 3 4 ⍴ 1 2 3 4 5 6 7" ]
-        , Output
-            [ "1 2 3 4"
-            , "5 6 7 1"
-            , "2 3 4 5"
-            , ""
-            , "6 7 1 2"
-            , "3 4 5 6"
-            , "7 1 2 3"
+        , Example
+            [ Input [ "2 3 4 ⍴ 1 2 3 4 5 6 7" ]
+            , Output
+                [ "1 2 3 4"
+                , "5 6 7 1"
+                , "2 3 4 5"
+                , ""
+                , "6 7 1 2"
+                , "3 4 5 6"
+                , "7 1 2 3"
+                ]
             ]
         ]
     }
@@ -1981,23 +2112,29 @@ circleStile =
             [ Input [ "⌽ 'trams'" ]
             , Output [ "smart" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "⌽ mat" ]
-        , Output
-            [ " 4  3  2 1"
-            , " 8  7  6 5"
-            , "12 11 10 9"
+        , Example
+            [ Input [ "⌽ mat" ]
+            , Output
+                [ " 4  3  2 1"
+                , " 8  7  6 5"
+                , "12 11 10 9"
+                ]
             ]
-        , Input [ "⌽[1] mat" ]
-        , Output
-            [ "9 10 11 12"
-            , "5  6  7  8"
-            , "1  2  3  4"
+        , Example
+            [ Input [ "⌽[1] mat" ]
+            , Output
+                [ "9 10 11 12"
+                , "5  6  7  8"
+                , "1  2  3  4"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Rotate"
@@ -2009,23 +2146,29 @@ circleStile =
             [ Input [ "¯2 ⌽ 1 2 3 4 5 6" ]
             , Output [ "5 6 1 2 3 4" ]
             ]
-        , Input [ "¯1 ⌽ mat" ]
-        , Output
-            [ " 4 1  2  3"
-            , " 8 5  6  7"
-            , "12 9 10 11"
+        , Example
+            [ Input [ "¯1 ⌽ mat" ]
+            , Output
+                [ " 4 1  2  3"
+                , " 8 5  6  7"
+                , "12 9 10 11"
+                ]
             ]
-        , Input [ "1 ¯1 2 ⌽ mat" ]
-        , Output
-            [ " 2  3 4  1"
-            , " 8  5 6  7"
-            , "11 12 9 10"
+        , Example
+            [ Input [ "1 ¯1 2 ⌽ mat" ]
+            , Output
+                [ " 2  3 4  1"
+                , " 8  5 6  7"
+                , "11 12 9 10"
+                ]
             ]
-        , Input [ "0 1 2 ¯1 ⌽[1] mat" ]
-        , Output
-            [ "1  6 11 12"
-            , "5 10  3  4"
-            , "9  2  7  8"
+        , Example
+            [ Input [ "0 1 2 ¯1 ⌽[1] mat" ]
+            , Output
+                [ "1  6 11 12"
+                , "5 10  3  4"
+                , "9  2  7  8"
+                ]
             ]
         ]
     }
@@ -2042,25 +2185,31 @@ circleBar =
     , description =
         [ Category "Monadic function"
         , Heading "Reverse First"
-        , Input [ "mat" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "⊖ mat" ]
-        , Output
-            [ "9 10 11 12"
-            , "5  6  7  8"
-            , "1  2  3  4"
+        , Example
+            [ Input [ "⊖ mat" ]
+            , Output
+                [ "9 10 11 12"
+                , "5  6  7  8"
+                , "1  2  3  4"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Rotate First"
-        , Input [ "0 1 2 ¯1 ⊖ mat" ]
-        , Output
-            [ "1  6 11 12"
-            , "5 10  3  4"
-            , "9  2  7  8"
+        , Example
+            [ Input [ "0 1 2 ¯1 ⊖ mat" ]
+            , Output
+                [ "1  6 11 12"
+                , "5 10  3  4"
+                , "9  2  7  8"
+                ]
             ]
         ]
     }
@@ -2077,27 +2226,35 @@ transpose =
     , description =
         [ Category "Monadic function"
         , Heading "Transpose"
-        , Input [ "mat" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
-        , Input [ "⍉ mat" ]
-        , Output
-            [ "1 4"
-            , "2 5"
-            , "3 6"
+        , Example
+            [ Input [ "⍉ mat" ]
+            , Output
+                [ "1 4"
+                , "2 5"
+                , "3 6"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Dyadic Transpose"
-        , Input [ "2 1 ⍉ mat" ]
-        , Output
-            [ "1 4"
-            , "2 5"
-            , "3 6"
+        , Example
+            [ Input [ "2 1 ⍉ mat" ]
+            , Output
+                [ "1 4"
+                , "2 5"
+                , "3 6"
+                ]
             ]
-        , Input [ "1 1 ⍉ mat   ⍝ leading diagonal" ]
-        , Output [ "1 5" ]
+        , Example
+            [ Input [ "1 1 ⍉ mat   ⍝ leading diagonal" ]
+            , Output [ "1 5" ]
+            ]
         ]
     }
 
@@ -2122,17 +2279,21 @@ diaeresis =
             [ Input [ "+/¨ (1 2 3 4)(5 6 7)" ]
             , Output [ "10 18" ]
             ]
-        , Input [ "3 ↑¨ 1 2 (3 4) 'V'" ]
-        , Output
-            [ "┌─────┬─────┬─────┬───┐"
-            , "│1 0 0│2 0 0│3 4 0│V  │"
-            , "└─────┴─────┴─────┴───┘"
+        , Example
+            [ Input [ "3 ↑¨ 1 2 (3 4) 'V'" ]
+            , Output
+                [ "┌─────┬─────┬─────┬───┐"
+                , "│1 0 0│2 0 0│3 4 0│V  │"
+                , "└─────┴─────┴─────┴───┘"
+                ]
             ]
-        , Input [ "1 2 3 ,¨ 99" ]
-        , Output
-            [ "┌────┬────┬────┐"
-            , "│1 99│2 99│3 99│"
-            , "└────┴────┴────┘"
+        , Example
+            [ Input [ "1 2 3 ,¨ 99" ]
+            , Output
+                [ "┌────┬────┬────┐"
+                , "│1 99│2 99│3 99│"
+                , "└────┴────┴────┘"
+                ]
             ]
         ]
     }
@@ -2172,10 +2333,12 @@ tildeDiaeresis =
             [ Input [ "1E100 ('mu'⍨) 1j1" ]
             , Output [ "mu" ]
             ]
-        , Input [ "¯1⍨¨ ⍳2 3" ]
-        , Output
-            [ "¯1 ¯1 ¯1"
-            , "¯1 ¯1 ¯1"
+        , Example
+            [ Input [ "¯1⍨¨ ⍳2 3" ]
+            , Output
+                [ "¯1 ¯1 ¯1"
+                , "¯1 ¯1 ¯1"
+                ]
             ]
         ]
     }
@@ -2193,42 +2356,52 @@ starDiaeresis =
     , description =
         [ Category "Dyadic operator"
         , Heading "Power"
-        , Input [ "cube    ⍝ 3D array" ]
-        , Output
-            [ "AB"
-            , "CD"
-            , ""
-            , "EF"
-            , "GH"
+        , Example
+            [ Input [ "cube    ⍝ 3D array" ]
+            , Output
+                [ "AB"
+                , "CD"
+                , ""
+                , "EF"
+                , "GH"
+                ]
             ]
-        , Input [ "(↓⍣1) cube   ⍝ split once" ]
-        , Output
-            [ "┌──┬──┐"
-            , "│AB│CD│"
-            , "├──┼──┤"
-            , "│EF│GH│"
-            , "└──┴──┘"
+        , Example
+            [ Input [ "(↓⍣1) cube   ⍝ split once" ]
+            , Output
+                [ "┌──┬──┐"
+                , "│AB│CD│"
+                , "├──┼──┤"
+                , "│EF│GH│"
+                , "└──┴──┘"
+                ]
             ]
-        , Input [ "(↓⍣2) cube   ⍝ split twice" ]
-        , Output
-            [ "┌───────┬───────┐"
-            , "│┌──┬──┐│┌──┬──┐│"
-            , "││AB│CD│││EF│GH││"
-            , "│└──┴──┘│└──┴──┘│"
-            , "└───────┴───────┘"
+        , Example
+            [ Input [ "(↓⍣2) cube   ⍝ split twice" ]
+            , Output
+                [ "┌───────┬───────┐"
+                , "│┌──┬──┐│┌──┬──┐│"
+                , "││AB│CD│││EF│GH││"
+                , "│└──┴──┘│└──┴──┘│"
+                , "└───────┴───────┘"
+                ]
             ]
-        , Input
-            [ "f ← (32∘+)∘(×∘1.8)   ⍝ Fahrenheit from Celsius"
-            , ""
-            , "f ¯273 ¯40 0 100     ⍝ Fahrenheit"
+        , Example
+            [ Input
+                [ "f ← (32∘+)∘(×∘1.8)   ⍝ Fahrenheit from Celsius"
+                , ""
+                , "f ¯273 ¯40 0 100     ⍝ Fahrenheit"
+                ]
+            , Output [ "¯459.4 ¯40 32 212" ]
             ]
-        , Output [ "¯459.4 ¯40 32 212" ]
-        , Input
-            [ "c ← f⍣¯1             ⍝ Inverse: Celsius from Fahrenheit"
-            , ""
-            , "c ¯459.4 ¯40 32 212  ⍝ Celsius"
+        , Example
+            [ Input
+                [ "c ← f⍣¯1             ⍝ Inverse: Celsius from Fahrenheit"
+                , ""
+                , "c ¯459.4 ¯40 32 212  ⍝ Celsius"
+                ]
+            , Output [ "¯273 ¯40 0 100" ]
             ]
-        , Output [ "¯273 ¯40 0 100" ]
         , Example
             [ Input [ "1 +∘÷⍣= 1            ⍝ fixpoint: golden mean" ]
             , Output [ "1.61803" ]
@@ -2254,22 +2427,28 @@ dot =
             [ Input [ "3 ∧.= 3 3 3 3" ]
             , Output [ "1" ]
             ]
-        , Input [ "mat" ]
-        , Output
-            [ "1 2"
-            , "3 4"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ "1 2"
+                , "3 4"
+                ]
             ]
-        , Input [ "mat +.× mat   ⍝ matrix product" ]
-        , Output
-            [ " 7 10"
-            , "15 22"
+        , Example
+            [ Input [ "mat +.× mat   ⍝ matrix product" ]
+            , Output
+                [ " 7 10"
+                , "15 22"
+                ]
             ]
         , Heading "Outer Product ∘.g"
-        , Input [ "1 2 3 ∘.× 4 5 6 7" ]
-        , Output
-            [ " 4  5  6  7"
-            , " 8 10 12 14"
-            , "12 15 18 21"
+        , Example
+            [ Input [ "1 2 3 ∘.× 4 5 6 7" ]
+            , Output
+                [ " 4  5  6  7"
+                , " 8 10 12 14"
+                , "12 15 18 21"
+                ]
             ]
         ]
     }
@@ -2288,17 +2467,21 @@ jot =
         , Heading "Beside and Bind"
         , Plain [ "NB: ∘ is also used in outer product ∘.f - see Dot (.)" ]
         , Heading "Beside"
-        , Input [ "⌽∘⍳¨ 3 4 5" ]
-        , Output
-            [ "┌─────┬───────┬─────────┐"
-            , "│3 2 1│4 3 2 1│5 4 3 2 1│"
-            , "└─────┴───────┴─────────┘"
+        , Example
+            [ Input [ "⌽∘⍳¨ 3 4 5" ]
+            , Output
+                [ "┌─────┬───────┬─────────┐"
+                , "│3 2 1│4 3 2 1│5 4 3 2 1│"
+                , "└─────┴───────┴─────────┘"
+                ]
             ]
-        , Input [ "¯1 ⌽∘⍳¨ 3 4 5" ]
-        , Output
-            [ "┌─────┬───────┬─────────┐"
-            , "│3 1 2│4 1 2 3│5 1 2 3 4│"
-            , "└─────┴───────┴─────────┘"
+        , Example
+            [ Input [ "¯1 ⌽∘⍳¨ 3 4 5" ]
+            , Output
+                [ "┌─────┬───────┬─────────┐"
+                , "│3 1 2│4 1 2 3│5 1 2 3 4│"
+                , "└─────┴───────┴─────────┘"
+                ]
             ]
         , Example
             [ Input [ "+∘÷/ 40⍴1    ⍝ continued fraction" ]
@@ -2334,40 +2517,52 @@ jotDiaeresis =
             ]
         , Category "Dyadic operator (f⍤a)"
         , Heading "Rank"
-        , Input [ "cube    ⍝ 3D array" ]
-        , Output
-            [ " 1  2  3"
-            , " 4  5  6"
-            , ""
-            , " 7  8  9"
-            , "10 11 12"
+        , Example
+            [ Input [ "cube    ⍝ 3D array" ]
+            , Output
+                [ " 1  2  3"
+                , " 4  5  6"
+                , ""
+                , " 7  8  9"
+                , "10 11 12"
+                ]
             ]
-        , Input [ "(,⍤2) cube" ]
-        , Output
-            [ "1 2 3  4  5  6"
-            , "7 8 9 10 11 12"
+        , Example
+            [ Input [ "(,⍤2) cube" ]
+            , Output
+                [ "1 2 3  4  5  6"
+                , "7 8 9 10 11 12"
+                ]
             ]
-        , Input [ "cmat    ⍝ character matrix" ]
-        , Output
-            [ "abc"
-            , "zxy"
+        , Example
+            [ Input [ "cmat    ⍝ character matrix" ]
+            , Output
+                [ "abc"
+                , "zxy"
+                ]
             ]
-        , Input [ "(⍋⍤1) cmat    ⍝ grade-up by row" ]
-        , Output
-            [ "1 2 3"
-            , "2 3 1"
+        , Example
+            [ Input [ "(⍋⍤1) cmat    ⍝ grade-up by row" ]
+            , Output
+                [ "1 2 3"
+                , "2 3 1"
+                ]
             ]
-        , Input [ "nmat     ⍝ numeric matrix" ]
-        , Output
-            [ "1  2  3  4"
-            , "5  6  7  8"
-            , "9 10 11 12"
+        , Example
+            [ Input [ "nmat     ⍝ numeric matrix" ]
+            , Output
+                [ "1  2  3  4"
+                , "5  6  7  8"
+                , "9 10 11 12"
+                ]
             ]
-        , Input [ "10 20 30 (+⍤0 1) nmat  ⍝ scalars plus vectors" ]
-        , Output
-            [ "11 12 13 14"
-            , "25 26 27 28"
-            , "39 40 41 42"
+        , Example
+            [ Input [ "10 20 30 (+⍤0 1) nmat  ⍝ scalars plus vectors" ]
+            , Output
+                [ "11 12 13 14"
+                , "25 26 27 28"
+                , "39 40 41 42"
+                ]
             ]
         ]
     }
@@ -2460,20 +2655,24 @@ quoteQuad =
             [ Input [ "⍞ ← 'Name:'   ⍝ places text in session" ]
             , Output [ "Name:" ]
             ]
-        , Input
-            [ "ask ← {⍞←⍵ ⋄ (≢⍵)↓⍞}   ⍝ prompt for input:"
-            , ""
-            , "name ← ask¨ 'First:  ' 'Second: '"
+        , Example
+            [ Input
+                [ "ask ← {⍞←⍵ ⋄ (≢⍵)↓⍞}   ⍝ prompt for input:"
+                , ""
+                , "name ← ask¨ 'First:  ' 'Second: '"
+                ]
+            , Output
+                [ "First:  John"
+                , "Second: Brown"
+                ]
             ]
-        , Output
-            [ "First:  John"
-            , "Second: Brown"
-            ]
-        , Input [ "name" ]
-        , Output
-            [ "┌────┬─────┐"
-            , "│John│Brown│"
-            , "└────┴─────┘"
+        , Example
+            [ Input [ "name" ]
+            , Output
+                [ "┌────┬─────┐"
+                , "│John│Brown│"
+                , "└────┴─────┘"
+                ]
             ]
         ]
     }
@@ -2497,10 +2696,12 @@ quad =
             [ Input [ "8-5" ]
             , Output [ "9" ]
             ]
-        , Input [ "2+⎕←3+4" ]
-        , Output
-            [ "7"
-            , "9"
+        , Example
+            [ Input [ "2+⎕←3+4" ]
+            , Output
+                [ "7"
+                , "9"
+                ]
             ]
         ]
     }
@@ -2526,12 +2727,14 @@ quadColon =
             [ Input [ "('a' ⎕R 'x' ⍠ 'IC' 1) 'ABC'  ⍝ .. Ignoring Case" ]
             , Output [ "xBC" ]
             ]
-        , Input
-            [ "IgnCase ← ⍠ 'IC' 1"
-            , ""
-            , "'a' ⎕R 'x' IgnCase 'ABC'"
+        , Example
+            [ Input
+                [ "IgnCase ← ⍠ 'IC' 1"
+                , ""
+                , "'a' ⎕R 'x' IgnCase 'ABC'"
+                ]
+            , Output [ "xBC" ]
             ]
-        , Output [ "xBC" ]
         ]
     }
 
@@ -2548,41 +2751,49 @@ quadEqual =
     , description =
         [ Category "Monadic operator"
         , Heading "Key"
-        , Input [ "'Banana' {⍺ ⍵}⌸ 3 1 4 1 5 9" ]
-        , Output
-            [ "┌─┬─────┐"
-            , "│B│3    │"
-            , "├─┼─────┤"
-            , "│a│1 1 9│"
-            , "├─┼─────┤"
-            , "│n│4 5  │"
-            , "└─┴─────┘"
+        , Example
+            [ Input [ "'Banana' {⍺ ⍵}⌸ 3 1 4 1 5 9" ]
+            , Output
+                [ "┌─┬─────┐"
+                , "│B│3    │"
+                , "├─┼─────┤"
+                , "│a│1 1 9│"
+                , "├─┼─────┤"
+                , "│n│4 5  │"
+                , "└─┴─────┘"
+                ]
             ]
-        , Input [ "'Banana' {⍺,+/⍵}⌸ 3 1 4 1 5 9" ]
-        , Output
-            [ "B  3"
-            , "a 11"
-            , "n  9"
+        , Example
+            [ Input [ "'Banana' {⍺,+/⍵}⌸ 3 1 4 1 5 9" ]
+            , Output
+                [ "B  3"
+                , "a 11"
+                , "n  9"
+                ]
             ]
-        , Input [ "'Banana' {⍺ ⍵}⌸ 1 2 3 4 5 6" ]
-        , Output
-            [ "┌─┬─────┐"
-            , "│B│1    │"
-            , "├─┼─────┤"
-            , "│a│2 4 6│"
-            , "├─┼─────┤"
-            , "│n│3 5  │"
-            , "└─┴─────┘"
+        , Example
+            [ Input [ "'Banana' {⍺ ⍵}⌸ 1 2 3 4 5 6" ]
+            , Output
+                [ "┌─┬─────┐"
+                , "│B│1    │"
+                , "├─┼─────┤"
+                , "│a│2 4 6│"
+                , "├─┼─────┤"
+                , "│n│3 5  │"
+                , "└─┴─────┘"
+                ]
             ]
-        , Input [ "{⍺ ⍵}⌸ 'Banana'  ⍝ (same as above)" ]
-        , Output
-            [ "┌─┬─────┐"
-            , "│B│1    │"
-            , "├─┼─────┤"
-            , "│a│2 4 6│"
-            , "├─┼─────┤"
-            , "│n│3 5  │"
-            , "└─┴─────┘"
+        , Example
+            [ Input [ "{⍺ ⍵}⌸ 'Banana'  ⍝ (same as above)" ]
+            , Output
+                [ "┌─┬─────┐"
+                , "│B│1    │"
+                , "├─┼─────┤"
+                , "│a│2 4 6│"
+                , "├─┼─────┤"
+                , "│n│3 5  │"
+                , "└─┴─────┘"
+                ]
             ]
         ]
     }
@@ -2600,49 +2811,57 @@ quadDiamond =
     , description =
         [ Category "Dyadic operator"
         , Heading "Stencil"
-        , Input [ "mat" ]
-        , Output
-            [ " 1  2  3  4"
-            , " 5  6  7  8"
-            , " 9 10 11 12"
-            , "13 14 15 16"
+        , Example
+            [ Input [ "mat" ]
+            , Output
+                [ " 1  2  3  4"
+                , " 5  6  7  8"
+                , " 9 10 11 12"
+                , "13 14 15 16"
+                ]
             ]
-        , Input [ "({⊂⍵}⌺3 3) mat" ]
-        , Output
-            [ "┌───────┬────────┬────────┬───────┐"
-            , "│0 0 0  │0 0 0   │0 0 0   │0 0 0  │"
-            , "│0 1 2  │1 2 3   │2 3 4   │3 4 0  │"
-            , "│0 5 6  │5 6 7   │6 7 8   │7 8 0  │"
-            , "├───────┼────────┼────────┼───────┤"
-            , "│0 1  2 │1  2  3 │ 2  3  4│ 3  4 0│"
-            , "│0 5  6 │5  6  7 │ 6  7  8│ 7  8 0│"
-            , "│0 9 10 │9 10 11 │10 11 12│11 12 0│"
-            , "├───────┼────────┼────────┼───────┤"
-            , "│0  5  6│ 5  6  7│ 6  7  8│ 7  8 0│"
-            , "│0  9 10│ 9 10 11│10 11 12│11 12 0│"
-            , "│0 13 14│13 14 15│14 15 16│15 16 0│"
-            , "├───────┼────────┼────────┼───────┤"
-            , "│0  9 10│ 9 10 11│10 11 12│11 12 0│"
-            , "│0 13 14│13 14 15│14 15 16│15 16 0│"
-            , "│0  0  0│ 0  0  0│ 0  0  0│ 0  0 0│"
-            , "└───────┴────────┴────────┴───────┘"
+        , Example
+            [ Input [ "({⊂⍵}⌺3 3) mat" ]
+            , Output
+                [ "┌───────┬────────┬────────┬───────┐"
+                , "│0 0 0  │0 0 0   │0 0 0   │0 0 0  │"
+                , "│0 1 2  │1 2 3   │2 3 4   │3 4 0  │"
+                , "│0 5 6  │5 6 7   │6 7 8   │7 8 0  │"
+                , "├───────┼────────┼────────┼───────┤"
+                , "│0 1  2 │1  2  3 │ 2  3  4│ 3  4 0│"
+                , "│0 5  6 │5  6  7 │ 6  7  8│ 7  8 0│"
+                , "│0 9 10 │9 10 11 │10 11 12│11 12 0│"
+                , "├───────┼────────┼────────┼───────┤"
+                , "│0  5  6│ 5  6  7│ 6  7  8│ 7  8 0│"
+                , "│0  9 10│ 9 10 11│10 11 12│11 12 0│"
+                , "│0 13 14│13 14 15│14 15 16│15 16 0│"
+                , "├───────┼────────┼────────┼───────┤"
+                , "│0  9 10│ 9 10 11│10 11 12│11 12 0│"
+                , "│0 13 14│13 14 15│14 15 16│15 16 0│"
+                , "│0  0  0│ 0  0  0│ 0  0  0│ 0  0 0│"
+                , "└───────┴────────┴────────┴───────┘"
+                ]
             ]
-        , Input [ "({+/,⍵}⌺3 3) mat" ]
-        , Output
-            [ "14 24 30 22"
-            , "33 54 63 45"
-            , "57 90 99 69"
-            , "46 72 78 54"
+        , Example
+            [ Input [ "({+/,⍵}⌺3 3) mat" ]
+            , Output
+                [ "14 24 30 22"
+                , "33 54 63 45"
+                , "57 90 99 69"
+                , "46 72 78 54"
+                ]
             ]
-        , Input [ "{⍺ ⍵}⌸ 'Banana'  ⍝ (same as above)" ]
-        , Output
-            [ "┌─┬─────┐"
-            , "│B│1    │"
-            , "├─┼─────┤"
-            , "│a│2 4 6│"
-            , "├─┼─────┤"
-            , "│n│3 5  │"
-            , "└─┴─────┘"
+        , Example
+            [ Input [ "{⍺ ⍵}⌸ 'Banana'  ⍝ (same as above)" ]
+            , Output
+                [ "┌─┬─────┐"
+                , "│B│1    │"
+                , "├─┼─────┤"
+                , "│a│2 4 6│"
+                , "├─┼─────┤"
+                , "│n│3 5  │"
+                , "└─┴─────┘"
+                ]
             ]
         ]
     }
@@ -2683,11 +2902,13 @@ hydrant =
             [ Input [ "⍎ '1+1'" ]
             , Output [ "2" ]
             ]
-        , Input
-            [ "V ← 1 2 3"
-            , "⍎ 'V'"
+        , Example
+            [ Input
+                [ "V ← 1 2 3"
+                , "⍎ 'V'"
+                ]
+            , Output [ "1 2 3" ]
             ]
-        , Output [ "1 2 3" ]
         ]
     }
 
@@ -2713,15 +2934,19 @@ thorn =
             [ Input [ "⍕ 4 5 6        ⍝ equivalent character vector" ]
             , Output [ "4·5·6" ]
             ]
-        , Input [ "mat            ⍝ numeric matrix" ]
-        , Output
-            [ "1 2 3"
-            , "4 5 6"
+        , Example
+            [ Input [ "mat            ⍝ numeric matrix" ]
+            , Output
+                [ "1 2 3"
+                , "4 5 6"
+                ]
             ]
-        , Input [ "⍕ mat          ⍝ equivalent character matrix" ]
-        , Output
-            [ "1·2·3"
-            , "4·5·6"
+        , Example
+            [ Input [ "⍕ mat          ⍝ equivalent character matrix" ]
+            , Output
+                [ "1·2·3"
+                , "4·5·6"
+                ]
             ]
         , Category "Dyadic function"
         , Heading "Format By Specification"
@@ -2730,10 +2955,12 @@ thorn =
             [ Input [ "6 2 ⍕ 3.125 0.002" ]
             , Output [ "··3.13··0.00" ]
             ]
-        , Input [ "6 2 ⍕ mat" ]
-        , Output
-            [ "··1.00··2.00··3.00"
-            , "··4.00··5.00··6.00"
+        , Example
+            [ Input [ "6 2 ⍕ mat" ]
+            , Output
+                [ "··1.00··2.00··3.00"
+                , "··4.00··5.00··6.00"
+                ]
             ]
         , Example
             [ Input [ "6 2 ⍕ 1234   ⍝ (field not wide enough)" ]
@@ -2792,11 +3019,13 @@ rightArrow =
         ]
     , description =
         [ Heading "Syntax:    Branch (Clear suspension)"
-        , Input
-            [ "→ Label  ⍝ branch to Label:"
-            , "→ ⎕LC    ⍝ resume suspended execution"
-            , "→ 0      ⍝ exit current function and resume calling line"
-            , "→        ⍝ clear one stack suspension"
+        , Example
+            [ Input
+                [ "→ Label  ⍝ branch to Label:"
+                , "→ ⎕LC    ⍝ resume suspended execution"
+                , "→ 0      ⍝ exit current function and resume calling line"
+                , "→        ⍝ clear one stack suspension"
+                ]
             ]
         , Plain [ "Branching is superseded by the more modern control structures such as :If ... :EndIf" ]
         ]
@@ -2812,12 +3041,12 @@ omega =
         , Backquote 'w'
         ]
     , description =
-        [ Heading "Omega Syntax:           Right argument of a dfn"
+        [ Heading "Omega Syntax: Right argument of a dfn"
         , Example
             [ Input [ "2 {⍵+1} 5" ]
             , Output [ "6" ]
             ]
-        , Heading "Double-Omega Syntax:    Right operand of a dop"
+        , Heading "Double-Omega Syntax: Right operand of a dop"
         , Example
             [ Input [ "3 +{⍺ ⍵⍵ ⍵}× 4" ]
             , Output [ "12" ]
@@ -2835,12 +3064,12 @@ alpha =
         , Backquote 'a'
         ]
     , description =
-        [ Heading "Alpha Syntax:           Left argument of a dfn"
+        [ Heading "Alpha Syntax: Left argument of a dfn"
         , Example
             [ Input [ "2 {⍺+1} 5" ]
             , Output [ "3" ]
             ]
-        , Heading "Double-Alpha Syntax:    Left Operand of a dop"
+        , Heading "Double-Alpha Syntax: Left Operand of a dop"
         , Example
             [ Input [ "3 +{⍺ ⍺⍺ ⍵} 4" ]
             , Output [ "7" ]
@@ -2859,19 +3088,23 @@ del =
         , Backquote 'g'
         ]
     , description =
-        [ Heading "Del Syntax:         dfn self-reference (recursion)"
-        , Input
-            [ "fact←{             ⍝ Factorial ⍵."
-            , "    ⍵≤1: 1         ⍝ small ⍵: finished"
-            , "    ⍵×∇ ⍵-1        ⍝ otherwise: recurse"
-            , "}"
+        [ Heading "Del Syntax: dfn self-reference (recursion)"
+        , Example
+            [ Input
+                [ "fact←{             ⍝ Factorial ⍵."
+                , "    ⍵≤1: 1         ⍝ small ⍵: finished"
+                , "    ⍵×∇ ⍵-1        ⍝ otherwise: recurse"
+                , "}"
+                ]
             ]
-        , Heading "Double-Del Syntax:  dop self-reference"
-        , Input
-            [ "pow←{                ⍝ power operator: apply ⍵⍵ times"
-            , "    ⍵⍵=0:⍵           ⍝ ⍵⍵ is 0: finished"
-            , "    ⍺⍺ ∇∇(⍵⍵-1)⍺⍺ ⍵  ⍝ otherwise: recurse"
-            , "}"
+        , Heading "Double-Del Syntax: dop self-reference"
+        , Example
+            [ Input
+                [ "pow←{                ⍝ power operator: apply ⍵⍵ times"
+                , "    ⍵⍵=0:⍵           ⍝ ⍵⍵ is 0: finished"
+                , "    ⍺⍺ ∇∇(⍵⍵-1)⍺⍺ ⍵  ⍝ otherwise: recurse"
+                , "}"
+                ]
             ]
         ]
     }
@@ -2885,12 +3118,14 @@ ampersand =
     , description =
         [ Category "Monadic operator"
         , Heading "Spawn"
-        , Input
-            [ "delay←{'Delayed: ',⎕DL ⍵}    ⍝ delay function"
-            , ""
-            , "delay 10    ⍝ delay for 10 seconds"
+        , Example
+            [ Input
+                [ "delay←{'Delayed: ',⎕DL ⍵}    ⍝ delay function"
+                , ""
+                , "delay 10    ⍝ delay for 10 seconds"
+                ]
+            , Output [ "Delayed:  10.2228" ]
             ]
-        , Output [ "Delayed:  10.2228" ]
         , Example
             [ Input [ "⎕←delay&10  ⍝ delay for 10 seconds in new thread 1" ]
             , Output [ "1" ]

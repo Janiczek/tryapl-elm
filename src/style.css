@@ -34,10 +34,12 @@ body {
   min-width: 300px;
   flex: 4;
   margin-right: 16px;
-  padding: 32px 32px 24px;
+  padding: 32px;
   background-color: #f4f0d6;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
+
 .help-title {
   color: #999;
   font-size: 20px;
@@ -79,13 +81,17 @@ body {
   color: #ca4343;
 }
 
+.help-description {
+  padding-bottom: 24px;
+}
+
 .help-description-category {
   color: #6f6c59;
-  padding-top: 24px;
+  padding-top: 32px;
 }
 .help-description-heading {
   font-size: 18px;
-  margin: 24px 0 16px;
+  margin: 32px 0 16px;
   padding-bottom: 4px;
   border-bottom: 2px solid #e3dfc1;
 
@@ -97,6 +103,10 @@ body {
 }
 .help-description-category + .help-description-heading {
   margin-top: 0;
+}
+
+.help-description-example {
+  padding-top: 16px;
 }
 
 .help-description-code-comment,
@@ -120,12 +130,13 @@ body {
   line-height: var(--input-output-line-height);
 }
 
-.help-description-plain {
+.help-description-plain,
+.help-description-code-comment {
   padding-top: 16px;
 }
 
-.help-description-output + .help-description-input {
-  padding-top: 16px;
+.help-description-code-comment {
+  color: #666;
 }
 
 .content {
@@ -167,12 +178,12 @@ body {
   padding-bottom: var(--input-output-line-height);
 }
 
-.help-description-input:hover,
+.help-description-example:hover .help-description-input,
 .expr:hover .input {
-   text-shadow: 0.5px 0px rgba(0,0,0,0.1875), -0.5px 0px rgba(0,0,0,0.1875);
+   text-shadow: 0.5px 0px rgba(0,0,0,0.25), -0.5px 0px rgba(0,0,0,0.25);
 }
 
-.help-description-output:hover,
+.help-description-example:hover .help-description-output,
 .expr:hover .output {
   color: #666;
 }
