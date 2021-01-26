@@ -6,7 +6,10 @@
     </head>
     <body>
         <script src="build/elm.js?v=60db45"></script>
-        <script>window.ElmApp = Elm.Main.init();</script>
+        <script>
+            window.ElmApp = Elm.Main.init({flags: {urlHash: window.location.hash.slice(1)}});
+            window.ElmApp.ports.setUrlHash.subscribe(newHash => {window.location.hash = newHash});
+        </script>
         <script src="src/langbar_hack.js?v=60db45"></script>
     </body>
 </html>

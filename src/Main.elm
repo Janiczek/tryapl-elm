@@ -1,8 +1,10 @@
 port module Main exposing (main)
 
+import Base64
 import Browser
 import Browser.Dom
 import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..))
+import Cmd.Extra as Cmd
 import Dict exposing (Dict)
 import Html exposing (Html)
 import Html.Attributes as Attrs
@@ -17,7 +19,7 @@ import List.Extra as List
 import Task
 
 
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
     Browser.document
         { init = init
@@ -27,16 +29,16 @@ main =
         }
 
 
+type alias Flags =
+    { urlHash : Maybe String }
+
+
 type alias Model =
     { state : TryAPLState
     , input : String
     , isLoading : Bool
     , focusedChar : Char
-    , log :
-        List
-            { input : String
-            , output : List String
-            }
+    , log : List Expr
     }
 
 
@@ -47,13 +49,22 @@ type alias TryAPLState =
     }
 
 
+type alias Expr =
+    { input : String
+    , output : List String
+    }
+
+
 port langBarCharClicked : (String -> msg) -> Sub msg
 
 
 port langBarCharHovered : (String -> msg) -> Sub msg
 
 
-init : () -> ( Model, Cmd Msg )
+port setUrlHash : String -> Cmd msg
+
+
+init : Flags -> ( Model, Cmd Msg )
 init flags =
     ( { state =
             { environment = ""
@@ -67,6 +78,23 @@ init flags =
       }
     , Cmd.none
     )
+        |> tryApplyHash flags.urlHash
+
+
+tryApplyHash : Maybe String -> ( Model, Cmd Msg ) -> ( Model, Cmd Msg )
+tryApplyHash maybeHash ( model, cmd ) =
+    maybeHash
+        |> Maybe.andThen hashToData
+        |> Maybe.map
+            (\data ->
+                ( { model
+                    | state = data.state
+                    , log = data.log
+                  }
+                , cmd
+                )
+            )
+        |> Maybe.withDefault ( model, cmd )
 
 
 type Msg
@@ -161,6 +189,7 @@ update msg model =
                 , focusInput
                 ]
             )
+                |> Cmd.andThen persistStateToUrl
 
         ScrollAttempted _ ->
             -- We're ignoring it
@@ -174,6 +203,45 @@ update msg model =
             ( { model | log = List.removeAt index model.log }
             , Cmd.none
             )
+
+
+type alias UrlData =
+    { state : TryAPLState
+    , log : List Expr
+    }
+
+
+urlDataDecoder : Decoder UrlData
+urlDataDecoder =
+    Decode.map2 UrlData
+        (Decode.field "state" stateDecoder)
+        (Decode.field "log" (Decode.list exprDecoder))
+
+
+modelToHash : Model -> String
+modelToHash model =
+    Encode.object
+        [ ( "state", encodeState model.state )
+        , ( "log", Encode.list encodeExpr model.log )
+        ]
+        |> Encode.encode 0
+        |> Base64.fromString
+        -- should never happen:
+        |> Maybe.withDefault ""
+
+
+hashToData : String -> Maybe { state : TryAPLState, log : List Expr }
+hashToData hash =
+    hash
+        |> Base64.toString
+        |> Maybe.andThen (Decode.decodeString urlDataDecoder >> Result.toMaybe)
+
+
+persistStateToUrl : Model -> ( Model, Cmd Msg )
+persistStateToUrl model =
+    ( model
+    , setUrlHash (modelToHash model)
+    )
 
 
 focusInput : Cmd Msg
@@ -196,6 +264,15 @@ scrollToBottom id =
         |> Task.attempt ScrollAttempted
 
 
+encodeState : TryAPLState -> Encode.Value
+encodeState state =
+    Encode.list identity
+        [ Encode.string state.environment
+        , Encode.int state.length
+        , Encode.string state.hash
+        ]
+
+
 encodeStateAndInput : TryAPLState -> String -> Encode.Value
 encodeStateAndInput state input =
     Encode.list identity
@@ -204,6 +281,21 @@ encodeStateAndInput state input =
         , Encode.string state.hash
         , Encode.string input
         ]
+
+
+encodeExpr : Expr -> Encode.Value
+encodeExpr { input, output } =
+    Encode.object
+        [ ( "input", Encode.string input )
+        , ( "output", Encode.list Encode.string output )
+        ]
+
+
+exprDecoder : Decoder Expr
+exprDecoder =
+    Decode.map2 Expr
+        (Decode.field "input" Decode.string)
+        (Decode.field "output" (Decode.list Decode.string))
 
 
 stateAndOutputDecoder : Decoder ( TryAPLState, List String )
