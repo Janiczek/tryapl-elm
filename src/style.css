@@ -171,7 +171,7 @@ body {
   background-color: #eee;
   overflow-y: scroll;
   margin: 16px 0 0;
-  padding-top: 16px;
+  padding: 16px;
   line-height: var(--input-output-line-height);
 }
 .expr {
