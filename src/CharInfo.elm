@@ -3041,7 +3041,7 @@ omega =
         , Backquote 'w'
         ]
     , description =
-        [ Heading "Omega Syntax: Right argument of a dfn"
+        [ Heading "Omega Syntax:        Right argument of a dfn"
         , Example
             [ Input [ "2 {⍵+1} 5" ]
             , Output [ "6" ]
@@ -3064,7 +3064,7 @@ alpha =
         , Backquote 'a'
         ]
     , description =
-        [ Heading "Alpha Syntax: Left argument of a dfn"
+        [ Heading "Alpha Syntax:        Left argument of a dfn"
         , Example
             [ Input [ "2 {⍺+1} 5" ]
             , Output [ "3" ]
@@ -3088,7 +3088,7 @@ del =
         , Backquote 'g'
         ]
     , description =
-        [ Heading "Del Syntax: dfn self-reference (recursion)"
+        [ Heading "Del Syntax:          dfn self-reference (recursion)"
         , Example
             [ Input
                 [ "fact←{             ⍝ Factorial ⍵."
@@ -3097,7 +3097,7 @@ del =
                 , "}"
                 ]
             ]
-        , Heading "Double-Del Syntax: dop self-reference"
+        , Heading "Double-Del Syntax:   dop self-reference"
         , Example
             [ Input
                 [ "pow←{                ⍝ power operator: apply ⍵⍵ times"

@@ -306,7 +306,18 @@ view model =
 
 viewHelp : CharInfo -> List (Html Msg)
 viewHelp { char, name, completions, description } =
-    [ Html.viewIf (not (List.isEmpty completions)) <|
+    [ Html.h1
+        [ Attrs.class "help-title" ]
+        [ Html.span
+            [ Attrs.class "help-name" ]
+            [ Html.text name ]
+        , Html.text " ("
+        , Html.span
+            [ Attrs.class "help-char" ]
+            [ Html.text <| String.fromChar char ]
+        , Html.text ")"
+        ]
+    , Html.viewIf (not (List.isEmpty completions)) <|
         Html.div
             [ Attrs.class "help-completions" ]
             [ Html.h2
@@ -339,17 +350,6 @@ viewHelp { char, name, completions, description } =
                         )
                 )
             ]
-    , Html.h1
-        [ Attrs.class "help-title" ]
-        [ Html.span
-            [ Attrs.class "help-name" ]
-            [ Html.text name ]
-        , Html.text " ("
-        , Html.span
-            [ Attrs.class "help-char" ]
-            [ Html.text <| String.fromChar char ]
-        , Html.text ")"
-        ]
     , Html.div
         [ Attrs.class "help-description" ]
         (description

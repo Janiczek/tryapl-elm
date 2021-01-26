@@ -6423,7 +6423,7 @@ var $author$project$CharInfo$alpha = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Alpha Syntax: Left argument of a dfn'),
+			$author$project$CharInfo$Heading('Alpha Syntax:        Left argument of a dfn'),
 			$author$project$CharInfo$Example(
 			_List_fromArray(
 				[
@@ -7099,7 +7099,7 @@ var $author$project$CharInfo$del = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Del Syntax: dfn self-reference (recursion)'),
+			$author$project$CharInfo$Heading('Del Syntax:          dfn self-reference (recursion)'),
 			$author$project$CharInfo$Example(
 			_List_fromArray(
 				[
@@ -7107,7 +7107,7 @@ var $author$project$CharInfo$del = {
 					_List_fromArray(
 						['fact←{             ⍝ Factorial ⍵.', '    ⍵≤1: 1         ⍝ small ⍵: finished', '    ⍵×∇ ⍵-1        ⍝ otherwise: recurse', '}']))
 				])),
-			$author$project$CharInfo$Heading('Double-Del Syntax: dop self-reference'),
+			$author$project$CharInfo$Heading('Double-Del Syntax:   dop self-reference'),
 			$author$project$CharInfo$Example(
 			_List_fromArray(
 				[
@@ -9182,7 +9182,7 @@ var $author$project$CharInfo$omega = {
 		]),
 	c: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Omega Syntax: Right argument of a dfn'),
+			$author$project$CharInfo$Heading('Omega Syntax:        Right argument of a dfn'),
 			$author$project$CharInfo$Example(
 			_List_fromArray(
 				[
@@ -10893,6 +10893,38 @@ var $author$project$Main$viewHelp = function (_v0) {
 	return _List_fromArray(
 		[
 			A2(
+			$elm$html$Html$h1,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('help-title')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('help-name')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(name)
+						])),
+					$elm$html$Html$text(' ('),
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('help-char')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							$elm$core$String$fromChar(_char))
+						])),
+					$elm$html$Html$text(')')
+				])),
+			A2(
 			$elm_community$html_extra$Html$Extra$viewIf,
 			!$elm$core$List$isEmpty(completions),
 			A2(
@@ -10985,38 +11017,6 @@ var $author$project$Main$viewHelp = function (_v0) {
 							},
 							completions))
 					]))),
-			A2(
-			$elm$html$Html$h1,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('help-title')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('help-name')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(name)
-						])),
-					$elm$html$Html$text(' ('),
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('help-char')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(
-							$elm$core$String$fromChar(_char))
-						])),
-					$elm$html$Html$text(')')
-				])),
 			A2(
 			$elm$html$Html$div,
 			_List_fromArray(

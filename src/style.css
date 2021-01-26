@@ -52,11 +52,8 @@ body {
 .help-completions {
   background: #fcfcfc;
   padding: 16px;
-  margin: -8px -8px 16px 24px;
-  float: right;
-  box-shadow: -8px 0 0 0 #f4f0d6, 8px 0 0 0 #f4f0d6, 0 2px 4px rgba(0,0,0,0.2);
-  position: sticky;
-  top: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 24px;
 }
 .help-completions-title {
   font-size: 18px;
