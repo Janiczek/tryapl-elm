@@ -181,13 +181,16 @@ body {
 .expr:hover {
   background-color: #f4f0d6;
 }
+.expr:hover .expr-remove-btn {
+  display: flex;
+}
 .expr-remove-btn {
   width: 20px;
   height: 20px;
   position: absolute;
   right: 0;
   top: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   color: #666;
