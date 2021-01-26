@@ -2,13 +2,16 @@ port module Main exposing (main)
 
 import Browser
 import Browser.Dom
+import CharInfo exposing (CharInfo, Completion(..), DescriptionItem(..))
+import Dict exposing (Dict)
 import Html exposing (Html)
-import Html.Attributes
-import Html.Events
-import Html.Events.Extra
+import Html.Attributes as Attrs
+import Html.Events as Events
+import Html.Events.Extra as Events
+import Html.Extra as Html
 import Http
-import Json.Decode exposing (Decoder)
-import Json.Encode
+import Json.Decode as Decode exposing (Decoder)
+import Json.Encode as Encode
 import Task
 
 
@@ -26,6 +29,7 @@ type alias Model =
     { state : TryAPLState
     , input : String
     , isLoading : Bool
+    , focusedChar : Char
     , log :
         List
             { input : String
@@ -41,7 +45,10 @@ type alias TryAPLState =
     }
 
 
-port unfocusedCharClicked : (String -> msg) -> Sub msg
+port langBarCharClicked : (String -> msg) -> Sub msg
+
+
+port langBarCharHovered : (String -> msg) -> Sub msg
 
 
 init : () -> ( Model, Cmd Msg )
@@ -53,6 +60,7 @@ init flags =
             }
       , input = ""
       , isLoading = False
+      , focusedChar = '+'
       , log = []
       }
     , Cmd.none
@@ -65,7 +73,8 @@ type Msg
     | ReceivedResponse (Result Http.Error ( TryAPLState, List String ))
     | ScrollAttempted (Result Browser.Dom.Error ())
     | FocusAttempted (Result Browser.Dom.Error ())
-    | UnfocusedCharClicked String
+    | LangBarCharHovered String
+    | LangBarCharClicked String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -80,7 +89,7 @@ update msg model =
                 , focusInput
                 )
 
-        UnfocusedCharClicked stringToAdd ->
+        LangBarCharClicked stringToAdd ->
             if model.isLoading then
                 ( model, Cmd.none )
 
@@ -88,6 +97,16 @@ update msg model =
                 ( { model | input = model.input ++ stringToAdd }
                 , focusInput
                 )
+
+        LangBarCharHovered string ->
+            case String.uncons string of
+                Nothing ->
+                    ( model, Cmd.none )
+
+                Just ( char, _ ) ->
+                    ( { model | focusedChar = char }
+                    , Cmd.none
+                    )
 
         SendRequest ->
             if model.isLoading then
@@ -103,7 +122,7 @@ update msg model =
                         Http.stringBody
                             "application/json;charset=UTF-8"
                             (encodeStateAndInput model.state model.input
-                                |> Json.Encode.encode 0
+                                |> Encode.encode 0
                             )
                     , expect = Http.expectJson ReceivedResponse stateAndOutputDecoder
                     , timeout = Nothing
@@ -169,29 +188,36 @@ scrollToBottom id =
         |> Task.attempt ScrollAttempted
 
 
-encodeStateAndInput : TryAPLState -> String -> Json.Encode.Value
+encodeStateAndInput : TryAPLState -> String -> Encode.Value
 encodeStateAndInput state input =
-    Json.Encode.list identity
-        [ Json.Encode.string state.environment
-        , Json.Encode.int state.length
-        , Json.Encode.string state.hash
-        , Json.Encode.string input
+    Encode.list identity
+        [ Encode.string state.environment
+        , Encode.int state.length
+        , Encode.string state.hash
+        , Encode.string input
         ]
 
 
 stateAndOutputDecoder : Decoder ( TryAPLState, List String )
 stateAndOutputDecoder =
-    Json.Decode.map2 Tuple.pair
+    Decode.map2 Tuple.pair
         stateDecoder
-        (Json.Decode.index 3 (Json.Decode.list Json.Decode.string))
+        (Decode.index 3 (Decode.list Decode.string))
 
 
 stateDecoder : Decoder TryAPLState
 stateDecoder =
-    Json.Decode.map3 TryAPLState
-        (Json.Decode.index 0 Json.Decode.string)
-        (Json.Decode.index 1 Json.Decode.int)
-        (Json.Decode.index 2 Json.Decode.string)
+    Decode.map3 TryAPLState
+        (Decode.index 0 Decode.string)
+        (Decode.index 1 Decode.int)
+        (Decode.index 2 Decode.string)
+
+
+items : Dict Char CharInfo
+items =
+    CharInfo.allItems
+        |> List.map (\item -> ( item.char, item ))
+        |> Dict.fromList
 
 
 view : Model -> Browser.Document Msg
@@ -199,71 +225,186 @@ view model =
     { title = "TryAPL Mini"
     , body =
         [ Html.div
-            [ Html.Attributes.class "app" ]
+            [ Attrs.class "app" ]
             [ Html.div
-                [ Html.Attributes.class "input-row" ]
-                [ Html.input
-                    [ Html.Attributes.id inputId
-                    , Html.Events.onInput SetInput
-                    , Html.Events.Extra.onEnter SendRequest
-                    , Html.Attributes.class "input"
-                    , Html.Attributes.value model.input
-                    , Html.Attributes.placeholder "Put your APL expression here!"
-                    , Html.Attributes.disabled model.isLoading
-                    , Html.Events.on "lang-bar-insert-char" (Json.Decode.map SetInput Html.Events.targetValue)
-                    ]
-                    []
-                , Html.button
-                    [ Html.Attributes.class "button"
-                    , Html.Attributes.disabled model.isLoading
-                    , Html.Events.onClick SendRequest
-                    ]
-                    [ Html.text "Submit" ]
-                ]
-            , Html.div
-                [ Html.Attributes.class "hint" ]
-                [ Html.text "Example expressions (click to paste):"
-                , [ "3 7⍴10"
-                  , "¯1+?3 7⍴2"
-                  , "(~R∊R∘.×R)/R←1↓⍳20"
-                  , "(+⌿÷≢),¯1+?1000 1000⍴2"
-                  ]
-                    |> List.map
-                        (\expr ->
-                            Html.li
-                                [ Html.Events.onClick (SetInput expr)
-                                , Html.Attributes.class "example-expression"
-                                ]
-                                [ Html.text expr ]
-                        )
-                    |> Html.ul []
-                ]
-            , Html.div
-                [ Html.Attributes.class "hint" ]
-                [ Html.text "Click on expressions in the log to edit them." ]
-            , Html.pre
-                [ Html.Attributes.class "log"
-                , Html.Attributes.id logId
-                ]
-                (model.log
-                    |> List.map
-                        (\{ input, output } ->
-                            Html.div
-                                [ Html.Events.onClick (SetInput input)
-                                , Html.Attributes.class "expr"
-                                ]
-                                [ Html.div
-                                    [ Html.Attributes.class "input" ]
-                                    [ Html.text <| String.repeat 6 " " ++ input ]
-                                , Html.div
-                                    [ Html.Attributes.class "output" ]
-                                    [ Html.text <| String.join "\n" output ]
-                                ]
-                        )
+                [ Attrs.class "help" ]
+                (case Dict.get model.focusedChar items of
+                    Nothing ->
+                        []
+
+                    Just charInfo ->
+                        viewHelp charInfo
                 )
+            , Html.div
+                [ Attrs.class "content" ]
+                [ Html.div
+                    [ Attrs.class "input-row" ]
+                    [ Html.input
+                        [ Attrs.id inputId
+                        , Events.onInput SetInput
+                        , Events.onEnter SendRequest
+                        , Attrs.class "input"
+                        , Attrs.value model.input
+                        , Attrs.placeholder "Put your APL expression here!"
+                        , Attrs.disabled model.isLoading
+                        ]
+                        []
+                    , Html.button
+                        [ Attrs.class "button"
+                        , Attrs.disabled model.isLoading
+                        , Events.onClick SendRequest
+                        ]
+                        [ Html.text "Submit" ]
+                    ]
+                , Html.div
+                    [ Attrs.class "hint" ]
+                    [ Html.text "Example expressions (click to paste):"
+                    , [ "3 7⍴10"
+                      , "¯1+?3 7⍴2"
+                      , "(~R∊R∘.×R)/R←1↓⍳20"
+                      , "(+⌿÷≢),¯1+?1000 1000⍴2"
+                      ]
+                        |> List.map
+                            (\expr ->
+                                Html.li
+                                    [ Events.onClick (SetInput expr)
+                                    , Attrs.class "example-expression"
+                                    ]
+                                    [ Html.text expr ]
+                            )
+                        |> Html.ul [ Attrs.class "example-expressions" ]
+                    ]
+                , Html.div
+                    [ Attrs.class "hint" ]
+                    [ Html.text "Click on expressions in the log to edit them." ]
+                , Html.pre
+                    [ Attrs.class "log"
+                    , Attrs.id logId
+                    ]
+                    (model.log
+                        |> List.map
+                            (\{ input, output } ->
+                                Html.div
+                                    [ Events.onClick (SetInput input)
+                                    , Attrs.class "expr"
+                                    ]
+                                    [ Html.div
+                                        [ Attrs.class "input" ]
+                                        [ Html.text <| String.repeat 6 " " ++ input ]
+                                    , Html.div
+                                        [ Attrs.class "output" ]
+                                        [ Html.text <| String.join "\n" output ]
+                                    ]
+                            )
+                    )
+                ]
             ]
         ]
     }
+
+
+viewHelp : CharInfo -> List (Html Msg)
+viewHelp { char, name, completions, description } =
+    [ Html.viewIf (not (List.isEmpty completions)) <|
+        Html.div
+            [ Attrs.class "help-completions" ]
+            [ Html.h2
+                [ Attrs.class "help-completions-title" ]
+                [ Html.text "Completions:" ]
+            , Html.ul
+                [ Attrs.class "help-completions-list" ]
+                (completions
+                    |> List.map
+                        (\completion ->
+                            Html.li [ Attrs.class "help-completion" ] <|
+                                case completion of
+                                    Tab chars ->
+                                        [ Html.span
+                                            [ Attrs.class "help-completion-tab-chars" ]
+                                            [ Html.text chars ]
+                                        , Html.span
+                                            [ Attrs.class "help-completion-tab-tab" ]
+                                            [ Html.text "<tab>" ]
+                                        ]
+
+                                    Backquote char_ ->
+                                        [ Html.span
+                                            [ Attrs.class "help-completion-backquote-backquote" ]
+                                            [ Html.text "`" ]
+                                        , Html.span
+                                            [ Attrs.class "help-completion-backquote-char" ]
+                                            [ Html.text <| String.fromChar char_ ]
+                                        ]
+                        )
+                )
+            ]
+    , Html.h1
+        [ Attrs.class "help-title" ]
+        [ Html.span
+            [ Attrs.class "help-name" ]
+            [ Html.text name ]
+        , Html.text " ("
+        , Html.span
+            [ Attrs.class "help-char" ]
+            [ Html.text <| String.fromChar char ]
+        , Html.text ")"
+        ]
+    , Html.div
+        [ Attrs.class "help-description" ]
+        (description
+            |> List.concatMap
+                (\item ->
+                    case item of
+                        Category category ->
+                            [ Html.div
+                                [ Attrs.class "help-description-category" ]
+                                [ Html.text category ]
+                            ]
+
+                        Heading heading ->
+                            [ Html.div
+                                [ Attrs.class "help-description-heading" ]
+                                [ Html.text heading ]
+                            ]
+
+                        Plain lines ->
+                            lines
+                                |> List.map
+                                    (\line ->
+                                        Html.div
+                                            [ Attrs.class "help-description-plain" ]
+                                            [ Html.text line ]
+                                    )
+
+                        CodeComment lines ->
+                            [ Html.div
+                                [ Attrs.class "help-description-code-comment" ]
+                                [ lines
+                                    |> String.join "\n"
+                                    |> Html.text
+                                ]
+                            ]
+
+                        Input lines ->
+                            [ Html.div
+                                [ Attrs.class "help-description-input" ]
+                                [ lines
+                                    |> String.join "\n"
+                                    |> Html.text
+                                ]
+                            ]
+
+                        Output lines ->
+                            [ Html.div
+                                [ Attrs.class "help-description-output" ]
+                                [ lines
+                                    |> String.join "\n"
+                                    |> Html.text
+                                ]
+                            ]
+                )
+        )
+    ]
 
 
 inputId : String
@@ -278,4 +419,7 @@ logId =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    unfocusedCharClicked UnfocusedCharClicked
+    Sub.batch
+        [ langBarCharClicked LangBarCharClicked
+        , langBarCharHovered LangBarCharHovered
+        ]
