@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="src/style.css?v=3d25bd">
+        <link rel="stylesheet" href="src/style.css?v=2a627c">
     </head>
     <body>
-        <script src="build/elm.js?v=3d25bd"></script>
+        <script src="build/elm.js?v=2a627c"></script>
         <script>
             window.ElmApp = Elm.Main.init({flags: {urlHash: window.location.hash.slice(1)}});
             window.ElmApp.ports.setUrlHash.subscribe(newHash => {window.location.hash = newHash});
         </script>
-        <script src="src/langbar_hack.js?v=3d25bd"></script>
+        <script src="src/langbar_hack.js?v=2a627c"></script>
     </body>
 </html>
