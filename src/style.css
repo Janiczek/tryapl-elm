@@ -43,11 +43,15 @@ body {
 .help-title {
   color: #999;
   font-size: 20px;
-  padding-bottom: 20px;
 }
 .help-name,
 .help-char {
   color: #000;
+}
+.help-docs {
+  list-style: none;
+  font-size: 14px;
+  color: #666;
 }
 .help-completions {
   background: #fcfcfc;
@@ -82,7 +86,7 @@ body {
 }
 
 .help-description {
-  padding-bottom: 24px;
+  padding: 20px 0 24px;
 }
 
 .help-description-category {
@@ -117,6 +121,7 @@ body {
 .help-description-category,
 .help-description-heading,
 .help-description-plain,
+.help-description-verbatim,
 .help-description-code-comment,
 .help-description-input,
 .help-description-output {
@@ -124,6 +129,7 @@ body {
 }
 
 .help-description-plain,
+.help-description-verbatim,
 .help-description-code-comment,
 .help-description-input,
 .help-description-output {
@@ -131,6 +137,7 @@ body {
 }
 
 .help-description-plain,
+.help-description-verbatim,
 .help-description-code-comment {
   padding-top: 16px;
 }

@@ -9,8 +9,15 @@ module CharInfo exposing
 type alias CharInfo =
     { char : Char
     , name : String
+    , docsLinks : List Link
     , completions : List Completion
     , description : List DescriptionItem
+    }
+
+
+type alias Link =
+    { name : String
+    , url : String
     }
 
 
@@ -23,6 +30,7 @@ type DescriptionItem
     = Heading String
     | Category String
     | Plain (List String)
+    | Verbatim (List String)
     | CodeComment (List String)
     | Example
         { input : List String
@@ -121,6 +129,14 @@ leftArrow : CharInfo
 leftArrow =
     { char = '←'
     , name = "Left Arrow"
+    , docsLinks =
+        [ { name = "Assignment", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment.htm" }
+        , { name = "Assignment (Indexed)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment%20Indexed.htm" }
+        , { name = "Assignment (Selective)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment%20Selective.htm" }
+        , { name = "Assignment (Modified)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Modified.htm" }
+        , { name = "Assignment (Indexed Modified)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Indexed%20Modified.htm" }
+        , { name = "Assignment (Selective Modified)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Selective%20Modified.htm" }
+        ]
     , completions =
         [ Tab "<-"
         , Backquote '['
@@ -155,6 +171,10 @@ plus : CharInfo
 plus =
     { char = '+'
     , name = "Plus"
+    , docsLinks =
+        [ { name = "Add", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Add.htm" }
+        , { name = "Conjugate", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Conjugate.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Monadic function"
@@ -185,6 +205,10 @@ minus : CharInfo
 minus =
     { char = '-'
     , name = "Minus"
+    , docsLinks =
+        [ { name = "Subtract", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Subtract.htm" }
+        , { name = "Negative", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Negative.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Monadic function"
@@ -211,6 +235,10 @@ times : CharInfo
 times =
     { char = '×'
     , name = "Times"
+    , docsLinks =
+        [ { name = "Multiply", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Multiply.htm" }
+        , { name = "Direction (Signum)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Direction.htm" }
+        ]
     , completions =
         [ Tab "xx"
         , Tab "/\\"
@@ -245,6 +273,10 @@ divide : CharInfo
 divide =
     { char = '÷'
     , name = "Divide"
+    , docsLinks =
+        [ { name = "Divide", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Divide.htm" }
+        , { name = "Reciprocal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reciprocal.htm" }
+        ]
     , completions =
         [ Tab ":-"
         , Backquote '='
@@ -274,6 +306,10 @@ star : CharInfo
 star =
     { char = '*'
     , name = "Star"
+    , docsLinks =
+        [ { name = "Exponential", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Exponential.htm" }
+        , { name = "Power", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Power.htm" }
+        ]
     , completions = [ Backquote 'p' ]
     , description =
         [ Category "Monadic function"
@@ -296,6 +332,10 @@ log : CharInfo
 log =
     { char = '⍟'
     , name = "Log"
+    , docsLinks =
+        [ { name = "Natural Logarithm", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Natural%20Logarithm.htm" }
+        , { name = "Logarithm", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Logarithm.htm" }
+        ]
     , completions =
         [ Tab "*O"
         , Backquote '*'
@@ -321,6 +361,10 @@ domino : CharInfo
 domino =
     { char = '⌹'
     , name = "Domino"
+    , docsLinks =
+        [ { name = "Matrix Inverse", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Matrix%20Inverse.htm" }
+        , { name = "Matrix Divide", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Matrix%20Divide.htm" }
+        ]
     , completions =
         [ Tab "[-"
         , Tab "-]"
@@ -357,6 +401,10 @@ circle : CharInfo
 circle =
     { char = '○'
     , name = "Circle"
+    , docsLinks =
+        [ { name = "Pi Times", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Pi%20Times.htm" }
+        , { name = "Circular", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Circular.htm" }
+        ]
     , completions =
         [ Tab "OO"
         , Backquote 'o'
@@ -386,7 +434,7 @@ circle =
                 ]
             , output = [ "0 1 ¯4.64102E¯8" ]
             }
-        , Plain
+        , Verbatim
             [ " ⍺   ⍺ ○ ⍵         ⍺   ⍺ ○ ⍵"
             , "                   0   (1-⍵*2)*0.5"
             , "¯1   Arcsin ⍵      1   Sine ⍵"
@@ -410,6 +458,10 @@ exclamationMark : CharInfo
 exclamationMark =
     { char = '!'
     , name = "Exclamation Mark"
+    , docsLinks =
+        [ { name = "Factorial", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Factorial.htm" }
+        , { name = "Binomial", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Binomial.htm" }
+        ]
     , completions = [ Backquote '_' ]
     , description =
         [ Category "Monadic function"
@@ -432,6 +484,10 @@ questionMark : CharInfo
 questionMark =
     { char = '?'
     , name = "Question Mark"
+    , docsLinks =
+        [ { name = "Roll", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Roll.htm" }
+        , { name = "Deal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Deal.htm" }
+        ]
     , completions = [ Backquote 'q' ]
     , description =
         [ Category "Monadic function"
@@ -458,6 +514,10 @@ stile : CharInfo
 stile =
     { char = '|'
     , name = "Stile"
+    , docsLinks =
+        [ { name = "Magnitude", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Magnitude.htm" }
+        , { name = "Residue", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Residue.htm" }
+        ]
     , completions = [ Backquote 'm' ]
     , description =
         [ Category "Monadic function"
@@ -480,6 +540,10 @@ upstile : CharInfo
 upstile =
     { char = '⌈'
     , name = "Upstile"
+    , docsLinks =
+        [ { name = "Ceiling", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ceiling.htm" }
+        , { name = "Maximum", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Maximum.htm" }
+        ]
     , completions =
         [ Tab "77"
         , Tab "FF"
@@ -510,6 +574,10 @@ downstile : CharInfo
 downstile =
     { char = '⌊'
     , name = "Downstile"
+    , docsLinks =
+        [ { name = "Floor", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Floor.htm" }
+        , { name = "Minimum", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Minimum.htm" }
+        ]
     , completions =
         [ Tab "ll"
         , Tab "LL"
@@ -540,6 +608,9 @@ upTack : CharInfo
 upTack =
     { char = '⊥'
     , name = "Up Tack"
+    , docsLinks =
+        [ { name = "Decode", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Decode.htm" }
+        ]
     , completions =
         [ Tab "|_"
         , Backquote 'b'
@@ -567,6 +638,9 @@ downTack : CharInfo
 downTack =
     { char = '⊤'
     , name = "Down Tack"
+    , docsLinks =
+        [ { name = "Encode", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Encode.htm" }
+        ]
     , completions =
         [ Tab "TT"
         , Backquote 'n'
@@ -599,6 +673,10 @@ leftTack : CharInfo
 leftTack =
     { char = '⊣'
     , name = "Left Tack"
+    , docsLinks =
+        [ { name = "Same", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Same.htm" }
+        , { name = "Left", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Left.htm" }
+        ]
     , completions =
         [ Tab "-|"
         , Backquote '|'
@@ -628,6 +706,10 @@ rightTack : CharInfo
 rightTack =
     { char = '⊢'
     , name = "Right Tack"
+    , docsLinks =
+        [ { name = "Same", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Same.htm" }
+        , { name = "Right", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Right.htm" }
+        ]
     , completions =
         [ Tab "|-"
         , Backquote '\\'
@@ -657,6 +739,9 @@ equal : CharInfo
 equal =
     { char = '='
     , name = "Equal"
+    , docsLinks =
+        [ { name = "Equal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive Functions/Equal.htm" }
+        ]
     , completions = [ Backquote '5' ]
     , description =
         [ Category "Dyadic function"
@@ -685,6 +770,10 @@ notEqual : CharInfo
 notEqual =
     { char = '≠'
     , name = "Not Equal"
+    , docsLinks =
+        [ { name = "Unique Mask", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Unique%20Mask.htm" }
+        , { name = "Not Equal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not%20Equal.htm" }
+        ]
     , completions =
         [ Tab "=/"
         , Tab "L-"
@@ -727,6 +816,9 @@ lessThanOrEqualTo : CharInfo
 lessThanOrEqualTo =
     { char = '≤'
     , name = "Less Than Or Equal To"
+    , docsLinks =
+        [ { name = "Less Or Equal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Less%20Or%20Equal.htm" }
+        ]
     , completions =
         [ Tab "<="
         , Tab "<_"
@@ -751,6 +843,9 @@ lessThan : CharInfo
 lessThan =
     { char = '<'
     , name = "Less Than"
+    , docsLinks =
+        [ { name = "Less", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Less.htm" }
+        ]
     , completions = [ Backquote '3' ]
     , description =
         [ Category "Dyadic function"
@@ -771,6 +866,9 @@ greaterThan : CharInfo
 greaterThan =
     { char = '>'
     , name = "Greater Than"
+    , docsLinks =
+        [ { name = "Greater", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Greater.htm" }
+        ]
     , completions = [ Backquote '7' ]
     , description =
         [ Category "Dyadic function"
@@ -791,6 +889,9 @@ greaterThanOrEqualTo : CharInfo
 greaterThanOrEqualTo =
     { char = '≥'
     , name = "Greater Than Or Equal To"
+    , docsLinks =
+        [ { name = "Greater Or Equal", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Greater%20Or%20Equal.htm" }
+        ]
     , completions =
         [ Tab ">="
         , Tab ">_"
@@ -815,6 +916,10 @@ equalUnderbar : CharInfo
 equalUnderbar =
     { char = '≡'
     , name = "Equal Underbar"
+    , docsLinks =
+        [ { name = "Depth", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Depth.htm" }
+        , { name = "Match", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Match.htm" }
+        ]
     , completions =
         [ Tab "=="
         , Tab "=_"
@@ -857,6 +962,10 @@ equalUnderbarSlash : CharInfo
 equalUnderbarSlash =
     { char = '≢'
     , name = "Equal Underbar Slash"
+    , docsLinks =
+        [ { name = "Tally", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Tally.htm" }
+        , { name = "Not Match", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not%20Match.htm" }
+        ]
     , completions =
         [ Tab "7="
         , Tab "L="
@@ -914,6 +1023,9 @@ logicalOr : CharInfo
 logicalOr =
     { char = '∨'
     , name = "Logical OR"
+    , docsLinks =
+        [ { name = "Or, Greatest Common Divisor", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Or%20Greatest%20Common%20Divisor.htm" }
+        ]
     , completions =
         [ Tab "vv"
         , Backquote '9'
@@ -937,6 +1049,9 @@ logicalAnd : CharInfo
 logicalAnd =
     { char = '∧'
     , name = "Logical AND"
+    , docsLinks =
+        [ { name = "And, Lowest Common Multiple", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/And%20Lowest%20Common%20Multiple.htm" }
+        ]
     , completions =
         [ Tab "^^"
         , Backquote '0'
@@ -960,6 +1075,9 @@ logicalNand : CharInfo
 logicalNand =
     { char = '⍲'
     , name = "Logical NAND"
+    , docsLinks =
+        [ { name = "Nand", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nand.htm" }
+        ]
     , completions =
         [ Tab "^~"
         , Backquote ')'
@@ -979,6 +1097,9 @@ logicalNor : CharInfo
 logicalNor =
     { char = '⍱'
     , name = "Logical NOR"
+    , docsLinks =
+        [ { name = "Nor", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nor.htm" }
+        ]
     , completions =
         [ Tab "v~"
         , Backquote '('
@@ -998,6 +1119,12 @@ upArrow : CharInfo
 upArrow =
     { char = '↑'
     , name = "Up Arrow"
+    , docsLinks =
+        [ { name = "Mix", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Mix.htm" }
+        , { name = "Take", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Take.htm" }
+        , { name = "Take with Axes", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Take%20with%20Axes.htm" }
+        , { name = "Disclose", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Disclose.htm" }
+        ]
     , completions =
         [ Tab "^|"
         , Backquote 'y'
@@ -1075,6 +1202,11 @@ downArrow : CharInfo
 downArrow =
     { char = '↓'
     , name = "Down Arrow"
+    , docsLinks =
+        [ { name = "Split", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Split.htm" }
+        , { name = "Drop", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Drop.htm" }
+        , { name = "Drop with Axes", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Drop%20with%20Axes.htm" }
+        ]
     , completions =
         [ Tab "v|"
         , Backquote 'u'
@@ -1138,6 +1270,11 @@ leftShoe : CharInfo
 leftShoe =
     { char = '⊂'
     , name = "Left Shoe"
+    , docsLinks =
+        [ { name = "Enclose", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enclose.htm" }
+        , { name = "Enclose with Axes", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enclose%20with%20Axes.htm" }
+        , { name = "Partitioned Enclose", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partitioned%20Enclose.htm" }
+        ]
     , completions =
         [ Tab "(("
         , Tab "cc"
@@ -1194,6 +1331,10 @@ rightShoe : CharInfo
 rightShoe =
     { char = '⊃'
     , name = "Right Shoe"
+    , docsLinks =
+        [ { name = "Disclose", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Disclose.htm" }
+        , { name = "Pick", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Pick.htm" }
+        ]
     , completions =
         [ Tab "))"
         , Backquote 'x'
@@ -1231,6 +1372,10 @@ leftShoeUnderbar : CharInfo
 leftShoeUnderbar =
     { char = '⊆'
     , name = "Left Shoe Underbar"
+    , docsLinks =
+        [ { name = "Nest", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nest.htm" }
+        , { name = "Partition", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partition.htm" }
+        ]
     , completions =
         [ Tab "(_"
         , Tab "c_"
@@ -1289,6 +1434,11 @@ squad : CharInfo
 squad =
     { char = '⌷'
     , name = "Squad"
+    , docsLinks =
+        [ { name = "Materialise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Materialise.htm" }
+        , { name = "Index", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index.htm" }
+        , { name = "Index with Axes", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20with%20Axes.htm" }
+        ]
     , completions =
         [ Tab "[|"
         , Tab "|]"
@@ -1336,6 +1486,10 @@ gradeUp : CharInfo
 gradeUp =
     { char = '⍋'
     , name = "Grade Up"
+    , docsLinks =
+        [ { name = "Grade Up (Monadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Up%20Monadic.htm" }
+        , { name = "Grade Up (Dyadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Up%20Dyadic.htm" }
+        ]
     , completions =
         [ Tab "A|"
         , Backquote '$'
@@ -1384,6 +1538,10 @@ gradeDown : CharInfo
 gradeDown =
     { char = '⍒'
     , name = "Grade Down"
+    , docsLinks =
+        [ { name = "Grade Down (Monadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Down%20Monadic.htm" }
+        , { name = "Grade Down (Dyadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Down%20Dyadic.htm" }
+        ]
     , completions =
         [ Tab "V|"
         , Backquote '#'
@@ -1432,6 +1590,10 @@ iota : CharInfo
 iota =
     { char = '⍳'
     , name = "Iota"
+    , docsLinks =
+        [ { name = "Index Generator", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Generator.htm" }
+        , { name = "Index Of", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Of.htm" }
+        ]
     , completions =
         [ Tab "ii"
         , Backquote 'i'
@@ -1479,6 +1641,10 @@ iotaUnderbar : CharInfo
 iotaUnderbar =
     { char = '⍸'
     , name = "Iota Underbar"
+    , docsLinks =
+        [ { name = "Where", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm" }
+        , { name = "Interval Index", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Interval%20Index.htm" }
+        ]
     , completions =
         [ Tab "i_"
         , Backquote 'I'
@@ -1539,6 +1705,11 @@ epsilon : CharInfo
 epsilon =
     { char = '∊'
     , name = "Epsilon"
+    , docsLinks =
+        [ { name = "Enlist", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enlist.htm" }
+        , { name = "Type", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Type.htm" }
+        , { name = "Membership", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Membership.htm" }
+        ]
     , completions =
         [ Tab "ee"
         , Backquote 'e'
@@ -1582,6 +1753,9 @@ epsilonUnderbar : CharInfo
 epsilonUnderbar =
     { char = '⍷'
     , name = "Epsilon Underbar"
+    , docsLinks =
+        [ { name = "Find", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Find.htm" }
+        ]
     , completions =
         [ Tab "e_"
         , Backquote 'E'
@@ -1621,6 +1795,10 @@ downShoe : CharInfo
 downShoe =
     { char = '∪'
     , name = "Down Shoe"
+    , docsLinks =
+        [ { name = "Unique", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Unique.htm" }
+        , { name = "Union", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Union.htm" }
+        ]
     , completions =
         [ Tab "uu"
         , Tab "UU"
@@ -1670,6 +1848,9 @@ upShoe : CharInfo
 upShoe =
     { char = '∩'
     , name = "Up Shoe"
+    , docsLinks =
+        [ { name = "Intersection", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Intersection.htm" }
+        ]
     , completions =
         [ Tab "nn"
         , Backquote 'c'
@@ -1693,6 +1874,10 @@ tilde : CharInfo
 tilde =
     { char = '~'
     , name = "Tilde"
+    , docsLinks =
+        [ { name = "Not", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not.htm" }
+        , { name = "Excluding", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Excluding.htm" }
+        ]
     , completions = [ Backquote 't' ]
     , description =
         [ Category "Monadic function"
@@ -1723,6 +1908,11 @@ slash : CharInfo
 slash =
     { char = '/'
     , name = "Slash"
+    , docsLinks =
+        [ { name = "Replicate", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate.htm" }
+        , { name = "Reduce", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce.htm" }
+        , { name = "Reduce N Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Dyadic function"
@@ -1787,6 +1977,10 @@ backslash : CharInfo
 backslash =
     { char = '\\'
     , name = "Backslash"
+    , docsLinks =
+        [ { name = "Expand", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Expand.htm" }
+        , { name = "Scan", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Scan.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Dyadic function"
@@ -1837,6 +2031,11 @@ slashBar : CharInfo
 slashBar =
     { char = '⌿'
     , name = "Slash Bar"
+    , docsLinks =
+        [ { name = "Replicate First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate%20First.htm" }
+        , { name = "Reduce First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First.htm" }
+        , { name = "Reduce First N Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm" }
+        ]
     , completions =
         [ Tab "/-"
         , Backquote '/'
@@ -1881,6 +2080,10 @@ backslashBar : CharInfo
 backslashBar =
     { char = '⍀'
     , name = "Backslash Bar"
+    , docsLinks =
+        [ { name = "Expand First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Expand%20First.htm" }
+        , { name = "Scan First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Scan%20First.htm" }
+        ]
     , completions =
         [ Tab "\\-"
         , Backquote '.'
@@ -1924,6 +2127,11 @@ comma : CharInfo
 comma =
     { char = ','
     , name = "Comma"
+    , docsLinks =
+        [ { name = "Ravel", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ravel.htm" }
+        , { name = "Ravel with Axes", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ravel%20with%20Axes.htm" }
+        , { name = "Catenate Laminate", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Catenate%20Laminate.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Monadic function"
@@ -1980,6 +2188,10 @@ commaBar : CharInfo
 commaBar =
     { char = '⍪'
     , name = "Comma Bar"
+    , docsLinks =
+        [ { name = "Table", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Table.htm" }
+        , { name = "Catenate First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Catenate%20First.htm" }
+        ]
     , completions =
         [ Tab ",-"
         , Backquote '<'
@@ -2045,6 +2257,10 @@ rho : CharInfo
 rho =
     { char = '⍴'
     , name = "Rho"
+    , docsLinks =
+        [ { name = "Shape", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Shape.htm" }
+        , { name = "Reshape", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reshape.htm" }
+        ]
     , completions =
         [ Tab "rr"
         , Tab "pp"
@@ -2103,6 +2319,10 @@ circleStile : CharInfo
 circleStile =
     { char = '⌽'
     , name = "Circle Stile"
+    , docsLinks =
+        [ { name = "Reverse", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reverse.htm" }
+        , { name = "Rotate", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Rotate.htm" }
+        ]
     , completions =
         [ Tab "O|"
         , Backquote '%'
@@ -2180,6 +2400,10 @@ circleBar : CharInfo
 circleBar =
     { char = '⊖'
     , name = "Circle Bar"
+    , docsLinks =
+        [ { name = "Reverse First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reverse%20First.htm" }
+        , { name = "Rotate First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Rotate%20First.htm" }
+        ]
     , completions =
         [ Tab "O-"
         , Backquote '&'
@@ -2221,6 +2445,10 @@ transpose : CharInfo
 transpose =
     { char = '⍉'
     , name = "Transpose"
+    , docsLinks =
+        [ { name = "Transpose (Monadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Transpose%20Monadic.htm" }
+        , { name = "Transpose (Dyadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Transpose%20Dyadic.htm" }
+        ]
     , completions =
         [ Tab "O\\"
         , Backquote '^'
@@ -2265,6 +2493,10 @@ diaeresis : CharInfo
 diaeresis =
     { char = '¨'
     , name = "Diaeresis"
+    , docsLinks =
+        [ { name = "Each (with Monadic Operand)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Each%20with%20Monadic%20Operand.htm" }
+        , { name = "Each (with Dyadic Operand)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Each%20with%20Dyadic%20Operand.htm" }
+        ]
     , completions =
         [ Tab "::"
         , Tab "\"\""
@@ -2305,6 +2537,10 @@ tildeDiaeresis : CharInfo
 tildeDiaeresis =
     { char = '⍨'
     , name = "Tilde Diaeresis"
+    , docsLinks =
+        [ { name = "Commute", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Commute.htm" }
+        , { name = "Constant", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Constant.htm" }
+        ]
     , completions =
         [ Tab "~:"
         , Tab "~\""
@@ -2350,6 +2586,9 @@ starDiaeresis : CharInfo
 starDiaeresis =
     { char = '⍣'
     , name = "Star Diaeresis"
+    , docsLinks =
+        [ { name = "Power Operator", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Power%20Operator.htm" }
+        ]
     , completions =
         [ Tab "*:"
         , Tab "*\""
@@ -2416,6 +2655,10 @@ dot : CharInfo
 dot =
     { char = '.'
     , name = "Dot"
+    , docsLinks =
+        [ { name = "Inner Product", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Inner%20Product.htm" }
+        , { name = "Outer Product", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Outer%20Product.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Dyadic operator"
@@ -2460,6 +2703,10 @@ jot : CharInfo
 jot =
     { char = '∘'
     , name = "Jot"
+    , docsLinks =
+        [ { name = "Beside", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Beside.htm" }
+        , { name = "Bind", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Bind.htm" }
+        ]
     , completions =
         [ Tab "oo"
         , Backquote 'j'
@@ -2497,6 +2744,10 @@ jotDiaeresis : CharInfo
 jotDiaeresis =
     { char = '⍤'
     , name = "Jot Diaeresis"
+    , docsLinks =
+        [ { name = "Atop", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Atop.htm" }
+        , { name = "Rank", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Rank.htm" }
+        ]
     , completions =
         [ Tab "o:"
         , Tab "o\""
@@ -2574,6 +2825,9 @@ circleDiaeresis : CharInfo
 circleDiaeresis =
     { char = '⍥'
     , name = "Circle Diaeresis"
+    , docsLinks =
+        [ { name = "Over", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Over.htm" }
+        ]
     , completions =
         [ Tab "O:"
         , Tab "O\""
@@ -2606,6 +2860,9 @@ at : CharInfo
 at =
     { char = '@'
     , name = "At"
+    , docsLinks =
+        [ { name = "At", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/At.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Dyadic operator"
@@ -2638,13 +2895,17 @@ quoteQuad : CharInfo
 quoteQuad =
     { char = '⍞'
     , name = "Quote Quad"
+    , docsLinks =
+        [ { name = "Character Input/Output", url = "https://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Character%20Input%20Output.htm" }
+        ]
     , completions =
         [ Tab "['"
         , Tab "']"
         , Backquote '{'
         ]
     , description =
-        [ Heading "Niladic:     Character Input/Output"
+        [ Category "Niladic"
+        , Heading "Character Input/Output"
         , Example
             { input = [ "chars ← ⍞     ⍝ input session line" ]
             , output = [ "hello" ]
@@ -2684,12 +2945,16 @@ quad : CharInfo
 quad =
     { char = '⎕'
     , name = "Quad"
+    , docsLinks =
+        [ { name = "Evaluated Input/Output", url = "https://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Evaluated%20Input%20Output.htm" }
+        ]
     , completions =
         [ Tab "[]"
         , Backquote 'l'
         ]
     , description =
-        [ Heading "Niladic:     Evaluated Input/Output"
+        [ Category "Niladic"
+        , Heading "Evaluated Input/Output"
         , Example
             { input = [ "2+⎕+4" ]
             , output = [ "⎕:" ]
@@ -2713,6 +2978,9 @@ quadColon : CharInfo
 quadColon =
     { char = '⍠'
     , name = "Quad Colon"
+    , docsLinks =
+        [ { name = "Variant", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Variant.htm" }
+        ]
     , completions =
         [ Tab "[:"
         , Tab ":]"
@@ -2745,6 +3013,9 @@ quadEqual : CharInfo
 quadEqual =
     { char = '⌸'
     , name = "Quad Equal"
+    , docsLinks =
+        [ { name = "Key", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Key.htm" }
+        ]
     , completions =
         [ Tab "[="
         , Tab "=]"
@@ -2805,6 +3076,9 @@ quadDiamond : CharInfo
 quadDiamond =
     { char = '⌺'
     , name = "Quad Diamond"
+    , docsLinks =
+        [ { name = "Stencil", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Stencil.htm" }
+        ]
     , completions =
         [ Tab "[<"
         , Tab ">]"
@@ -2873,6 +3147,10 @@ iBeam : CharInfo
 iBeam =
     { char = '⌶'
     , name = "I-Beam"
+    , docsLinks =
+        [ { name = "I-Beam (short)", url = "https://help.dyalog.com/18.0/index.htm#Language/I%20Beam%20Functions/I%20Beam%20(short).htm" }
+        , { name = "I-Beam", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/I%20Beam.htm#I-Beam" }
+        ]
     , completions =
         [ Tab "T_"
         , Tab "II"
@@ -2893,6 +3171,9 @@ hydrant : CharInfo
 hydrant =
     { char = '⍎'
     , name = "Hydrant"
+    , docsLinks =
+        [ { name = "Execute", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Execute.htm" }
+        ]
     , completions =
         [ Tab "o_"
         , Backquote ';'
@@ -2919,6 +3200,10 @@ thorn : CharInfo
 thorn =
     { char = '⍕'
     , name = "Thorn"
+    , docsLinks =
+        [ { name = "Format (Monadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Format%20Monadic.htm" }
+        , { name = "Format (Dyadic)", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Format%20Dyadic.htm" }
+        ]
     , completions =
         [ Tab "oT"
         , Tab "o-"
@@ -2976,13 +3261,17 @@ diamond : CharInfo
 diamond =
     { char = '⋄'
     , name = "Diamond"
+    , docsLinks =
+        [ { name = "Statements", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/TradFns/Statements.htm" }
+        ]
     , completions =
         [ Tab "<>"
         , Tab "^v"
         , Backquote '`'
         ]
     , description =
-        [ Heading "Syntax:    Statement Separator"
+        [ Category "Syntax"
+        , Heading "Statement Separator"
         , Plain [ "Statements are evaluated sequentially from left to right." ]
         , Example
             { input = [ "A←4 ⋄ A←A×3 ⋄ A÷2" ]
@@ -2996,12 +3285,16 @@ lamp : CharInfo
 lamp =
     { char = '⍝'
     , name = "Lamp"
+    , docsLinks =
+        [ { name = "Statements", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/TradFns/Statements.htm" }
+        ]
     , completions =
         [ Tab "on"
         , Backquote ','
         ]
     , description =
-        [ Heading "Syntax:    Comment"
+        [ Category "Syntax"
+        , Heading "Comment"
         , Plain [ "Text to the right of ⍝ is ignored." ]
         , Example
             { input = [ "2+3  ⍝ this is a comment" ]
@@ -3015,12 +3308,17 @@ rightArrow : CharInfo
 rightArrow =
     { char = '→'
     , name = "Right Arrow"
+    , docsLinks =
+        [ { name = "Branch", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Branch.htm" }
+        , { name = "Abort", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Abort.htm" }
+        ]
     , completions =
         [ Tab "->"
         , Backquote ']'
         ]
     , description =
-        [ Heading "Syntax:    Branch (Clear suspension)"
+        [ Category "Syntax"
+        , Heading "Branch (Clear suspension)"
         , Example
             { input =
                 [ "→ Label  ⍝ branch to Label:"
@@ -3039,17 +3337,23 @@ omega : CharInfo
 omega =
     { char = '⍵'
     , name = "Omega"
+    , docsLinks =
+        [ { name = "Dfns & Dops", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Functions%20and%20Operators.htm" }
+        , { name = "Dops", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Operators.htm" }
+        ]
     , completions =
         [ Tab "ww"
         , Backquote 'w'
         ]
     , description =
-        [ Heading "Omega Syntax: Right argument of a dfn"
+        [ Category "Syntax"
+        , Heading "Omega (⍵): Right argument of a dfn"
         , Example
             { input = [ "2 {⍵+1} 5" ]
             , output = [ "6" ]
             }
-        , Heading "Double-Omega Syntax: Right operand of a dop"
+        , Category "Syntax"
+        , Heading "Double-Omega (⍵⍵): Right operand of a dop"
         , Example
             { input = [ "3 +{⍺ ⍵⍵ ⍵}× 4" ]
             , output = [ "12" ]
@@ -3062,17 +3366,23 @@ alpha : CharInfo
 alpha =
     { char = '⍺'
     , name = "Alpha"
+    , docsLinks =
+        [ { name = "Dfns & Dops", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Functions%20and%20Operators.htm" }
+        , { name = "Dops", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Operators.htm" }
+        ]
     , completions =
         [ Tab "aa"
         , Backquote 'a'
         ]
     , description =
-        [ Heading "Alpha Syntax: Left argument of a dfn"
+        [ Category "Syntax"
+        , Heading "Alpha (⍺): Left argument of a dfn"
         , Example
             { input = [ "2 {⍺+1} 5" ]
             , output = [ "3" ]
             }
-        , Heading "Double-Alpha Syntax: Left Operand of a dop"
+        , Category "Syntax"
+        , Heading "Double-Alpha (⍺⍺): Left Operand of a dop"
         , Example
             { input = [ "3 +{⍺ ⍺⍺ ⍵} 4" ]
             , output = [ "7" ]
@@ -3085,13 +3395,17 @@ del : CharInfo
 del =
     { char = '∇'
     , name = "Del"
+    , docsLinks =
+        [ { name = "Recursion", url = "https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm" }
+        ]
     , completions =
         [ Tab "VV"
         , Tab "v-"
         , Backquote 'g'
         ]
     , description =
-        [ Heading "Del Syntax: dfn self-reference (recursion)"
+        [ Category "Syntax"
+        , Heading "Del (∇): dfn self-reference (recursion)"
         , Example
             { input =
                 [ "fact←{             ⍝ Factorial ⍵."
@@ -3101,7 +3415,8 @@ del =
                 ]
             , output = []
             }
-        , Heading "Double-Del Syntax: dop self-reference"
+        , Category "Syntax"
+        , Heading "Double-Del (∇∇): dop self-reference"
         , Example
             { input =
                 [ "pow←{                ⍝ power operator: apply ⍵⍵ times"
@@ -3119,6 +3434,9 @@ ampersand : CharInfo
 ampersand =
     { char = '&'
     , name = "Ampersand"
+    , docsLinks =
+        [ { name = "Spawn", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Spawn.htm" }
+        ]
     , completions = []
     , description =
         [ Category "Monadic operator"
@@ -3151,12 +3469,16 @@ highMinus : CharInfo
 highMinus =
     { char = '¯'
     , name = "High Minus"
+    , docsLinks =
+        [ { name = "Numbers", url = "https://help.dyalog.com/18.0/index.htm#Language/Introduction/Variables/Numbers.htm" }
+        ]
     , completions =
         [ Tab "--"
         , Backquote '2'
         ]
     , description =
-        [ Heading "Qualifier for negative number"
+        [ Category "Syntax"
+        , Heading "Qualifier for negative number"
         , Example
             { input = [ "1 + ¯1 0 1 ¯3" ]
             , output = [ "0 1 2 ¯2" ]
@@ -3173,12 +3495,16 @@ zilde : CharInfo
 zilde =
     { char = '⍬'
     , name = "Zilde"
+    , docsLinks =
+        [ { name = "Zilde", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Zilde.htm" }
+        ]
     , completions =
         [ Tab "0~"
         , Backquote '}'
         ]
     , description =
-        [ Heading "Niladic:  Empty Numeric Vector"
+        [ Category "Niladic"
+        , Heading "Empty Numeric Vector"
         , Example
             { input = [ "⍬≡⍳0" ]
             , output = [ "1" ]
@@ -3203,6 +3529,7 @@ delta : CharInfo
 delta =
     { char = '∆'
     , name = "Delta"
+    , docsLinks = []
     , completions =
         [ Tab "AA"
         , Tab "^-"
@@ -3216,6 +3543,7 @@ deltaUnderbar : CharInfo
 deltaUnderbar =
     { char = '⍙'
     , name = "Delta Underbar"
+    , docsLinks = []
     , completions =
         [ Tab "A_"
         , Tab "^="

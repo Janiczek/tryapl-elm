@@ -411,7 +411,7 @@ view model =
 
 
 viewHelp : CharInfo -> List (Html Msg)
-viewHelp { char, name, completions, description } =
+viewHelp { char, name, docsLinks, completions, description } =
     [ Html.viewIf (not (List.isEmpty completions)) <|
         Html.div
             [ Attrs.class "help-completions" ]
@@ -456,6 +456,26 @@ viewHelp { char, name, completions, description } =
             [ Html.text <| String.fromChar char ]
         , Html.text ")"
         ]
+    , Html.viewIf (not (List.isEmpty docsLinks)) <|
+        Html.ul
+            [ Attrs.class "help-docs" ]
+            (docsLinks
+                |> List.map
+                    (\link ->
+                        Html.li
+                            [ Attrs.class "help-docs-item" ]
+                            [ Html.span
+                                [ Attrs.class "help-docs-label" ]
+                                [ Html.text "Docs: " ]
+                            , Html.a
+                                [ Attrs.href link.url
+                                , Attrs.target "_blank"
+                                , Attrs.class "help-docs-link"
+                                ]
+                                [ Html.text link.name ]
+                            ]
+                    )
+            )
     , Html.div
         [ Attrs.class "help-description" ]
         (description
@@ -482,6 +502,15 @@ viewHelp { char, name, completions, description } =
                                             [ Attrs.class "help-description-plain" ]
                                             [ Html.text line ]
                                     )
+
+                        Verbatim lines ->
+                            [ Html.div
+                                [ Attrs.class "help-description-verbatim" ]
+                                [ lines
+                                    |> String.join "\n"
+                                    |> Html.text
+                                ]
+                            ]
 
                         CodeComment lines ->
                             [ Html.div

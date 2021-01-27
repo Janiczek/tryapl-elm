@@ -519,11 +519,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.W.H === region.ac.H)
+	if (region.Y.J === region.ae.J)
 	{
-		return 'on line ' + region.W.H;
+		return 'on line ' + region.Y.J;
 	}
-	return 'on lines ' + region.W.H + ' through ' + region.ac.H;
+	return 'on lines ' + region.Y.J + ' through ' + region.ae.J;
 }
 
 
@@ -1857,9 +1857,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aN,
-		impl.a0,
-		impl.aY,
+		impl.aP,
+		impl.a2,
+		impl.a_,
 		function() { return function() {} }
 	);
 });
@@ -2704,9 +2704,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		v: func(record.v),
-		X: record.X,
-		U: record.U
+		x: func(record.x),
+		Z: record.Z,
+		W: record.W
 	}
 });
 
@@ -2974,11 +2974,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.v;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.X;
+		var message = !tag ? value : tag < 3 ? value.a : value.x;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.Z;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.U) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.W) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3928,11 +3928,11 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aN,
-		impl.a0,
-		impl.aY,
+		impl.aP,
+		impl.a2,
+		impl.a_,
 		function(sendToApp, initialModel) {
-			var view = impl.a2;
+			var view = impl.a3;
 			/**/
 			var domNode = args['node'];
 			//*/
@@ -3964,12 +3964,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aN,
-		impl.a0,
-		impl.aY,
+		impl.aP,
+		impl.a2,
+		impl.a_,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.V && impl.V(sendToApp)
-			var view = impl.a2;
+			var divertHrefToApp = impl.X && impl.X(sendToApp)
+			var view = impl.a3;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
 			var currNode = _VirtualDom_virtualize(bodyNode);
@@ -3977,12 +3977,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc._);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.ab);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
 				_VirtualDom_divertHrefToApp = 0;
-				(title !== doc.a_) && (_VirtualDom_doc.title = title = doc.a_);
+				(title !== doc.a0) && (_VirtualDom_doc.title = title = doc.a0);
 			});
 		}
 	);
@@ -4038,12 +4038,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.aP;
-	var onUrlRequest = impl.aQ;
+	var onUrlChange = impl.aR;
+	var onUrlRequest = impl.aS;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		V: function(sendToApp)
+		X: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4059,9 +4059,9 @@ function _Browser_application(impl)
 					var next = $elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.ao === next.ao
-							&& curr.af === next.af
-							&& curr.al.a === next.al.a
+							&& curr.aq === next.aq
+							&& curr.ah === next.ah
+							&& curr.an.a === next.an.a
 						)
 							? $elm$browser$Browser$Internal(next)
 							: $elm$browser$Browser$External(href)
@@ -4069,13 +4069,13 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		aN: function(flags)
+		aP: function(flags)
 		{
-			return A3(impl.aN, flags, _Browser_getUrl(), key);
+			return A3(impl.aP, flags, _Browser_getUrl(), key);
 		},
+		a3: impl.a3,
 		a2: impl.a2,
-		a0: impl.a0,
-		aY: impl.aY
+		a_: impl.a_
 	});
 }
 
@@ -4141,17 +4141,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { aL: 'hidden', aE: 'visibilitychange' }
+		? { aN: 'hidden', aG: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { aL: 'mozHidden', aE: 'mozvisibilitychange' }
+		? { aN: 'mozHidden', aG: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { aL: 'msHidden', aE: 'msvisibilitychange' }
+		? { aN: 'msHidden', aG: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { aL: 'webkitHidden', aE: 'webkitvisibilitychange' }
-		: { aL: 'hidden', aE: 'visibilitychange' };
+		? { aN: 'webkitHidden', aG: 'webkitvisibilitychange' }
+		: { aN: 'hidden', aG: 'visibilitychange' };
 }
 
 
@@ -4232,12 +4232,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		aU: _Browser_getScene(),
-		ax: {
-			az: _Browser_window.pageXOffset,
-			aA: _Browser_window.pageYOffset,
-			ay: _Browser_doc.documentElement.clientWidth,
-			aK: _Browser_doc.documentElement.clientHeight
+		aW: _Browser_getScene(),
+		az: {
+			aB: _Browser_window.pageXOffset,
+			aC: _Browser_window.pageYOffset,
+			aA: _Browser_doc.documentElement.clientWidth,
+			aM: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4247,8 +4247,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		ay: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		aK: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		aA: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		aM: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4271,15 +4271,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			aU: {
-				ay: node.scrollWidth,
-				aK: node.scrollHeight
+			aW: {
+				aA: node.scrollWidth,
+				aM: node.scrollHeight
 			},
-			ax: {
-				az: node.scrollLeft,
-				aA: node.scrollTop,
-				ay: node.clientWidth,
-				aK: node.clientHeight
+			az: {
+				aB: node.scrollLeft,
+				aC: node.scrollTop,
+				aA: node.clientWidth,
+				aM: node.clientHeight
 			}
 		};
 	});
@@ -4309,18 +4309,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			aU: _Browser_getScene(),
-			ax: {
-				az: x,
-				aA: y,
-				ay: _Browser_doc.documentElement.clientWidth,
-				aK: _Browser_doc.documentElement.clientHeight
+			aW: _Browser_getScene(),
+			az: {
+				aB: x,
+				aC: y,
+				aA: _Browser_doc.documentElement.clientWidth,
+				aM: _Browser_doc.documentElement.clientHeight
 			},
-			aG: {
-				az: x + rect.left,
-				aA: y + rect.top,
-				ay: rect.width,
-				aK: rect.height
+			aI: {
+				aB: x + rect.left,
+				aC: y + rect.top,
+				aA: rect.width,
+				aM: rect.height
 			}
 		};
 	});
@@ -4580,25 +4580,25 @@ var _Http_toTask = F3(function(router, toTask, request)
 	return _Scheduler_binding(function(callback)
 	{
 		function done(response) {
-			callback(toTask(request.aH.a(response)));
+			callback(toTask(request.aJ.a(response)));
 		}
 
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('error', function() { done($elm$http$Http$NetworkError_); });
 		xhr.addEventListener('timeout', function() { done($elm$http$Http$Timeout_); });
-		xhr.addEventListener('load', function() { done(_Http_toResponse(request.aH.b, xhr)); });
-		$elm$core$Maybe$isJust(request.a$) && _Http_track(router, xhr, request.a$.a);
+		xhr.addEventListener('load', function() { done(_Http_toResponse(request.aJ.b, xhr)); });
+		$elm$core$Maybe$isJust(request.a1) && _Http_track(router, xhr, request.a1.a);
 
 		try {
-			xhr.open(request.aO, request.a1, true);
+			xhr.open(request.aQ, request.d, true);
 		} catch (e) {
-			return done($elm$http$Http$BadUrl_(request.a1));
+			return done($elm$http$Http$BadUrl_(request.d));
 		}
 
 		_Http_configureRequest(xhr, request);
 
-		request._.a && xhr.setRequestHeader('Content-Type', request._.a);
-		xhr.send(request._.b);
+		request.ab.a && xhr.setRequestHeader('Content-Type', request.ab.a);
+		xhr.send(request.ab.b);
 
 		return function() { xhr.c = true; xhr.abort(); };
 	});
@@ -4609,13 +4609,13 @@ var _Http_toTask = F3(function(router, toTask, request)
 
 function _Http_configureRequest(xhr, request)
 {
-	for (var headers = request.aJ; headers.b; headers = headers.b) // WHILE_CONS
+	for (var headers = request.aL; headers.b; headers = headers.b) // WHILE_CONS
 	{
 		xhr.setRequestHeader(headers.a.a, headers.a.b);
 	}
-	xhr.timeout = request.aZ.a || 0;
-	xhr.responseType = request.aH.d;
-	xhr.withCredentials = request.aC;
+	xhr.timeout = request.a$.a || 0;
+	xhr.responseType = request.aJ.d;
+	xhr.withCredentials = request.aE;
 }
 
 
@@ -4636,10 +4636,10 @@ function _Http_toResponse(toBody, xhr)
 function _Http_toMetadata(xhr)
 {
 	return {
-		a1: xhr.responseURL,
-		aW: xhr.status,
-		aX: xhr.statusText,
-		aJ: _Http_parseHeaders(xhr.getAllResponseHeaders())
+		d: xhr.responseURL,
+		aY: xhr.status,
+		aZ: xhr.statusText,
+		aL: _Http_parseHeaders(xhr.getAllResponseHeaders())
 	};
 }
 
@@ -4734,15 +4734,15 @@ function _Http_track(router, xhr, tracker)
 	xhr.upload.addEventListener('progress', function(event) {
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Sending({
-			aV: event.loaded,
-			au: event.total
+			aX: event.loaded,
+			aw: event.total
 		}))));
 	});
 	xhr.addEventListener('progress', function(event) {
 		if (xhr.c) { return; }
 		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Receiving({
-			aS: event.loaded,
-			au: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
+			aU: event.loaded,
+			aw: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
 		}))));
 	});
 }var $elm$core$Maybe$Just = function (a) {
@@ -5151,25 +5151,25 @@ var $elm$core$Array$treeFromBuilder = F2(
 	});
 var $elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.g) {
+		if (!builder.i) {
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.h),
+				$elm$core$Elm$JsArray$length(builder.j),
 				$elm$core$Array$shiftStep,
 				$elm$core$Elm$JsArray$empty,
-				builder.h);
+				builder.j);
 		} else {
-			var treeLen = builder.g * $elm$core$Array$branchFactor;
+			var treeLen = builder.i * $elm$core$Array$branchFactor;
 			var depth = $elm$core$Basics$floor(
 				A2($elm$core$Basics$logBase, $elm$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.i) : builder.i;
-			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.g);
+			var correctNodeList = reverseNodeList ? $elm$core$List$reverse(builder.k) : builder.k;
+			var tree = A2($elm$core$Array$treeFromBuilder, correctNodeList, builder.i);
 			return A4(
 				$elm$core$Array$Array_elm_builtin,
-				$elm$core$Elm$JsArray$length(builder.h) + treeLen,
+				$elm$core$Elm$JsArray$length(builder.j) + treeLen,
 				A2($elm$core$Basics$max, 5, depth * $elm$core$Array$shiftStep),
 				tree,
-				builder.h);
+				builder.j);
 		}
 	});
 var $elm$core$Basics$idiv = _Basics_idiv;
@@ -5182,7 +5182,7 @@ var $elm$core$Array$initializeHelp = F5(
 				return A2(
 					$elm$core$Array$builderToArray,
 					false,
-					{i: nodeList, g: (len / $elm$core$Array$branchFactor) | 0, h: tail});
+					{k: nodeList, i: (len / $elm$core$Array$branchFactor) | 0, j: tail});
 			} else {
 				var leaf = $elm$core$Array$Leaf(
 					A3($elm$core$Elm$JsArray$initialize, $elm$core$Array$branchFactor, fromIndex, fn));
@@ -5250,7 +5250,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {ae: fragment, af: host, aj: path, al: port_, ao: protocol, ap: query};
+		return {ag: fragment, ah: host, al: path, an: port_, aq: protocol, ar: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5898,7 +5898,7 @@ var $danfishgold$base64_bytes$Base64$toString = function (b64String) {
 };
 var $author$project$Main$UrlData = F2(
 	function (state, log) {
-		return {o: log, x: state};
+		return {q: log, z: state};
 	});
 var $author$project$Main$Expr = F2(
 	function (input, output) {
@@ -5916,7 +5916,7 @@ var $author$project$Main$exprDecoder = A3(
 		$elm$json$Json$Decode$list($elm$json$Json$Decode$string)));
 var $author$project$Main$TryAPLState = F3(
 	function (environment, length, hash) {
-		return {M: environment, O: hash, P: length};
+		return {O: environment, Q: hash, R: length};
 	});
 var $elm$json$Json$Decode$index = _Json_decodeIndex;
 var $elm$json$Json$Decode$int = _Json_decodeInt;
@@ -5966,7 +5966,7 @@ var $author$project$Main$tryApplyHash = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{o: data.o, x: data.x}),
+							{q: data.q, z: data.z}),
 						cmd);
 				},
 				A2($elm$core$Maybe$andThen, $author$project$Main$hashToData, maybeHash)));
@@ -5974,14 +5974,14 @@ var $author$project$Main$tryApplyHash = F2(
 var $author$project$Main$init = function (flags) {
 	return A2(
 		$author$project$Main$tryApplyHash,
-		flags.Y,
+		flags._,
 		_Utils_Tuple2(
 			{
-				N: '+',
+				P: '+',
 				a: '',
-				p: false,
-				o: _List_Nil,
-				x: {M: '', O: '', P: 0}
+				r: false,
+				q: _List_Nil,
+				z: {O: '', Q: '', R: 0}
 			},
 			$elm$core$Platform$Cmd$none));
 };
@@ -6038,9 +6038,9 @@ var $author$project$Main$encodeStateAndInput = F2(
 			$elm$core$Basics$identity,
 			_List_fromArray(
 				[
-					$elm$json$Json$Encode$string(state.M),
-					$elm$json$Json$Encode$int(state.P),
 					$elm$json$Json$Encode$string(state.O),
+					$elm$json$Json$Encode$int(state.R),
+					$elm$json$Json$Encode$string(state.Q),
 					$elm$json$Json$Encode$string(input)
 				]));
 	});
@@ -6630,7 +6630,7 @@ var $elm$http$Http$resolve = F2(
 			case 3:
 				var metadata = response.a;
 				return $elm$core$Result$Err(
-					$elm$http$Http$BadStatus(metadata.aW));
+					$elm$http$Http$BadStatus(metadata.aY));
 			default:
 				var body = response.b;
 				return A2(
@@ -6718,9 +6718,9 @@ var $author$project$Main$encodeState = function (state) {
 		$elm$core$Basics$identity,
 		_List_fromArray(
 			[
-				$elm$json$Json$Encode$string(state.M),
-				$elm$json$Json$Encode$int(state.P),
-				$elm$json$Json$Encode$string(state.O)
+				$elm$json$Json$Encode$string(state.O),
+				$elm$json$Json$Encode$int(state.R),
+				$elm$json$Json$Encode$string(state.Q)
 			]));
 };
 var $elm$bytes$Bytes$Decode$loopHelp = F4(
@@ -6985,16 +6985,16 @@ var $elm$bytes$Bytes$Decode$succeed = function (a) {
 };
 var $elm$bytes$Bytes$Decode$unsignedInt8 = _Bytes_read_u8;
 var $danfishgold$base64_bytes$Decode$loopHelp = function (_v0) {
-	var remaining = _v0.Q;
-	var string = _v0.R;
+	var remaining = _v0.S;
+	var string = _v0.T;
 	if (remaining >= 18) {
 		return A2(
 			$elm$bytes$Bytes$Decode$map,
 			function (result) {
 				return $elm$bytes$Bytes$Decode$Loop(
 					{
-						Q: remaining - 18,
-						R: _Utils_ap(string, result)
+						S: remaining - 18,
+						T: _Utils_ap(string, result)
 					});
 			},
 			$danfishgold$base64_bytes$Decode$decode18Bytes);
@@ -7005,8 +7005,8 @@ var $danfishgold$base64_bytes$Decode$loopHelp = function (_v0) {
 					var combined = ((a << 16) | (b << 8)) | c;
 					return $elm$bytes$Bytes$Decode$Loop(
 						{
-							Q: remaining - 3,
-							R: _Utils_ap(
+							S: remaining - 3,
+							T: _Utils_ap(
 								string,
 								A2($danfishgold$base64_bytes$Decode$bitsToChars, combined, 0))
 						});
@@ -7045,7 +7045,7 @@ var $danfishgold$base64_bytes$Decode$loopHelp = function (_v0) {
 var $danfishgold$base64_bytes$Decode$decoder = function (width) {
 	return A2(
 		$elm$bytes$Bytes$Decode$loop,
-		{Q: width, R: ''},
+		{S: width, T: ''},
 		$danfishgold$base64_bytes$Decode$loopHelp);
 };
 var $danfishgold$base64_bytes$Decode$fromBytes = function (bytes) {
@@ -7084,10 +7084,10 @@ var $author$project$Main$modelToHash = function (model) {
 						[
 							_Utils_Tuple2(
 							'state',
-							$author$project$Main$encodeState(model.x)),
+							$author$project$Main$encodeState(model.z)),
 							_Utils_Tuple2(
 							'log',
-							A2($elm$json$Json$Encode$list, $author$project$Main$encodeExpr, model.o))
+							A2($elm$json$Json$Encode$list, $author$project$Main$encodeExpr, model.q))
 						])))));
 };
 var $author$project$Main$setUrlHash = _Platform_outgoingPort('setUrlHash', $elm$json$Json$Encode$string);
@@ -7272,7 +7272,7 @@ var $elm$http$Http$Request = function (a) {
 };
 var $elm$http$Http$State = F2(
 	function (reqs, subs) {
-		return {ar: reqs, av: subs};
+		return {at: reqs, ax: subs};
 	});
 var $elm$http$Http$init = $elm$core$Task$succeed(
 	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
@@ -7316,7 +7316,7 @@ var $elm$http$Http$updateReqs = F3(
 					return A2(
 						$elm$core$Task$andThen,
 						function (pid) {
-							var _v4 = req.a$;
+							var _v4 = req.a1;
 							if (_v4.$ === 1) {
 								return A3($elm$http$Http$updateReqs, router, otherCmds, reqs);
 							} else {
@@ -7346,7 +7346,7 @@ var $elm$http$Http$onEffects = F4(
 				return $elm$core$Task$succeed(
 					A2($elm$http$Http$State, reqs, subs));
 			},
-			A3($elm$http$Http$updateReqs, router, cmds, state.ar));
+			A3($elm$http$Http$updateReqs, router, cmds, state.at));
 	});
 var $elm$core$List$maybeCons = F3(
 	function (f, mx, xs) {
@@ -7389,7 +7389,7 @@ var $elm$http$Http$onSelfMsg = F3(
 				A2(
 					$elm$core$List$filterMap,
 					A3($elm$http$Http$maybeSend, router, tracker, progress),
-					state.av)));
+					state.ax)));
 	});
 var $elm$http$Http$Cancel = function (a) {
 	return {$: 0, a: a};
@@ -7403,14 +7403,14 @@ var $elm$http$Http$cmdMap = F2(
 			var r = cmd.a;
 			return $elm$http$Http$Request(
 				{
-					aC: r.aC,
-					_: r._,
-					aH: A2(_Http_mapExpect, func, r.aH),
-					aJ: r.aJ,
-					aO: r.aO,
-					aZ: r.aZ,
+					aE: r.aE,
+					ab: r.ab,
+					aJ: A2(_Http_mapExpect, func, r.aJ),
+					aL: r.aL,
+					aQ: r.aQ,
 					a$: r.a$,
-					a1: r.a1
+					a1: r.a1,
+					d: r.d
 				});
 		}
 	});
@@ -7433,7 +7433,7 @@ var $elm$http$Http$subscription = _Platform_leaf('Http');
 var $elm$http$Http$request = function (r) {
 	return $elm$http$Http$command(
 		$elm$http$Http$Request(
-			{aC: false, _: r._, aH: r.aH, aJ: r.aJ, aO: r.aO, aZ: r.aZ, a$: r.a$, a1: r.a1}));
+			{aE: false, ab: r.ab, aJ: r.aJ, aL: r.aL, aQ: r.aQ, a$: r.a$, a1: r.a1, d: r.d}));
 };
 var $author$project$Main$ScrollAttempted = function (a) {
 	return {$: 3, a: a};
@@ -7447,7 +7447,7 @@ var $author$project$Main$scrollToBottom = function (id) {
 		A2(
 			$elm$core$Task$andThen,
 			function (viewport) {
-				var bottom = viewport.aU.aK;
+				var bottom = viewport.aW.aM;
 				return A3($elm$browser$Browser$Dom$setViewportOf, id, 0, bottom);
 			},
 			$elm$browser$Browser$Dom$getViewportOf(id)));
@@ -7470,14 +7470,14 @@ var $author$project$Main$update = F2(
 		switch (msg.$) {
 			case 0:
 				var input = msg.a;
-				return model.p ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+				return model.r ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{a: input}),
 					$author$project$Main$focusInput);
 			case 6:
 				var stringToAdd = msg.a;
-				return model.p ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+				return model.r ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
@@ -7495,29 +7495,29 @@ var $author$project$Main$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{N: _char}),
+							{P: _char}),
 						$elm$core$Platform$Cmd$none);
 				}
 			case 1:
-				return model.p ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
+				return model.r ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{p: true}),
+						{r: true}),
 					$elm$http$Http$request(
 						{
-							_: A2(
+							ab: A2(
 								$elm$http$Http$stringBody,
 								'application/json;charset=UTF-8',
 								A2(
 									$elm$json$Json$Encode$encode,
 									0,
-									A2($author$project$Main$encodeStateAndInput, model.x, model.a))),
-							aH: A2($elm$http$Http$expectJson, $author$project$Main$ReceivedResponse, $author$project$Main$stateAndOutputDecoder),
-							aJ: _List_Nil,
-							aO: 'POST',
-							aZ: $elm$core$Maybe$Nothing,
+									A2($author$project$Main$encodeStateAndInput, model.z, model.a))),
+							aJ: A2($elm$http$Http$expectJson, $author$project$Main$ReceivedResponse, $author$project$Main$stateAndOutputDecoder),
+							aL: _List_Nil,
+							aQ: 'POST',
 							a$: $elm$core$Maybe$Nothing,
-							a1: 'https://tryapl.org/Exec'
+							a1: $elm$core$Maybe$Nothing,
+							d: 'https://tryapl.org/Exec'
 						}));
 			case 2:
 				if (msg.a.$ === 1) {
@@ -7525,7 +7525,7 @@ var $author$project$Main$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{p: false}),
+							{r: false}),
 						$author$project$Main$focusInput);
 				} else {
 					var _v3 = msg.a.a;
@@ -7543,14 +7543,14 @@ var $author$project$Main$update = F2(
 								model,
 								{
 									a: '',
-									p: false,
-									o: _Utils_ap(
-										model.o,
+									r: false,
+									q: _Utils_ap(
+										model.q,
 										_List_fromArray(
 											[
 												{a: model.a, b: sanitizedOutput}
 											])),
-									x: state
+									z: state
 								}),
 							$elm$core$Platform$Cmd$batch(
 								_List_fromArray(
@@ -7572,7 +7572,7 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{
-								o: A2($elm_community$list_extra$List$Extra$removeAt, index, model.o)
+								q: A2($elm_community$list_extra$List$Extra$removeAt, index, model.q)
 							}),
 						$elm$core$Platform$Cmd$none));
 		}
@@ -7608,8 +7608,11 @@ var $elm$html$Html$input = _VirtualDom_node('input');
 var $author$project$CharInfo$Backquote = function (a) {
 	return {$: 1, a: a};
 };
+var $author$project$CharInfo$Category = function (a) {
+	return {$: 1, a: a};
+};
 var $author$project$CharInfo$Example = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$CharInfo$Heading = function (a) {
 	return {$: 0, a: a};
@@ -7618,15 +7621,16 @@ var $author$project$CharInfo$Tab = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$CharInfo$alpha = {
-	c: '⍺',
-	d: _List_fromArray(
+	e: '⍺',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('aa'),
 			$author$project$CharInfo$Backquote('a')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Alpha Syntax: Left argument of a dfn'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Alpha (⍺): Left argument of a dfn'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -7634,7 +7638,8 @@ var $author$project$CharInfo$alpha = {
 				b: _List_fromArray(
 					['3'])
 			}),
-			$author$project$CharInfo$Heading('Double-Alpha Syntax: Left Operand of a dop'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Double-Alpha (⍺⍺): Left Operand of a dop'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -7643,15 +7648,17 @@ var $author$project$CharInfo$alpha = {
 					['7'])
 			})
 		]),
-	f: 'Alpha'
-};
-var $author$project$CharInfo$Category = function (a) {
-	return {$: 1, a: a};
+	h: _List_fromArray(
+		[
+			{c: 'Dfns & Dops', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Functions%20and%20Operators.htm'},
+			{c: 'Dops', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Operators.htm'}
+		]),
+	c: 'Alpha'
 };
 var $author$project$CharInfo$ampersand = {
-	c: '&',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '&',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Spawn'),
@@ -7684,12 +7691,16 @@ var $author$project$CharInfo$ampersand = {
 					['Delayed:  10.03183'])
 			})
 		]),
-	f: 'Ampersand'
+	h: _List_fromArray(
+		[
+			{c: 'Spawn', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Spawn.htm'}
+		]),
+	c: 'Ampersand'
 };
 var $author$project$CharInfo$at = {
-	c: '@',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '@',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('At'),
@@ -7729,12 +7740,16 @@ var $author$project$CharInfo$at = {
 					['5 2 3 4 1'])
 			})
 		]),
-	f: 'At'
+	h: _List_fromArray(
+		[
+			{c: 'At', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/At.htm'}
+		]),
+	c: 'At'
 };
 var $author$project$CharInfo$backslash = {
-	c: '\\',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '\\',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Expand'),
@@ -7783,16 +7798,21 @@ var $author$project$CharInfo$backslash = {
 					[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24'])
 			})
 		]),
-	f: 'Backslash'
+	h: _List_fromArray(
+		[
+			{c: 'Expand', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Expand.htm'},
+			{c: 'Scan', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Scan.htm'}
+		]),
+	c: 'Backslash'
 };
 var $author$project$CharInfo$backslashBar = {
-	c: '⍀',
-	d: _List_fromArray(
+	e: '⍀',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('\\-'),
 			$author$project$CharInfo$Backquote('.')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Expand First'),
@@ -7820,19 +7840,27 @@ var $author$project$CharInfo$backslashBar = {
 					[' 1  2  3  4', ' 6  8 10 12', '15 18 21 24'])
 			})
 		]),
-	f: 'Backslash Bar'
+	h: _List_fromArray(
+		[
+			{c: 'Expand First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Expand%20First.htm'},
+			{c: 'Scan First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Scan%20First.htm'}
+		]),
+	c: 'Backslash Bar'
 };
 var $author$project$CharInfo$Plain = function (a) {
 	return {$: 2, a: a};
 };
+var $author$project$CharInfo$Verbatim = function (a) {
+	return {$: 3, a: a};
+};
 var $author$project$CharInfo$circle = {
-	c: '○',
-	d: _List_fromArray(
+	e: '○',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('OO'),
 			$author$project$CharInfo$Backquote('o')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Pi Times'),
@@ -7862,20 +7890,25 @@ var $author$project$CharInfo$circle = {
 				b: _List_fromArray(
 					['0 1 ¯4.64102E¯8'])
 			}),
-			$author$project$CharInfo$Plain(
+			$author$project$CharInfo$Verbatim(
 			_List_fromArray(
 				[' ⍺   ⍺ ○ ⍵         ⍺   ⍺ ○ ⍵', '                   0   (1-⍵*2)*0.5', '¯1   Arcsin ⍵      1   Sine ⍵', '¯2   Arccos ⍵      2   Cosine ⍵', '¯3   Arctan ⍵      3   Tangent ⍵', '¯4   (¯1+⍵*2)*0.5  4   (1+⍵*2)*0.5', '¯5   Arcsinh ⍵     5   Sinh ⍵', '¯6   Arccosh ⍵     6   Cosh ⍵', '¯7   Arctanh ⍵     7   Tanh ⍵', '¯8   -8○⍵          8   (-1+⍵*2)*0.5', '¯9   ⍵             9   real part of ⍵', '¯10  +⍵           10   |⍵', '¯11  ⍵×0J1        11   imaginary part of ⍵', '¯12  *⍵×0J1       12   phase of ⍵']))
 		]),
-	f: 'Circle'
+	h: _List_fromArray(
+		[
+			{c: 'Pi Times', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Pi%20Times.htm'},
+			{c: 'Circular', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Circular.htm'}
+		]),
+	c: 'Circle'
 };
 var $author$project$CharInfo$circleBar = {
-	c: '⊖',
-	d: _List_fromArray(
+	e: '⊖',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('O-'),
 			$author$project$CharInfo$Backquote('&')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reverse First'),
@@ -7903,17 +7936,22 @@ var $author$project$CharInfo$circleBar = {
 					['1  6 11 12', '5 10  3  4', '9  2  7  8'])
 			})
 		]),
-	f: 'Circle Bar'
+	h: _List_fromArray(
+		[
+			{c: 'Reverse First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reverse%20First.htm'},
+			{c: 'Rotate First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Rotate%20First.htm'}
+		]),
+	c: 'Circle Bar'
 };
 var $author$project$CharInfo$circleDiaeresis = {
-	c: '⍥',
-	d: _List_fromArray(
+	e: '⍥',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('O:'),
 			$author$project$CharInfo$Tab('O\"'),
 			$author$project$CharInfo$Backquote('O')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Over'),
@@ -7946,16 +7984,20 @@ var $author$project$CharInfo$circleDiaeresis = {
 					['0'])
 			})
 		]),
-	f: 'Circle Diaeresis'
+	h: _List_fromArray(
+		[
+			{c: 'Over', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Over.htm'}
+		]),
+	c: 'Circle Diaeresis'
 };
 var $author$project$CharInfo$circleStile = {
-	c: '⌽',
-	d: _List_fromArray(
+	e: '⌽',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('O|'),
 			$author$project$CharInfo$Backquote('%')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reverse'),
@@ -8025,12 +8067,17 @@ var $author$project$CharInfo$circleStile = {
 					['1  6 11 12', '5 10  3  4', '9  2  7  8'])
 			})
 		]),
-	f: 'Circle Stile'
+	h: _List_fromArray(
+		[
+			{c: 'Reverse', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reverse.htm'},
+			{c: 'Rotate', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Rotate.htm'}
+		]),
+	c: 'Circle Stile'
 };
 var $author$project$CharInfo$comma = {
-	c: ',',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: ',',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Ravel'),
@@ -8079,16 +8126,22 @@ var $author$project$CharInfo$comma = {
 					['1 2 3', '4 5 6'])
 			})
 		]),
-	f: 'Comma'
+	h: _List_fromArray(
+		[
+			{c: 'Ravel', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ravel.htm'},
+			{c: 'Ravel with Axes', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ravel%20with%20Axes.htm'},
+			{c: 'Catenate Laminate', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Catenate%20Laminate.htm'}
+		]),
+	c: 'Comma'
 };
 var $author$project$CharInfo$commaBar = {
-	c: '⍪',
-	d: _List_fromArray(
+	e: '⍪',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab(',-'),
 			$author$project$CharInfo$Backquote('<')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Table'),
@@ -8137,26 +8190,33 @@ var $author$project$CharInfo$commaBar = {
 					['1 2 3', '4 5 6', '7 8 9'])
 			})
 		]),
-	f: 'Comma Bar'
+	h: _List_fromArray(
+		[
+			{c: 'Table', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Table.htm'},
+			{c: 'Catenate First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Catenate%20First.htm'}
+		]),
+	c: 'Comma Bar'
 };
 var $author$project$CharInfo$del = {
-	c: '∇',
-	d: _List_fromArray(
+	e: '∇',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('VV'),
 			$author$project$CharInfo$Tab('v-'),
 			$author$project$CharInfo$Backquote('g')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Del Syntax: dfn self-reference (recursion)'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Del (∇): dfn self-reference (recursion)'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
 					['fact←{             ⍝ Factorial ⍵.', '    ⍵≤1: 1         ⍝ small ⍵: finished', '    ⍵×∇ ⍵-1        ⍝ otherwise: recurse', '}']),
 				b: _List_Nil
 			}),
-			$author$project$CharInfo$Heading('Double-Del Syntax: dop self-reference'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Double-Del (∇∇): dop self-reference'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -8164,45 +8224,51 @@ var $author$project$CharInfo$del = {
 				b: _List_Nil
 			})
 		]),
-	f: 'Del'
+	h: _List_fromArray(
+		[
+			{c: 'Recursion', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Recursion.htm'}
+		]),
+	c: 'Del'
 };
 var $author$project$CharInfo$delta = {
-	c: '∆',
-	d: _List_fromArray(
+	e: '∆',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('AA'),
 			$author$project$CharInfo$Tab('^-'),
 			$author$project$CharInfo$Backquote('h')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Identifier Character')
 		]),
-	f: 'Delta'
+	h: _List_Nil,
+	c: 'Delta'
 };
 var $author$project$CharInfo$deltaUnderbar = {
-	c: '⍙',
-	d: _List_fromArray(
+	e: '⍙',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('A_'),
 			$author$project$CharInfo$Tab('^='),
 			$author$project$CharInfo$Backquote('>')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Identifier Character')
 		]),
-	f: 'Delta Underbar'
+	h: _List_Nil,
+	c: 'Delta Underbar'
 };
 var $author$project$CharInfo$diaeresis = {
-	c: '¨',
-	d: _List_fromArray(
+	e: '¨',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('::'),
 			$author$project$CharInfo$Tab('\"\"'),
 			$author$project$CharInfo$Backquote('1')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Each (Map)'),
@@ -8235,19 +8301,25 @@ var $author$project$CharInfo$diaeresis = {
 					['┌────┬────┬────┐', '│1 99│2 99│3 99│', '└────┴────┴────┘'])
 			})
 		]),
-	f: 'Diaeresis'
+	h: _List_fromArray(
+		[
+			{c: 'Each (with Monadic Operand)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Each%20with%20Monadic%20Operand.htm'},
+			{c: 'Each (with Dyadic Operand)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Each%20with%20Dyadic%20Operand.htm'}
+		]),
+	c: 'Diaeresis'
 };
 var $author$project$CharInfo$diamond = {
-	c: '⋄',
-	d: _List_fromArray(
+	e: '⋄',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('<>'),
 			$author$project$CharInfo$Tab('^v'),
 			$author$project$CharInfo$Backquote('`')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Syntax:    Statement Separator'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Statement Separator'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Statements are evaluated sequentially from left to right.'])),
@@ -8259,16 +8331,20 @@ var $author$project$CharInfo$diamond = {
 					['6'])
 			})
 		]),
-	f: 'Diamond'
+	h: _List_fromArray(
+		[
+			{c: 'Statements', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/TradFns/Statements.htm'}
+		]),
+	c: 'Diamond'
 };
 var $author$project$CharInfo$divide = {
-	c: '÷',
-	d: _List_fromArray(
+	e: '÷',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab(':-'),
 			$author$project$CharInfo$Backquote('=')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Reciprocal'),
@@ -8296,17 +8372,22 @@ var $author$project$CharInfo$divide = {
 					['¯5 20'])
 			})
 		]),
-	f: 'Divide'
+	h: _List_fromArray(
+		[
+			{c: 'Divide', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Divide.htm'},
+			{c: 'Reciprocal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reciprocal.htm'}
+		]),
+	c: 'Divide'
 };
 var $author$project$CharInfo$domino = {
-	c: '⌹',
-	d: _List_fromArray(
+	e: '⌹',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[-'),
 			$author$project$CharInfo$Tab('-]'),
 			$author$project$CharInfo$Backquote('+')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Matrix Inverse'),
@@ -8334,12 +8415,17 @@ var $author$project$CharInfo$domino = {
 					['¯4 4.5'])
 			})
 		]),
-	f: 'Domino'
+	h: _List_fromArray(
+		[
+			{c: 'Matrix Inverse', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Matrix%20Inverse.htm'},
+			{c: 'Matrix Divide', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Matrix%20Divide.htm'}
+		]),
+	c: 'Domino'
 };
 var $author$project$CharInfo$dot = {
-	c: '.',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '.',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Product'),
@@ -8381,16 +8467,21 @@ var $author$project$CharInfo$dot = {
 					[' 4  5  6  7', ' 8 10 12 14', '12 15 18 21'])
 			})
 		]),
-	f: 'Dot'
+	h: _List_fromArray(
+		[
+			{c: 'Inner Product', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Inner%20Product.htm'},
+			{c: 'Outer Product', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Outer%20Product.htm'}
+		]),
+	c: 'Dot'
 };
 var $author$project$CharInfo$downArrow = {
-	c: '↓',
-	d: _List_fromArray(
+	e: '↓',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('v|'),
 			$author$project$CharInfo$Backquote('u')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Split'),
@@ -8446,17 +8537,23 @@ var $author$project$CharInfo$downArrow = {
 					['5  6  7  8', '9 10 11 12'])
 			})
 		]),
-	f: 'Down Arrow'
+	h: _List_fromArray(
+		[
+			{c: 'Split', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Split.htm'},
+			{c: 'Drop', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Drop.htm'},
+			{c: 'Drop with Axes', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Drop%20with%20Axes.htm'}
+		]),
+	c: 'Down Arrow'
 };
 var $author$project$CharInfo$downShoe = {
-	c: '∪',
-	d: _List_fromArray(
+	e: '∪',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('uu'),
 			$author$project$CharInfo$Tab('UU'),
 			$author$project$CharInfo$Backquote('v')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Unique'),
@@ -8491,19 +8588,24 @@ var $author$project$CharInfo$downShoe = {
 					['┌──┬───┬──┬─┐', '│ab│cde│fg│a│', '└──┴───┴──┴─┘'])
 			})
 		]),
-	f: 'Down Shoe'
+	h: _List_fromArray(
+		[
+			{c: 'Unique', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Unique.htm'},
+			{c: 'Union', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Union.htm'}
+		]),
+	c: 'Down Shoe'
 };
 var $author$project$CharInfo$CodeComment = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var $author$project$CharInfo$downTack = {
-	c: '⊤',
-	d: _List_fromArray(
+	e: '⊤',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('TT'),
 			$author$project$CharInfo$Backquote('n')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Encode'),
@@ -8525,17 +8627,21 @@ var $author$project$CharInfo$downTack = {
 					['2 46 40'])
 			})
 		]),
-	f: 'Down Tack'
+	h: _List_fromArray(
+		[
+			{c: 'Encode', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Encode.htm'}
+		]),
+	c: 'Down Tack'
 };
 var $author$project$CharInfo$downstile = {
-	c: '⌊',
-	d: _List_fromArray(
+	e: '⌊',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('ll'),
 			$author$project$CharInfo$Tab('LL'),
 			$author$project$CharInfo$Backquote('d')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Floor (Round Down)'),
@@ -8563,16 +8669,21 @@ var $author$project$CharInfo$downstile = {
 					['1'])
 			})
 		]),
-	f: 'Downstile'
+	h: _List_fromArray(
+		[
+			{c: 'Floor', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Floor.htm'},
+			{c: 'Minimum', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Minimum.htm'}
+		]),
+	c: 'Downstile'
 };
 var $author$project$CharInfo$epsilon = {
-	c: '∊',
-	d: _List_fromArray(
+	e: '∊',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('ee'),
 			$author$project$CharInfo$Backquote('e')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Enlist'),
@@ -8614,16 +8725,22 @@ var $author$project$CharInfo$epsilon = {
 					['0 1 0', '1 0 1'])
 			})
 		]),
-	f: 'Epsilon'
+	h: _List_fromArray(
+		[
+			{c: 'Enlist', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enlist.htm'},
+			{c: 'Type', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Type.htm'},
+			{c: 'Membership', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Membership.htm'}
+		]),
+	c: 'Epsilon'
 };
 var $author$project$CharInfo$epsilonUnderbar = {
-	c: '⍷',
-	d: _List_fromArray(
+	e: '⍷',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('e_'),
 			$author$project$CharInfo$Backquote('E')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Find'),
@@ -8649,15 +8766,19 @@ var $author$project$CharInfo$epsilonUnderbar = {
 					['1 0 0 0', '0 0 1 0', '0 1 0 0', '0 0 0 0'])
 			})
 		]),
-	f: 'Epsilon Underbar'
+	h: _List_fromArray(
+		[
+			{c: 'Find', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Find.htm'}
+		]),
+	c: 'Epsilon Underbar'
 };
 var $author$project$CharInfo$equal = {
-	c: '=',
-	d: _List_fromArray(
+	e: '=',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('5')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Equal To'),
@@ -8690,17 +8811,21 @@ var $author$project$CharInfo$equal = {
 					['0'])
 			})
 		]),
-	f: 'Equal'
+	h: _List_fromArray(
+		[
+			{c: 'Equal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive Functions/Equal.htm'}
+		]),
+	c: 'Equal'
 };
 var $author$project$CharInfo$equalUnderbar = {
-	c: '≡',
-	d: _List_fromArray(
+	e: '≡',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('=='),
 			$author$project$CharInfo$Tab('=_'),
 			$author$project$CharInfo$Backquote(':')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Depth'),
@@ -8749,17 +8874,22 @@ var $author$project$CharInfo$equalUnderbar = {
 					['0'])
 			})
 		]),
-	f: 'Equal Underbar'
+	h: _List_fromArray(
+		[
+			{c: 'Depth', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Depth.htm'},
+			{c: 'Match', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Match.htm'}
+		]),
+	c: 'Equal Underbar'
 };
 var $author$project$CharInfo$equalUnderbarSlash = {
-	c: '≢',
-	d: _List_fromArray(
+	e: '≢',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('7='),
 			$author$project$CharInfo$Tab('L='),
 			$author$project$CharInfo$Backquote('\"')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Tally'),
@@ -8829,15 +8959,20 @@ var $author$project$CharInfo$equalUnderbarSlash = {
 					['1'])
 			})
 		]),
-	f: 'Equal Underbar Slash'
+	h: _List_fromArray(
+		[
+			{c: 'Tally', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Tally.htm'},
+			{c: 'Not Match', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not%20Match.htm'}
+		]),
+	c: 'Equal Underbar Slash'
 };
 var $author$project$CharInfo$exclamationMark = {
-	c: '!',
-	d: _List_fromArray(
+	e: '!',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('_')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Factorial'),
@@ -8858,16 +8993,21 @@ var $author$project$CharInfo$exclamationMark = {
 					['3 10 ¯0.0429385'])
 			})
 		]),
-	f: 'Exclamation Mark'
+	h: _List_fromArray(
+		[
+			{c: 'Factorial', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Factorial.htm'},
+			{c: 'Binomial', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Binomial.htm'}
+		]),
+	c: 'Exclamation Mark'
 };
 var $author$project$CharInfo$gradeDown = {
-	c: '⍒',
-	d: _List_fromArray(
+	e: '⍒',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('V|'),
 			$author$project$CharInfo$Backquote('#')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Grade Down'),
@@ -8915,16 +9055,21 @@ var $author$project$CharInfo$gradeDown = {
 					['1 3 5 2 4 6'])
 			})
 		]),
-	f: 'Grade Down'
+	h: _List_fromArray(
+		[
+			{c: 'Grade Down (Monadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Down%20Monadic.htm'},
+			{c: 'Grade Down (Dyadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Down%20Dyadic.htm'}
+		]),
+	c: 'Grade Down'
 };
 var $author$project$CharInfo$gradeUp = {
-	c: '⍋',
-	d: _List_fromArray(
+	e: '⍋',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('A|'),
 			$author$project$CharInfo$Backquote('$')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Grade Up'),
@@ -8972,15 +9117,20 @@ var $author$project$CharInfo$gradeUp = {
 					['2 4 6 3 5 1'])
 			})
 		]),
-	f: 'Grade Up'
+	h: _List_fromArray(
+		[
+			{c: 'Grade Up (Monadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Up%20Monadic.htm'},
+			{c: 'Grade Up (Dyadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Grade%20Up%20Dyadic.htm'}
+		]),
+	c: 'Grade Up'
 };
 var $author$project$CharInfo$greaterThan = {
-	c: '>',
-	d: _List_fromArray(
+	e: '>',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('7')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greater Than'),
@@ -8999,17 +9149,21 @@ var $author$project$CharInfo$greaterThan = {
 					['0 0 1'])
 			})
 		]),
-	f: 'Greater Than'
+	h: _List_fromArray(
+		[
+			{c: 'Greater', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Greater.htm'}
+		]),
+	c: 'Greater Than'
 };
 var $author$project$CharInfo$greaterThanOrEqualTo = {
-	c: '≥',
-	d: _List_fromArray(
+	e: '≥',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('>='),
 			$author$project$CharInfo$Tab('>_'),
 			$author$project$CharInfo$Backquote('6')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greater Than or Equal To'),
@@ -9028,17 +9182,22 @@ var $author$project$CharInfo$greaterThanOrEqualTo = {
 					['0 1 1'])
 			})
 		]),
-	f: 'Greater Than Or Equal To'
+	h: _List_fromArray(
+		[
+			{c: 'Greater Or Equal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Greater%20Or%20Equal.htm'}
+		]),
+	c: 'Greater Than Or Equal To'
 };
 var $author$project$CharInfo$highMinus = {
-	c: '¯',
-	d: _List_fromArray(
+	e: '¯',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('--'),
 			$author$project$CharInfo$Backquote('2')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
+			$author$project$CharInfo$Category('Syntax'),
 			$author$project$CharInfo$Heading('Qualifier for negative number'),
 			$author$project$CharInfo$Example(
 			{
@@ -9055,16 +9214,20 @@ var $author$project$CharInfo$highMinus = {
 					['0.03'])
 			})
 		]),
-	f: 'High Minus'
+	h: _List_fromArray(
+		[
+			{c: 'Numbers', d: 'https://help.dyalog.com/18.0/index.htm#Language/Introduction/Variables/Numbers.htm'}
+		]),
+	c: 'High Minus'
 };
 var $author$project$CharInfo$hydrant = {
-	c: '⍎',
-	d: _List_fromArray(
+	e: '⍎',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('o_'),
 			$author$project$CharInfo$Backquote(';')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Execute'),
@@ -9083,17 +9246,21 @@ var $author$project$CharInfo$hydrant = {
 					['1 2 3'])
 			})
 		]),
-	f: 'Hydrant'
+	h: _List_fromArray(
+		[
+			{c: 'Execute', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Execute.htm'}
+		]),
+	c: 'Hydrant'
 };
 var $author$project$CharInfo$iBeam = {
-	c: '⌶',
-	d: _List_fromArray(
+	e: '⌶',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('T_'),
 			$author$project$CharInfo$Tab('II'),
 			$author$project$CharInfo$Backquote('!')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('I-Beam'),
@@ -9101,16 +9268,21 @@ var $author$project$CharInfo$iBeam = {
 			_List_fromArray(
 				['Provides a system-related service determined by the left-operand value.', '(see Dyalog APL Language Reference Guide)']))
 		]),
-	f: 'I-Beam'
+	h: _List_fromArray(
+		[
+			{c: 'I-Beam (short)', d: 'https://help.dyalog.com/18.0/index.htm#Language/I%20Beam%20Functions/I%20Beam%20(short).htm'},
+			{c: 'I-Beam', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/I%20Beam.htm#I-Beam'}
+		]),
+	c: 'I-Beam'
 };
 var $author$project$CharInfo$iota = {
-	c: '⍳',
-	d: _List_fromArray(
+	e: '⍳',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('ii'),
 			$author$project$CharInfo$Backquote('i')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Index Generator'),
@@ -9152,16 +9324,21 @@ var $author$project$CharInfo$iota = {
 					['3'])
 			})
 		]),
-	f: 'Iota'
+	h: _List_fromArray(
+		[
+			{c: 'Index Generator', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Generator.htm'},
+			{c: 'Index Of', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20Of.htm'}
+		]),
+	c: 'Iota'
 };
 var $author$project$CharInfo$iotaUnderbar = {
-	c: '⍸',
-	d: _List_fromArray(
+	e: '⍸',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('i_'),
 			$author$project$CharInfo$Backquote('I')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Where'),
@@ -9224,16 +9401,21 @@ var $author$project$CharInfo$iotaUnderbar = {
 					['2'])
 			})
 		]),
-	f: 'Iota Underbar'
+	h: _List_fromArray(
+		[
+			{c: 'Where', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Where.htm'},
+			{c: 'Interval Index', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Interval%20Index.htm'}
+		]),
+	c: 'Iota Underbar'
 };
 var $author$project$CharInfo$jot = {
-	c: '∘',
-	d: _List_fromArray(
+	e: '∘',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('oo'),
 			$author$project$CharInfo$Backquote('j')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Beside and Bind'),
@@ -9263,17 +9445,22 @@ var $author$project$CharInfo$jot = {
 					['1.61803'])
 			})
 		]),
-	f: 'Jot'
+	h: _List_fromArray(
+		[
+			{c: 'Beside', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Beside.htm'},
+			{c: 'Bind', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Bind.htm'}
+		]),
+	c: 'Jot'
 };
 var $author$project$CharInfo$jotDiaeresis = {
-	c: '⍤',
-	d: _List_fromArray(
+	e: '⍤',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('o:'),
 			$author$project$CharInfo$Tab('o\"'),
 			$author$project$CharInfo$Backquote('J')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator (f⍤g)'),
 			$author$project$CharInfo$Heading('Atop'),
@@ -9343,18 +9530,24 @@ var $author$project$CharInfo$jotDiaeresis = {
 					['11 12 13 14', '25 26 27 28', '39 40 41 42'])
 			})
 		]),
-	f: 'Jot Diaeresis'
+	h: _List_fromArray(
+		[
+			{c: 'Atop', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Atop.htm'},
+			{c: 'Rank', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Rank.htm'}
+		]),
+	c: 'Jot Diaeresis'
 };
 var $author$project$CharInfo$lamp = {
-	c: '⍝',
-	d: _List_fromArray(
+	e: '⍝',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('on'),
 			$author$project$CharInfo$Backquote(',')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Syntax:    Comment'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Comment'),
 			$author$project$CharInfo$Plain(
 			_List_fromArray(
 				['Text to the right of ⍝ is ignored.'])),
@@ -9366,16 +9559,20 @@ var $author$project$CharInfo$lamp = {
 					['5'])
 			})
 		]),
-	f: 'Lamp'
+	h: _List_fromArray(
+		[
+			{c: 'Statements', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/TradFns/Statements.htm'}
+		]),
+	c: 'Lamp'
 };
 var $author$project$CharInfo$leftArrow = {
-	c: '←',
-	d: _List_fromArray(
+	e: '←',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('<-'),
 			$author$project$CharInfo$Backquote('[')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Heading('Assignment'),
 			$author$project$CharInfo$Heading('Naming:'),
@@ -9393,17 +9590,26 @@ var $author$project$CharInfo$leftArrow = {
 				b: _List_Nil
 			})
 		]),
-	f: 'Left Arrow'
+	h: _List_fromArray(
+		[
+			{c: 'Assignment', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment.htm'},
+			{c: 'Assignment (Indexed)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment%20Indexed.htm'},
+			{c: 'Assignment (Selective)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Assignment%20Selective.htm'},
+			{c: 'Assignment (Modified)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Modified.htm'},
+			{c: 'Assignment (Indexed Modified)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Indexed%20Modified.htm'},
+			{c: 'Assignment (Selective Modified)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Assignment%20Selective%20Modified.htm'}
+		]),
+	c: 'Left Arrow'
 };
 var $author$project$CharInfo$leftShoe = {
-	c: '⊂',
-	d: _List_fromArray(
+	e: '⊂',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('(('),
 			$author$project$CharInfo$Tab('cc'),
 			$author$project$CharInfo$Backquote('z')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Enclose'),
@@ -9438,17 +9644,23 @@ var $author$project$CharInfo$leftShoe = {
 					['┌───┬─┐', '│2 3│4│', '└───┴─┘'])
 			})
 		]),
-	f: 'Left Shoe'
+	h: _List_fromArray(
+		[
+			{c: 'Enclose', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enclose.htm'},
+			{c: 'Enclose with Axes', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Enclose%20with%20Axes.htm'},
+			{c: 'Partitioned Enclose', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partitioned%20Enclose.htm'}
+		]),
+	c: 'Left Shoe'
 };
 var $author$project$CharInfo$leftShoeUnderbar = {
-	c: '⊆',
-	d: _List_fromArray(
+	e: '⊆',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('(_'),
 			$author$project$CharInfo$Tab('c_'),
 			$author$project$CharInfo$Backquote('Z')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Nest'),
@@ -9490,16 +9702,21 @@ var $author$project$CharInfo$leftShoeUnderbar = {
 					['┌────┬─┬────┐', '│many│a│time│', '└────┴─┴────┘'])
 			})
 		]),
-	f: 'Left Shoe Underbar'
+	h: _List_fromArray(
+		[
+			{c: 'Nest', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nest.htm'},
+			{c: 'Partition', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Partition.htm'}
+		]),
+	c: 'Left Shoe Underbar'
 };
 var $author$project$CharInfo$leftTack = {
-	c: '⊣',
-	d: _List_fromArray(
+	e: '⊣',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('-|'),
 			$author$project$CharInfo$Backquote('|')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Same'),
@@ -9527,15 +9744,20 @@ var $author$project$CharInfo$leftTack = {
 					['1'])
 			})
 		]),
-	f: 'Left Tack'
+	h: _List_fromArray(
+		[
+			{c: 'Same', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Same.htm'},
+			{c: 'Left', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Left.htm'}
+		]),
+	c: 'Left Tack'
 };
 var $author$project$CharInfo$lessThan = {
-	c: '<',
-	d: _List_fromArray(
+	e: '<',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('3')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Less Than'),
@@ -9554,17 +9776,21 @@ var $author$project$CharInfo$lessThan = {
 					['1 0 0'])
 			})
 		]),
-	f: 'Less Than'
+	h: _List_fromArray(
+		[
+			{c: 'Less', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Less.htm'}
+		]),
+	c: 'Less Than'
 };
 var $author$project$CharInfo$lessThanOrEqualTo = {
-	c: '≤',
-	d: _List_fromArray(
+	e: '≤',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('<='),
 			$author$project$CharInfo$Tab('<_'),
 			$author$project$CharInfo$Backquote('4')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Less Than or Equal To'),
@@ -9583,16 +9809,20 @@ var $author$project$CharInfo$lessThanOrEqualTo = {
 					['1 1 0'])
 			})
 		]),
-	f: 'Less Than Or Equal To'
+	h: _List_fromArray(
+		[
+			{c: 'Less Or Equal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Less%20Or%20Equal.htm'}
+		]),
+	c: 'Less Than Or Equal To'
 };
 var $author$project$CharInfo$log = {
-	c: '⍟',
-	d: _List_fromArray(
+	e: '⍟',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('*O'),
 			$author$project$CharInfo$Backquote('*')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Natural Logarithm'),
@@ -9613,16 +9843,21 @@ var $author$project$CharInfo$log = {
 					['5 3'])
 			})
 		]),
-	f: 'Log'
+	h: _List_fromArray(
+		[
+			{c: 'Natural Logarithm', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Natural%20Logarithm.htm'},
+			{c: 'Logarithm', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Logarithm.htm'}
+		]),
+	c: 'Log'
 };
 var $author$project$CharInfo$logicalAnd = {
-	c: '∧',
-	d: _List_fromArray(
+	e: '∧',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('^^'),
 			$author$project$CharInfo$Backquote('0')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Lowest Common Multiple (AND)'),
@@ -9641,16 +9876,20 @@ var $author$project$CharInfo$logicalAnd = {
 					['105 1 4 0'])
 			})
 		]),
-	f: 'Logical AND'
+	h: _List_fromArray(
+		[
+			{c: 'And, Lowest Common Multiple', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/And%20Lowest%20Common%20Multiple.htm'}
+		]),
+	c: 'Logical AND'
 };
 var $author$project$CharInfo$logicalNand = {
-	c: '⍲',
-	d: _List_fromArray(
+	e: '⍲',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('^~'),
 			$author$project$CharInfo$Backquote(')')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('NAND'),
@@ -9662,16 +9901,20 @@ var $author$project$CharInfo$logicalNand = {
 					['1 1 1 0'])
 			})
 		]),
-	f: 'Logical NAND'
+	h: _List_fromArray(
+		[
+			{c: 'Nand', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nand.htm'}
+		]),
+	c: 'Logical NAND'
 };
 var $author$project$CharInfo$logicalNor = {
-	c: '⍱',
-	d: _List_fromArray(
+	e: '⍱',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('v~'),
 			$author$project$CharInfo$Backquote('(')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('NOR'),
@@ -9683,16 +9926,20 @@ var $author$project$CharInfo$logicalNor = {
 					['1 0 0 0'])
 			})
 		]),
-	f: 'Logical NOR'
+	h: _List_fromArray(
+		[
+			{c: 'Nor', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Nor.htm'}
+		]),
+	c: 'Logical NOR'
 };
 var $author$project$CharInfo$logicalOr = {
-	c: '∨',
-	d: _List_fromArray(
+	e: '∨',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('vv'),
 			$author$project$CharInfo$Backquote('9')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Greatest Common Divisor (OR)'),
@@ -9711,12 +9958,16 @@ var $author$project$CharInfo$logicalOr = {
 					['5 1 2 7'])
 			})
 		]),
-	f: 'Logical OR'
+	h: _List_fromArray(
+		[
+			{c: 'Or, Greatest Common Divisor', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Or%20Greatest%20Common%20Divisor.htm'}
+		]),
+	c: 'Logical OR'
 };
 var $author$project$CharInfo$minus = {
-	c: '-',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '-',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Negate'),
@@ -9744,17 +9995,22 @@ var $author$project$CharInfo$minus = {
 					['3 ¯2 0'])
 			})
 		]),
-	f: 'Minus'
+	h: _List_fromArray(
+		[
+			{c: 'Subtract', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Subtract.htm'},
+			{c: 'Negative', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Negative.htm'}
+		]),
+	c: 'Minus'
 };
 var $author$project$CharInfo$notEqual = {
-	c: '≠',
-	d: _List_fromArray(
+	e: '≠',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('=/'),
 			$author$project$CharInfo$Tab('L-'),
 			$author$project$CharInfo$Backquote('8')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Unique Mask'),
@@ -9803,18 +10059,24 @@ var $author$project$CharInfo$notEqual = {
 					['1'])
 			})
 		]),
-	f: 'Not Equal'
+	h: _List_fromArray(
+		[
+			{c: 'Unique Mask', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Unique%20Mask.htm'},
+			{c: 'Not Equal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not%20Equal.htm'}
+		]),
+	c: 'Not Equal'
 };
 var $author$project$CharInfo$omega = {
-	c: '⍵',
-	d: _List_fromArray(
+	e: '⍵',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('ww'),
 			$author$project$CharInfo$Backquote('w')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Omega Syntax: Right argument of a dfn'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Omega (⍵): Right argument of a dfn'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -9822,7 +10084,8 @@ var $author$project$CharInfo$omega = {
 				b: _List_fromArray(
 					['6'])
 			}),
-			$author$project$CharInfo$Heading('Double-Omega Syntax: Right operand of a dop'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Double-Omega (⍵⍵): Right operand of a dop'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -9831,12 +10094,17 @@ var $author$project$CharInfo$omega = {
 					['12'])
 			})
 		]),
-	f: 'Omega'
+	h: _List_fromArray(
+		[
+			{c: 'Dfns & Dops', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Functions%20and%20Operators.htm'},
+			{c: 'Dops', d: 'https://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Dynamic%20Operators.htm'}
+		]),
+	c: 'Omega'
 };
 var $author$project$CharInfo$plus = {
-	c: '+',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '+',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Conjugate'),
@@ -9871,18 +10139,24 @@ var $author$project$CharInfo$plus = {
 					['6'])
 			})
 		]),
-	f: 'Plus'
+	h: _List_fromArray(
+		[
+			{c: 'Add', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Add.htm'},
+			{c: 'Conjugate', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Conjugate.htm'}
+		]),
+	c: 'Plus'
 };
 var $author$project$CharInfo$quad = {
-	c: '⎕',
-	d: _List_fromArray(
+	e: '⎕',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[]'),
 			$author$project$CharInfo$Backquote('l')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Niladic:     Evaluated Input/Output'),
+			$author$project$CharInfo$Category('Niladic'),
+			$author$project$CharInfo$Heading('Evaluated Input/Output'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -9905,17 +10179,21 @@ var $author$project$CharInfo$quad = {
 					['7', '9'])
 			})
 		]),
-	f: 'Quad'
+	h: _List_fromArray(
+		[
+			{c: 'Evaluated Input/Output', d: 'https://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Evaluated%20Input%20Output.htm'}
+		]),
+	c: 'Quad'
 };
 var $author$project$CharInfo$quadColon = {
-	c: '⍠',
-	d: _List_fromArray(
+	e: '⍠',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[:'),
 			$author$project$CharInfo$Tab(':]'),
 			$author$project$CharInfo$Backquote('?')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Variant'),
@@ -9941,17 +10219,21 @@ var $author$project$CharInfo$quadColon = {
 					['xBC'])
 			})
 		]),
-	f: 'Quad Colon'
+	h: _List_fromArray(
+		[
+			{c: 'Variant', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Variant.htm'}
+		]),
+	c: 'Quad Colon'
 };
 var $author$project$CharInfo$quadDiamond = {
-	c: '⌺',
-	d: _List_fromArray(
+	e: '⌺',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[<'),
 			$author$project$CharInfo$Tab('>]'),
 			$author$project$CharInfo$Backquote('~')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Stencil'),
@@ -9984,17 +10266,21 @@ var $author$project$CharInfo$quadDiamond = {
 					['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘'])
 			})
 		]),
-	f: 'Quad Diamond'
+	h: _List_fromArray(
+		[
+			{c: 'Stencil', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Stencil.htm'}
+		]),
+	c: 'Quad Diamond'
 };
 var $author$project$CharInfo$quadEqual = {
-	c: '⌸',
-	d: _List_fromArray(
+	e: '⌸',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[='),
 			$author$project$CharInfo$Tab('=]'),
 			$author$project$CharInfo$Backquote('K')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic operator'),
 			$author$project$CharInfo$Heading('Key'),
@@ -10027,15 +10313,19 @@ var $author$project$CharInfo$quadEqual = {
 					['┌─┬─────┐', '│B│1    │', '├─┼─────┤', '│a│2 4 6│', '├─┼─────┤', '│n│3 5  │', '└─┴─────┘'])
 			})
 		]),
-	f: 'Quad Equal'
+	h: _List_fromArray(
+		[
+			{c: 'Key', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Key.htm'}
+		]),
+	c: 'Quad Equal'
 };
 var $author$project$CharInfo$questionMark = {
-	c: '?',
-	d: _List_fromArray(
+	e: '?',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('q')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Roll'),
@@ -10063,19 +10353,25 @@ var $author$project$CharInfo$questionMark = {
 					['36 31 44 11 27 42 13 8 2 33 19 34 6'])
 			})
 		]),
-	f: 'Question Mark'
+	h: _List_fromArray(
+		[
+			{c: 'Roll', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Roll.htm'},
+			{c: 'Deal', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Deal.htm'}
+		]),
+	c: 'Question Mark'
 };
 var $author$project$CharInfo$quoteQuad = {
-	c: '⍞',
-	d: _List_fromArray(
+	e: '⍞',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[\''),
 			$author$project$CharInfo$Tab('\']'),
 			$author$project$CharInfo$Backquote('{')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Niladic:     Character Input/Output'),
+			$author$project$CharInfo$Category('Niladic'),
+			$author$project$CharInfo$Heading('Character Input/Output'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -10112,17 +10408,21 @@ var $author$project$CharInfo$quoteQuad = {
 					['┌────┬─────┐', '│John│Brown│', '└────┴─────┘'])
 			})
 		]),
-	f: 'Quote Quad'
+	h: _List_fromArray(
+		[
+			{c: 'Character Input/Output', d: 'https://help.dyalog.com/18.0/index.htm#Language/System%20Functions/Character%20Input%20Output.htm'}
+		]),
+	c: 'Quote Quad'
 };
 var $author$project$CharInfo$rho = {
-	c: '⍴',
-	d: _List_fromArray(
+	e: '⍴',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('rr'),
 			$author$project$CharInfo$Tab('pp'),
 			$author$project$CharInfo$Backquote('r')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Shape'),
@@ -10178,18 +10478,24 @@ var $author$project$CharInfo$rho = {
 					['1 2 3 4', '5 6 7 1', '2 3 4 5', '', '6 7 1 2', '3 4 5 6', '7 1 2 3'])
 			})
 		]),
-	f: 'Rho'
+	h: _List_fromArray(
+		[
+			{c: 'Shape', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Shape.htm'},
+			{c: 'Reshape', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Reshape.htm'}
+		]),
+	c: 'Rho'
 };
 var $author$project$CharInfo$rightArrow = {
-	c: '→',
-	d: _List_fromArray(
+	e: '→',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('->'),
 			$author$project$CharInfo$Backquote(']')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Syntax:    Branch (Clear suspension)'),
+			$author$project$CharInfo$Category('Syntax'),
+			$author$project$CharInfo$Heading('Branch (Clear suspension)'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -10200,16 +10506,21 @@ var $author$project$CharInfo$rightArrow = {
 			_List_fromArray(
 				['Branching is superseded by the more modern control structures such as :If ... :EndIf']))
 		]),
-	f: 'Right Arrow'
+	h: _List_fromArray(
+		[
+			{c: 'Branch', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Branch.htm'},
+			{c: 'Abort', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Abort.htm'}
+		]),
+	c: 'Right Arrow'
 };
 var $author$project$CharInfo$rightShoe = {
-	c: '⊃',
-	d: _List_fromArray(
+	e: '⊃',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('))'),
 			$author$project$CharInfo$Backquote('x')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('First'),
@@ -10251,16 +10562,21 @@ var $author$project$CharInfo$rightShoe = {
 					['3'])
 			})
 		]),
-	f: 'Right Shoe'
+	h: _List_fromArray(
+		[
+			{c: 'Disclose', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Disclose.htm'},
+			{c: 'Pick', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Pick.htm'}
+		]),
+	c: 'Right Shoe'
 };
 var $author$project$CharInfo$rightTack = {
-	c: '⊢',
-	d: _List_fromArray(
+	e: '⊢',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('|-'),
 			$author$project$CharInfo$Backquote('\\')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Same'),
@@ -10288,12 +10604,17 @@ var $author$project$CharInfo$rightTack = {
 					['3'])
 			})
 		]),
-	f: 'Right Tack'
+	h: _List_fromArray(
+		[
+			{c: 'Same', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Same.htm'},
+			{c: 'Right', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Right.htm'}
+		]),
+	c: 'Right Tack'
 };
 var $author$project$CharInfo$slash = {
-	c: '/',
-	d: _List_Nil,
-	e: _List_fromArray(
+	e: '/',
+	f: _List_Nil,
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Replicate'),
@@ -10356,16 +10677,22 @@ var $author$project$CharInfo$slash = {
 					['15 18 21 24', '51 54 57 60'])
 			})
 		]),
-	f: 'Slash'
+	h: _List_fromArray(
+		[
+			{c: 'Replicate', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate.htm'},
+			{c: 'Reduce', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce.htm'},
+			{c: 'Reduce N Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm'}
+		]),
+	c: 'Slash'
 };
 var $author$project$CharInfo$slashBar = {
-	c: '⌿',
-	d: _List_fromArray(
+	e: '⌿',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('/-'),
 			$author$project$CharInfo$Backquote('/')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Replicate First (Compress First)'),
@@ -10400,17 +10727,23 @@ var $author$project$CharInfo$slashBar = {
 					[' 6  8 10 12', '14 16 18 20'])
 			})
 		]),
-	f: 'Slash Bar'
+	h: _List_fromArray(
+		[
+			{c: 'Replicate First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate%20First.htm'},
+			{c: 'Reduce First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First.htm'},
+			{c: 'Reduce First N Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm'}
+		]),
+	c: 'Slash Bar'
 };
 var $author$project$CharInfo$squad = {
-	c: '⌷',
-	d: _List_fromArray(
+	e: '⌷',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('[|'),
 			$author$project$CharInfo$Tab('|]'),
 			$author$project$CharInfo$Backquote('L')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Materialise'),
@@ -10454,15 +10787,21 @@ var $author$project$CharInfo$squad = {
 					['2 6 10'])
 			})
 		]),
-	f: 'Squad'
+	h: _List_fromArray(
+		[
+			{c: 'Materialise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Materialise.htm'},
+			{c: 'Index', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index.htm'},
+			{c: 'Index with Axes', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Index%20with%20Axes.htm'}
+		]),
+	c: 'Squad'
 };
 var $author$project$CharInfo$star = {
-	c: '*',
-	d: _List_fromArray(
+	e: '*',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('p')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Exponential'),
@@ -10483,17 +10822,22 @@ var $author$project$CharInfo$star = {
 					['7 25 0J2'])
 			})
 		]),
-	f: 'Star'
+	h: _List_fromArray(
+		[
+			{c: 'Exponential', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Exponential.htm'},
+			{c: 'Power', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Power.htm'}
+		]),
+	c: 'Star'
 };
 var $author$project$CharInfo$starDiaeresis = {
-	c: '⍣',
-	d: _List_fromArray(
+	e: '⍣',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('*:'),
 			$author$project$CharInfo$Tab('*\"'),
 			$author$project$CharInfo$Backquote('P')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic operator'),
 			$author$project$CharInfo$Heading('Power'),
@@ -10540,15 +10884,19 @@ var $author$project$CharInfo$starDiaeresis = {
 					['1.61803'])
 			})
 		]),
-	f: 'Star Diaeresis'
+	h: _List_fromArray(
+		[
+			{c: 'Power Operator', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Power%20Operator.htm'}
+		]),
+	c: 'Star Diaeresis'
 };
 var $author$project$CharInfo$stile = {
-	c: '|',
-	d: _List_fromArray(
+	e: '|',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('m')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Magnitude (Absolute value)'),
@@ -10569,17 +10917,22 @@ var $author$project$CharInfo$stile = {
 					['1 7 ¯2'])
 			})
 		]),
-	f: 'Stile'
+	h: _List_fromArray(
+		[
+			{c: 'Magnitude', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Magnitude.htm'},
+			{c: 'Residue', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Residue.htm'}
+		]),
+	c: 'Stile'
 };
 var $author$project$CharInfo$thorn = {
-	c: '⍕',
-	d: _List_fromArray(
+	e: '⍕',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('oT'),
 			$author$project$CharInfo$Tab('o-'),
 			$author$project$CharInfo$Backquote('\'')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Format'),
@@ -10641,15 +10994,20 @@ var $author$project$CharInfo$thorn = {
 					['******'])
 			})
 		]),
-	f: 'Thorn'
+	h: _List_fromArray(
+		[
+			{c: 'Format (Monadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Format%20Monadic.htm'},
+			{c: 'Format (Dyadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Format%20Dyadic.htm'}
+		]),
+	c: 'Thorn'
 };
 var $author$project$CharInfo$tilde = {
-	c: '~',
-	d: _List_fromArray(
+	e: '~',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Backquote('t')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('NOT'),
@@ -10677,17 +11035,22 @@ var $author$project$CharInfo$tilde = {
 					['┌──┬──┐', '│aa│cc│', '└──┴──┘'])
 			})
 		]),
-	f: 'Tilde'
+	h: _List_fromArray(
+		[
+			{c: 'Not', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Not.htm'},
+			{c: 'Excluding', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Excluding.htm'}
+		]),
+	c: 'Tilde'
 };
 var $author$project$CharInfo$tildeDiaeresis = {
-	c: '⍨',
-	d: _List_fromArray(
+	e: '⍨',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('~:'),
 			$author$project$CharInfo$Tab('~\"'),
 			$author$project$CharInfo$Backquote('T')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic operator (f⍨)'),
 			$author$project$CharInfo$Heading('Commute (Switch)'),
@@ -10736,17 +11099,22 @@ var $author$project$CharInfo$tildeDiaeresis = {
 					['¯1 ¯1 ¯1', '¯1 ¯1 ¯1'])
 			})
 		]),
-	f: 'Tilde Diaeresis'
+	h: _List_fromArray(
+		[
+			{c: 'Commute', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Commute.htm'},
+			{c: 'Constant', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Constant.htm'}
+		]),
+	c: 'Tilde Diaeresis'
 };
 var $author$project$CharInfo$times = {
-	c: '×',
-	d: _List_fromArray(
+	e: '×',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('xx'),
 			$author$project$CharInfo$Tab('/\\'),
 			$author$project$CharInfo$Backquote('-')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Direction'),
@@ -10781,16 +11149,21 @@ var $author$project$CharInfo$times = {
 					['24'])
 			})
 		]),
-	f: 'Times'
+	h: _List_fromArray(
+		[
+			{c: 'Multiply', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Multiply.htm'},
+			{c: 'Direction (Signum)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Direction.htm'}
+		]),
+	c: 'Times'
 };
 var $author$project$CharInfo$transpose = {
-	c: '⍉',
-	d: _List_fromArray(
+	e: '⍉',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('O\\'),
 			$author$project$CharInfo$Backquote('^')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Transpose'),
@@ -10825,16 +11198,21 @@ var $author$project$CharInfo$transpose = {
 					['1 5'])
 			})
 		]),
-	f: 'Transpose'
+	h: _List_fromArray(
+		[
+			{c: 'Transpose (Monadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Transpose%20Monadic.htm'},
+			{c: 'Transpose (Dyadic)', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Transpose%20Dyadic.htm'}
+		]),
+	c: 'Transpose'
 };
 var $author$project$CharInfo$upArrow = {
-	c: '↑',
-	d: _List_fromArray(
+	e: '↑',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('^|'),
 			$author$project$CharInfo$Backquote('y')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Mix'),
@@ -10904,16 +11282,23 @@ var $author$project$CharInfo$upArrow = {
 					['0 0 0', '7 0 0'])
 			})
 		]),
-	f: 'Up Arrow'
+	h: _List_fromArray(
+		[
+			{c: 'Mix', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Mix.htm'},
+			{c: 'Take', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Take.htm'},
+			{c: 'Take with Axes', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Take%20with%20Axes.htm'},
+			{c: 'Disclose', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Disclose.htm'}
+		]),
+	c: 'Up Arrow'
 };
 var $author$project$CharInfo$upShoe = {
-	c: '∩',
-	d: _List_fromArray(
+	e: '∩',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('nn'),
 			$author$project$CharInfo$Backquote('c')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Intersection'),
@@ -10925,16 +11310,20 @@ var $author$project$CharInfo$upShoe = {
 					['┌──┬──┐', '│22│ab│', '└──┴──┘'])
 			})
 		]),
-	f: 'Up Shoe'
+	h: _List_fromArray(
+		[
+			{c: 'Intersection', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Intersection.htm'}
+		]),
+	c: 'Up Shoe'
 };
 var $author$project$CharInfo$upTack = {
-	c: '⊥',
-	d: _List_fromArray(
+	e: '⊥',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('|_'),
 			$author$project$CharInfo$Backquote('b')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Decode'),
@@ -10956,17 +11345,21 @@ var $author$project$CharInfo$upTack = {
 					['10000'])
 			})
 		]),
-	f: 'Up Tack'
+	h: _List_fromArray(
+		[
+			{c: 'Decode', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Decode.htm'}
+		]),
+	c: 'Up Tack'
 };
 var $author$project$CharInfo$upstile = {
-	c: '⌈',
-	d: _List_fromArray(
+	e: '⌈',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('77'),
 			$author$project$CharInfo$Tab('FF'),
 			$author$project$CharInfo$Backquote('s')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
 			$author$project$CharInfo$Category('Monadic function'),
 			$author$project$CharInfo$Heading('Ceiling (Round Up)'),
@@ -10994,18 +11387,24 @@ var $author$project$CharInfo$upstile = {
 					['4'])
 			})
 		]),
-	f: 'Upstile'
+	h: _List_fromArray(
+		[
+			{c: 'Ceiling', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Ceiling.htm'},
+			{c: 'Maximum', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Maximum.htm'}
+		]),
+	c: 'Upstile'
 };
 var $author$project$CharInfo$zilde = {
-	c: '⍬',
-	d: _List_fromArray(
+	e: '⍬',
+	f: _List_fromArray(
 		[
 			$author$project$CharInfo$Tab('0~'),
 			$author$project$CharInfo$Backquote('}')
 		]),
-	e: _List_fromArray(
+	g: _List_fromArray(
 		[
-			$author$project$CharInfo$Heading('Niladic:  Empty Numeric Vector'),
+			$author$project$CharInfo$Category('Niladic'),
+			$author$project$CharInfo$Heading('Empty Numeric Vector'),
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
@@ -11035,7 +11434,11 @@ var $author$project$CharInfo$zilde = {
 					['0'])
 			})
 		]),
-	f: 'Zilde'
+	h: _List_fromArray(
+		[
+			{c: 'Zilde', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Zilde.htm'}
+		]),
+	c: 'Zilde'
 };
 var $author$project$CharInfo$allItems = _List_fromArray(
 	[$author$project$CharInfo$leftArrow, $author$project$CharInfo$plus, $author$project$CharInfo$minus, $author$project$CharInfo$times, $author$project$CharInfo$divide, $author$project$CharInfo$star, $author$project$CharInfo$log, $author$project$CharInfo$domino, $author$project$CharInfo$circle, $author$project$CharInfo$exclamationMark, $author$project$CharInfo$questionMark, $author$project$CharInfo$stile, $author$project$CharInfo$upstile, $author$project$CharInfo$downstile, $author$project$CharInfo$upTack, $author$project$CharInfo$downTack, $author$project$CharInfo$leftTack, $author$project$CharInfo$rightTack, $author$project$CharInfo$equal, $author$project$CharInfo$notEqual, $author$project$CharInfo$lessThanOrEqualTo, $author$project$CharInfo$lessThan, $author$project$CharInfo$greaterThan, $author$project$CharInfo$greaterThanOrEqualTo, $author$project$CharInfo$equalUnderbar, $author$project$CharInfo$equalUnderbarSlash, $author$project$CharInfo$logicalOr, $author$project$CharInfo$logicalAnd, $author$project$CharInfo$logicalNand, $author$project$CharInfo$logicalNor, $author$project$CharInfo$upArrow, $author$project$CharInfo$downArrow, $author$project$CharInfo$leftShoe, $author$project$CharInfo$rightShoe, $author$project$CharInfo$leftShoeUnderbar, $author$project$CharInfo$squad, $author$project$CharInfo$gradeUp, $author$project$CharInfo$gradeDown, $author$project$CharInfo$iota, $author$project$CharInfo$iotaUnderbar, $author$project$CharInfo$epsilon, $author$project$CharInfo$epsilonUnderbar, $author$project$CharInfo$downShoe, $author$project$CharInfo$upShoe, $author$project$CharInfo$tilde, $author$project$CharInfo$slash, $author$project$CharInfo$backslash, $author$project$CharInfo$slashBar, $author$project$CharInfo$backslashBar, $author$project$CharInfo$comma, $author$project$CharInfo$commaBar, $author$project$CharInfo$rho, $author$project$CharInfo$circleStile, $author$project$CharInfo$circleBar, $author$project$CharInfo$transpose, $author$project$CharInfo$diaeresis, $author$project$CharInfo$tildeDiaeresis, $author$project$CharInfo$starDiaeresis, $author$project$CharInfo$dot, $author$project$CharInfo$jot, $author$project$CharInfo$jotDiaeresis, $author$project$CharInfo$circleDiaeresis, $author$project$CharInfo$at, $author$project$CharInfo$quoteQuad, $author$project$CharInfo$quad, $author$project$CharInfo$quadColon, $author$project$CharInfo$quadEqual, $author$project$CharInfo$quadDiamond, $author$project$CharInfo$iBeam, $author$project$CharInfo$hydrant, $author$project$CharInfo$thorn, $author$project$CharInfo$diamond, $author$project$CharInfo$lamp, $author$project$CharInfo$rightArrow, $author$project$CharInfo$omega, $author$project$CharInfo$alpha, $author$project$CharInfo$del, $author$project$CharInfo$ampersand, $author$project$CharInfo$highMinus, $author$project$CharInfo$zilde, $author$project$CharInfo$delta, $author$project$CharInfo$deltaUnderbar]);
@@ -11055,7 +11458,7 @@ var $author$project$Main$items = $elm$core$Dict$fromList(
 	A2(
 		$elm$core$List$map,
 		function (item) {
-			return _Utils_Tuple2(item.c, item);
+			return _Utils_Tuple2(item.e, item);
 		},
 		$author$project$CharInfo$allItems));
 var $elm$html$Html$li = _VirtualDom_node('li');
@@ -11139,6 +11542,7 @@ var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -11198,6 +11602,12 @@ var $elm$core$List$head = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
+var $elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
 var $elm$core$List$intersperse = F2(
 	function (sep, xs) {
 		if (!xs.b) {
@@ -11225,16 +11635,18 @@ var $elm$core$List$isEmpty = function (xs) {
 };
 var $elm$core$Basics$not = _Basics_not;
 var $elm$html$Html$span = _VirtualDom_node('span');
+var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $elm_community$html_extra$Html$Extra$nothing = $elm$html$Html$text('');
 var $elm_community$html_extra$Html$Extra$viewIf = F2(
 	function (condition, html) {
 		return condition ? html : $elm_community$html_extra$Html$Extra$nothing;
 	});
 var $author$project$Main$viewHelp = function (_v0) {
-	var _char = _v0.c;
-	var name = _v0.f;
-	var completions = _v0.d;
-	var description = _v0.e;
+	var _char = _v0.e;
+	var name = _v0.c;
+	var docsLinks = _v0.h;
+	var completions = _v0.f;
+	var description = _v0.g;
 	return _List_fromArray(
 		[
 			A2(
@@ -11363,6 +11775,51 @@ var $author$project$Main$viewHelp = function (_v0) {
 					$elm$html$Html$text(')')
 				])),
 			A2(
+			$elm_community$html_extra$Html$Extra$viewIf,
+			!$elm$core$List$isEmpty(docsLinks),
+			A2(
+				$elm$html$Html$ul,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('help-docs')
+					]),
+				A2(
+					$elm$core$List$map,
+					function (link) {
+						return A2(
+							$elm$html$Html$li,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('help-docs-item')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$span,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('help-docs-label')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Docs: ')
+										])),
+									A2(
+									$elm$html$Html$a,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$href(link.d),
+											$elm$html$Html$Attributes$target('_blank'),
+											$elm$html$Html$Attributes$class('help-docs-link')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(link.c)
+										]))
+								]));
+					},
+					docsLinks))),
+			A2(
 			$elm$html$Html$div,
 			_List_fromArray(
 				[
@@ -11420,6 +11877,22 @@ var $author$project$Main$viewHelp = function (_v0) {
 								},
 								lines);
 						case 3:
+							var lines = item.a;
+							return _List_fromArray(
+								[
+									A2(
+									$elm$html$Html$div,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('help-description-verbatim')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(
+											A2($elm$core$String$join, '\n', lines))
+										]))
+								]);
+						case 4:
 							var lines = item.a;
 							return _List_fromArray(
 								[
@@ -11509,7 +11982,7 @@ var $author$project$Main$viewHelp = function (_v0) {
 };
 var $author$project$Main$view = function (model) {
 	return {
-		_: _List_fromArray(
+		ab: _List_fromArray(
 			[
 				A2(
 				$elm$html$Html$div,
@@ -11526,7 +11999,7 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$Attributes$class('help')
 							]),
 						function () {
-							var _v0 = A2($elm$core$Dict$get, model.N, $author$project$Main$items);
+							var _v0 = A2($elm$core$Dict$get, model.P, $author$project$Main$items);
 							if (_v0.$ === 1) {
 								return _List_Nil;
 							} else {
@@ -11560,7 +12033,7 @@ var $author$project$Main$view = function (model) {
 												$elm$html$Html$Attributes$class('input'),
 												$elm$html$Html$Attributes$value(model.a),
 												$elm$html$Html$Attributes$placeholder('Put your APL expression here!'),
-												$elm$html$Html$Attributes$disabled(model.p),
+												$elm$html$Html$Attributes$disabled(model.r),
 												A2(
 												$elm$html$Html$Events$on,
 												'lang-bar-updated-input-value',
@@ -11572,7 +12045,7 @@ var $author$project$Main$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$Attributes$class('button'),
-												$elm$html$Html$Attributes$disabled(model.p),
+												$elm$html$Html$Attributes$disabled(model.r),
 												$elm$html$Html$Events$onClick($author$project$Main$SendRequest)
 											]),
 										_List_fromArray(
@@ -11685,21 +12158,21 @@ var $author$project$Main$view = function (model) {
 															]))
 													]));
 										}),
-									model.o))
+									model.q))
 							]))
 					]))
 			]),
-		a_: 'TryAPL Mini'
+		a0: 'TryAPL Mini'
 	};
 };
 var $author$project$Main$main = $elm$browser$Browser$document(
-	{aN: $author$project$Main$init, aY: $author$project$Main$subscriptions, a0: $author$project$Main$update, a2: $author$project$Main$view});
+	{aP: $author$project$Main$init, a_: $author$project$Main$subscriptions, a2: $author$project$Main$update, a3: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,
 		function (urlHash) {
 			return $elm$json$Json$Decode$succeed(
-				{Y: urlHash});
+				{_: urlHash});
 		},
 		A2(
 			$elm$json$Json$Decode$field,
