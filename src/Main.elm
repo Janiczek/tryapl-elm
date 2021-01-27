@@ -36,6 +36,7 @@ type alias Flags =
 type alias Model =
     { state : TryAPLState
     , input : String
+    , delayedInput : Maybe String
     , isLoading : Bool
     , focusedChar : Char
     , log : List Expr
@@ -72,6 +73,7 @@ init flags =
             , hash = ""
             }
       , input = ""
+      , delayedInput = Nothing
       , isLoading = False
       , focusedChar = '+'
       , log = []
@@ -98,7 +100,10 @@ tryApplyHash maybeHash ( model, cmd ) =
 
 
 type Msg
-    = SetInput String
+    = MouseDown String
+    | MouseMove
+    | MouseUp
+    | SetInput String
     | SendRequest
     | ReceivedResponse (Result Http.Error ( TryAPLState, List String ))
     | ScrollAttempted (Result Browser.Dom.Error ())
@@ -111,6 +116,24 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        MouseDown input ->
+            ( { model | delayedInput = Just input }, Cmd.none )
+
+        MouseMove ->
+            ( { model | delayedInput = Nothing }, Cmd.none )
+
+        MouseUp ->
+            case model.delayedInput of
+                Nothing ->
+                    ( model, Cmd.none )
+
+                Just delayedInput ->
+                    ( model
+                    , Task.perform
+                        (\_ -> SetInput delayedInput)
+                        (Task.succeed ())
+                    )
+
         SetInput input ->
             if model.isLoading then
                 ( model, Cmd.none )
@@ -372,7 +395,9 @@ view model =
                         |> List.map
                             (\expr ->
                                 Html.li
-                                    [ Events.onClick (SetInput expr)
+                                    [ Events.on "mousedown" (Decode.succeed (MouseDown expr))
+                                    , Events.on "mousemove" (Decode.succeed MouseMove)
+                                    , Events.on "mouseup" (Decode.succeed MouseUp)
                                     , Attrs.class "example-expression"
                                     ]
                                     [ Html.text expr ]
@@ -387,7 +412,9 @@ view model =
                         |> List.indexedMap
                             (\index { input, output } ->
                                 Html.div
-                                    [ Events.onClick (SetInput input)
+                                    [ Events.on "mousedown" (Decode.succeed (MouseDown input))
+                                    , Events.on "mousemove" (Decode.succeed MouseMove)
+                                    , Events.on "mouseup" (Decode.succeed MouseUp)
                                     , Attrs.class "expr"
                                     ]
                                     [ Html.div
@@ -539,7 +566,9 @@ viewHelp { char, name, docsLinks, completions, description } =
                                             |> List.map
                                                 (\line ->
                                                     Html.span
-                                                        [ Events.onClick (SetInput line)
+                                                        [ Events.on "mousedown" (Decode.succeed (MouseDown line))
+                                                        , Events.on "mousemove" (Decode.succeed MouseMove)
+                                                        , Events.on "mouseup" (Decode.succeed MouseUp)
                                                         , Attrs.class "help-description-input-line"
                                                         ]
                                                         [ Html.text line ]
@@ -549,7 +578,9 @@ viewHelp { char, name, docsLinks, completions, description } =
                                 , Html.viewIf (not (List.isEmpty output)) <|
                                     Html.div
                                         [ Attrs.class "help-description-output"
-                                        , Attrs.attributeMaybe (Events.onClick << SetInput) lastInputLine
+                                        , Attrs.attributeMaybe (Events.on "mousedown" << Decode.succeed << MouseDown) lastInputLine
+                                        , Attrs.attributeMaybe (\_ -> Events.on "mousemove" (Decode.succeed MouseMove)) lastInputLine
+                                        , Attrs.attributeMaybe (\_ -> Events.on "mouseup" (Decode.succeed MouseUp)) lastInputLine
                                         ]
                                         [ output
                                             |> String.join "\n"
