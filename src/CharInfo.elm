@@ -374,7 +374,10 @@ domino =
         [ Category "Monadic function"
         , Heading "Matrix Inverse"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 2 ⍴ ⍳4"
+                , "mat"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -984,7 +987,10 @@ equalUnderbarSlash =
             , output = [ "2" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 3 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2 3"
                 , "4 5 6"
@@ -1159,7 +1165,10 @@ upArrow =
             , output = [ "apple" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -1208,7 +1217,10 @@ downArrow =
         [ Category "Monadic function"
         , Heading "Split"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -1452,7 +1464,10 @@ squad =
         , Category "Dyadic function"
         , Heading "Index"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -1615,7 +1630,10 @@ iota =
             , output = [ "1 3 10" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 2 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -1650,7 +1668,10 @@ iotaUnderbar =
             , output = [ "1 4 5" ]
             }
         , Example
-            { input = [ "bmat" ]
+            { input =
+                [ "bmat ← 2 3 ⍴ 0 1"
+                , "bmat"
+                ]
             , output =
                 [ "0 1 0"
                 , "1 0 1"
@@ -1675,7 +1696,10 @@ iotaUnderbar =
             , output = [ "0 1 1 2 2 3 3" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 2 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -1711,7 +1735,10 @@ epsilon =
         [ Category "Monadic function"
         , Heading "Enlist"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 3 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2 3"
                 , "4 5 6"
@@ -1809,7 +1836,10 @@ downShoe =
                 ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← ↑ 'flywheel' 'shyster' 'flywheel'"
+                , "mat"
+                ]
             , output =
                 [ "flywheel"
                 , "shyster "
@@ -1929,7 +1959,10 @@ slash =
             , output = [ "3 5 7 9" ]
             }
         , Example
-            { input = [ "cube    ⍝ 3D array" ]
+            { input =
+                [ "cube ← 2 3 4 ⍴ ⍳24"
+                , "cube    ⍝ 3D array"
+                ]
             , output =
                 [ " 1  2  3  4"
                 , " 5  6  7  8"
@@ -1993,7 +2026,10 @@ backslash =
             , output = [ "1 3 6 10 15" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2037,7 +2073,10 @@ slashBar =
         [ Category "Dyadic function"
         , Heading "Replicate First (Compress First)"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2085,7 +2124,10 @@ backslashBar =
         [ Category "Dyadic function"
         , Heading "Expand First"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2130,7 +2172,10 @@ comma =
         [ Category "Monadic function"
         , Heading "Ravel"
         , Example
-            { input = [ "cube    ⍝ 3D array" ]
+            { input =
+                [ "cube ← 2 2 2 ⍴ ⍳8"
+                , "cube    ⍝ 3D array"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -2201,7 +2246,10 @@ commaBar =
                 ]
             }
         , Example
-            { input = [ "cube    ⍝ 3D array" ]
+            { input =
+                [ "cube ← 2 2 2 ⍴ ⍳8"
+                , "cube    ⍝ 3D array"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -2220,7 +2268,10 @@ commaBar =
         , Category "Dyadic function"
         , Heading "Catenate First/Laminate"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 3 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2 3"
                 , "4 5 6"
@@ -2263,7 +2314,10 @@ rho =
         [ Category "Monadic function"
         , Heading "Shape"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2328,7 +2382,10 @@ circleStile =
             , output = [ "smart" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2405,7 +2462,10 @@ circleBar =
         [ Category "Monadic function"
         , Heading "Reverse First"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 3 4 ⍴ ⍳12"
+                , "mat"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -2450,7 +2510,10 @@ transpose =
         [ Category "Monadic function"
         , Heading "Transpose"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 3 ⍴ ⍳6"
+                , "mat"
+                ]
             , output =
                 [ "1 2 3"
                 , "4 5 6"
@@ -2591,7 +2654,10 @@ starDiaeresis =
         [ Category "Dyadic operator"
         , Heading "Power"
         , Example
-            { input = [ "cube    ⍝ 3D array" ]
+            { input =
+                [ "cube ← 2 2 2 ⍴ ⎕A"
+                , "cube    ⍝ 3D array"
+                ]
             , output =
                 [ "AB"
                 , "CD"
@@ -2666,7 +2732,10 @@ dot =
             , output = [ "1" ]
             }
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 2 2 ⍴ ⍳4"
+                , "mat"
+                ]
             , output =
                 [ "1 2"
                 , "3 4"
@@ -2764,7 +2833,10 @@ jotDiaeresis =
         , Category "Dyadic operator (f⍤a)"
         , Heading "Rank"
         , Example
-            { input = [ "cube    ⍝ 3D array" ]
+            { input =
+                [ "cube ← 2 2 3 ⍴ ⍳12"
+                , "cube    ⍝ 3D array"
+                ]
             , output =
                 [ " 1  2  3"
                 , " 4  5  6"
@@ -2781,7 +2853,10 @@ jotDiaeresis =
                 ]
             }
         , Example
-            { input = [ "cmat    ⍝ character matrix" ]
+            { input =
+                [ "cmat ← 2 3 ⍴ 'abczxy'"
+                , "cmat    ⍝ character matrix"
+                ]
             , output =
                 [ "abc"
                 , "zxy"
@@ -2795,7 +2870,10 @@ jotDiaeresis =
                 ]
             }
         , Example
-            { input = [ "nmat     ⍝ numeric matrix" ]
+            { input =
+                [ "nmat ← 3 4 ⍴ ⍳12"
+                , "nmat     ⍝ numeric matrix"
+                ]
             , output =
                 [ "1  2  3  4"
                 , "5  6  7  8"
@@ -3081,7 +3159,10 @@ quadDiamond =
         [ Category "Dyadic operator"
         , Heading "Stencil"
         , Example
-            { input = [ "mat" ]
+            { input =
+                [ "mat ← 4 4 ⍴ ⍳16"
+                , "mat"
+                ]
             , output =
                 [ " 1  2  3  4"
                 , " 5  6  7  8"
@@ -3215,7 +3296,10 @@ thorn =
             , output = [ "4·5·6" ]
             }
         , Example
-            { input = [ "mat            ⍝ numeric matrix" ]
+            { input =
+                [ "mat ← 2 3 ⍴ ⍳6"
+                , "mat            ⍝ numeric matrix"
+                ]
             , output =
                 [ "1 2 3"
                 , "4 5 6"
