@@ -416,13 +416,6 @@ circle =
             { input = [ "○ 0 1 2" ]
             , output = [ "0 3.14159 6.28319" ]
             }
-        , Example
-            { input = [ "⌹ mat" ]
-            , output =
-                [ "¯2    1"
-                , " 1.5 ¯0.5"
-                ]
-            }
         , Category "Dyadic function"
         , Heading "Circular Functions (Trig)"
         , Plain [ "Note: Angles are in radians" ]
@@ -1911,7 +1904,7 @@ slash =
     , docsLinks =
         [ { name = "Replicate", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate.htm" }
         , { name = "Reduce", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce.htm" }
-        , { name = "Reduce N Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm" }
+        , { name = "Reduce N-Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm" }
         ]
     , completions = []
     , description =
@@ -2034,7 +2027,7 @@ slashBar =
     , docsLinks =
         [ { name = "Replicate First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate%20First.htm" }
         , { name = "Reduce First", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First.htm" }
-        , { name = "Reduce First N Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm" }
+        , { name = "Reduce First N-Wise", url = "https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm" }
         ]
     , completions =
         [ Tab "/-"

@@ -7871,13 +7871,6 @@ var $author$project$CharInfo$circle = {
 				b: _List_fromArray(
 					['0 3.14159 6.28319'])
 			}),
-			$author$project$CharInfo$Example(
-			{
-				a: _List_fromArray(
-					['⌹ mat']),
-				b: _List_fromArray(
-					['¯2    1', ' 1.5 ¯0.5'])
-			}),
 			$author$project$CharInfo$Category('Dyadic function'),
 			$author$project$CharInfo$Heading('Circular Functions (Trig)'),
 			$author$project$CharInfo$Plain(
@@ -10681,7 +10674,7 @@ var $author$project$CharInfo$slash = {
 		[
 			{c: 'Replicate', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate.htm'},
 			{c: 'Reduce', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce.htm'},
-			{c: 'Reduce N Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm'}
+			{c: 'Reduce N-Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20N%20Wise.htm'}
 		]),
 	c: 'Slash'
 };
@@ -10731,7 +10724,7 @@ var $author$project$CharInfo$slashBar = {
 		[
 			{c: 'Replicate First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Functions/Replicate%20First.htm'},
 			{c: 'Reduce First', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First.htm'},
-			{c: 'Reduce First N Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm'}
+			{c: 'Reduce First N-Wise', d: 'https://help.dyalog.com/18.0/index.htm#Language/Primitive%20Operators/Reduce%20First%20N%20Wise.htm'}
 		]),
 	c: 'Slash Bar'
 };
