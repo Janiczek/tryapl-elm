@@ -1788,7 +1788,11 @@ epsilonUnderbar =
             , output = [ "0 1 0 1 0 0" ]
             }
         , Example
-            { input = [ "X Y" ]
+            { input =
+                [ "X ← 2 2 ⍴ 0 1 1 0"
+                , "Y ← 4 4 ⍴ 0 , 15 ⍴ 1 0 0"
+                , "X Y"
+                ]
             , output =
                 [ "┌───┬───────┐"
                 , "│0 1│0 1 0 0│"

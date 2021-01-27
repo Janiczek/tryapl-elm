@@ -8747,7 +8747,7 @@ var $author$project$CharInfo$epsilonUnderbar = {
 			$author$project$CharInfo$Example(
 			{
 				a: _List_fromArray(
-					['X Y']),
+					['X ← 2 2 ⍴ 0 1 1 0', 'Y ← 4 4 ⍴ 0 , 15 ⍴ 1 0 0', 'X Y']),
 				b: _List_fromArray(
 					['┌───┬───────┐', '│0 1│0 1 0 0│', '│1 0│1 0 0 1│', '│   │0 0 1 0│', '│   │0 1 0 0│', '└───┴───────┘'])
 			}),
